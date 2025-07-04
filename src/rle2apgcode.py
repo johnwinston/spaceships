@@ -14,7 +14,8 @@ def random_color():
 class RLE2APGCODE:
     def __init__(self,lifelib,period):
         self.period = period
-        self.rle_path = '/home/winston/devel/play/golly/Scripts/Python/rles/' + str(period)
+        # Use relative path instead of hardcoded absolute path
+        self.rle_path = os.path.join('rles', str(period))
         self.life_rle_path = './legendary/'
         self.pythlib_path = './submodules/lifelib/pythlib/'
         self.catagolue_URL = 'https://catagolue.hatsya.com/object/'

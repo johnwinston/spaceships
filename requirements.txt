@@ -1,0 +1,5 @@
+numpy
+pillow
+qrcode[pil]
+imageio
+unique-names-generator

@@ -14,7 +14,11 @@ def random_color():
 class RLE2APGCODE:
     def __init__(self,lifelib,period):
         self.period = period
-        self.rle_path = '/home/winston/devel/play/golly/Scripts/Python/rles/' + str(period)
+        base_golly_dir = os.environ.get(
+            'GOLLY_DIR',
+            '/Volumes/Macintosh HD/Users/winston/devel/golly-4.3-mac'
+        )
+        self.rle_path = os.path.join(base_golly_dir, 'Scripts', 'Python', 'rles', str(period))
         self.life_rle_path = './legendary/'
         self.pythlib_path = './submodules/lifelib/pythlib/'
         self.catagolue_URL = 'https://catagolue.hatsya.com/object/'
@@ -86,6 +90,10 @@ class RLE2APGCODE:
                 os.remove(os.path.join(self.pythlib_path, filename))
 
     def run(self):
+        if not os.path.exists(self.rle_path):
+            print(f"RLE directory does not exist: {self.rle_path}")
+            print("Create it and generate RLEs by running automons.py inside Golly first.")
+            return False
         if len(os.listdir(self.rle_path)) == 0:
             print("No rle files found. Run automons.py in Golly")
             return False

@@ -2,7 +2,11 @@ import os
 
 class CLEANUP:
     def __init__(self,period):
-        self.base_path = '/home/winston/devel/play/golly/Scripts/Python/'
+        base_golly_dir = os.environ.get(
+            'GOLLY_DIR',
+            '/Volumes/Macintosh HD/Users/winston/devel/golly-4.3-mac'
+        )
+        self.base_path = os.path.join(base_golly_dir, 'Scripts', 'Python') + '/'
         self.period = str(period)
         self.rle_path = self.base_path + 'rles/' + str(self.period) + '/'
         self.pattern_path = self.base_path + 'ntzfind_patterns/' + str(self.period) + '/'

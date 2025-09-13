@@ -6,8 +6,11 @@ import os
 
 class AUTO_NTZFIND:
     def __init__(self, iterations, period):
-        self.golly_file_path =\
-            "/home/winston/devel/play/golly/Scripts/Python/ntzfind_patterns/"
+        base_golly_dir = os.environ.get(
+            'GOLLY_DIR',
+            '/Volumes/Macintosh HD/Users/winston/devel/golly-4.3-mac'
+        )
+        self.golly_file_path = os.path.join(base_golly_dir, 'Scripts', 'Python', 'ntzfind_patterns') + '/'
         self.period_file_path = self.golly_file_path + str(period) + "/"
         if not os.path.exists(self.period_file_path):
             os.makedirs(self.period_file_path)

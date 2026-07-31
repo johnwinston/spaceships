@@ -5,6 +5,9 @@ import json
 import random
 import imageio
 
+from . import config
+from . import shipurl
+
 def random_color():
     r = random.randint(0, 255)
     g = random.randint(0, 255)
@@ -14,10 +17,9 @@ def random_color():
 class RLE2APGCODE:
     def __init__(self,lifelib,period):
         self.period = period
-        self.rle_path = '/home/winston/devel/play/golly/Scripts/Python/rles/' + str(period)
+        self.rle_path = os.path.join(config.GOLLY_BASE, 'rles/', str(period))
         self.life_rle_path = './legendary/'
         self.pythlib_path = './submodules/lifelib/pythlib/'
-        self.catagolue_URL = 'https://catagolue.hatsya.com/object/'
         self.patterns = {}
         self.lifelib=lifelib
         self.rule = ''
@@ -30,7 +32,8 @@ class RLE2APGCODE:
                   "rle" : "",
                   "rule" : "",
                   "apgcode" : "",
-                  "url" : ""
+                  "url" : "",
+                  "catagolue" : ""
                }
 
     def extract_data(self, rle):
@@ -107,7 +110,11 @@ class RLE2APGCODE:
             self.patterns[filename]["rle"] = rle
             self.patterns[filename]["rule"] = rule
             self.patterns[filename]["apgcode"] = apgcode
-            self.patterns[filename]["url"] = self.catagolue_URL + apgcode + '/' + rule
+            # QR codes point at the web player; catagolue kept for reference
+            self.patterns[filename]["url"] = shipurl.player_url(
+                apgcode=apgcode, rule=rule)
+            self.patterns[filename]["catagolue"] = shipurl.catagolue_url(
+                apgcode, rule)
 
             self.make_gif_and_qr(pattern, apgcode, rule, self.patterns[filename]["url"], filename[:-4])
             self.cleanup_shared_objects()

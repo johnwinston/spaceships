@@ -2,6 +2,10 @@ env/
 legendary/
 exceptional/
 __pycache__/
+.pytest_cache/
+plots/
+metadata/
+data/
 gifs/*
 qrs/*
 patterns.json

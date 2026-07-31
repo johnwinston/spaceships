@@ -4,10 +4,11 @@ from subprocess import PIPE, Popen
 from random import randrange, sample
 import os
 
+from . import config
+
 class AUTO_NTZFIND:
     def __init__(self, iterations, period):
-        self.golly_file_path =\
-            "/home/winston/devel/play/golly/Scripts/Python/ntzfind_patterns/"
+        self.golly_file_path = os.path.join(config.GOLLY_BASE, "ntzfind_patterns/")
         self.period_file_path = self.golly_file_path + str(period) + "/"
         if not os.path.exists(self.period_file_path):
             os.makedirs(self.period_file_path)
@@ -45,7 +46,7 @@ class AUTO_NTZFIND:
         output = []
 
         process = Popen(
-                    ["./submodules/ntzfind/ntzfind", rule, "w6", self.period, "k1", "v", "l200"],
+                    [config.NTZFIND_BIN, rule, "w6", self.period, "k1", "v", "l200"],
                     shell=False,
                     stdout=PIPE
                     )

@@ -1,0 +1,11 @@
+# Search + card pipeline
+numpy
+pillow
+qrcode
+imageio
+unique-names-generator
+# lifelib is vendored as a submodule (submodules/lifelib); alternatively:
+# python-lifelib
+
+# Development
+pytest

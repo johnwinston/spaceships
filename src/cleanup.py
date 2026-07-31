@@ -1,11 +1,13 @@
 import os
 
+from . import config
+
 class CLEANUP:
     def __init__(self,period):
-        self.base_path = '/home/winston/devel/play/golly/Scripts/Python/'
+        self.base_path = config.GOLLY_BASE
         self.period = str(period)
-        self.rle_path = self.base_path + 'rles/' + str(self.period) + '/'
-        self.pattern_path = self.base_path + 'ntzfind_patterns/' + str(self.period) + '/'
+        self.rle_path = os.path.join(self.base_path, 'rles', self.period) + '/'
+        self.pattern_path = os.path.join(self.base_path, 'ntzfind_patterns', self.period) + '/'
         if not os.path.exists(self.pattern_path):
             os.makedirs(self.pattern_path)
         if not os.path.exists(self.rle_path):

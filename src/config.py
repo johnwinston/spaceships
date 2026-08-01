@@ -26,11 +26,12 @@ NTZFIND_BIN = os.environ.get(
 # ---------------------------------------------------------------------------
 
 # Public base URL of the hosted web player (web/ directory of this repo).
-# The QR code on the back of each card points here.  Set this to the real
-# domain before generating production QR codes.
+# The QR code on the back of each card points here.  GitHub Pages project
+# site; the repo owner's custom domain (john-winston.com) applies to all
+# project pages, so this — not johnwinston.github.io — is the canonical URL.
 SITE_BASE_URL = os.environ.get(
     "AUTOMONS_SITE_URL",
-    "https://automons.example.com/play/",
+    "https://john-winston.com/automons/",
 )
 
 # Catagolue object pages remain useful as a reference link in metadata.

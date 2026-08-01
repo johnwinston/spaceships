@@ -23,7 +23,7 @@ mint it as a Solana NFT (one specific NFT per card, not a random drop).
 | Catalog + NFT metadata generators | ✅ built (`src/build_catalog.py`, `src/nft_metadata.py`) |
 | Tests | ✅ 26 passing (`python -m pytest tests/`) |
 | Real ~100 ships | ❌ not searched/curated yet |
-| Hosting + real domain | ❌ not chosen — **blocks QR generation** |
+| Hosting + real domain | ✅ live at https://john-winston.com/automons/ (GitHub Pages, deploys via `.github/workflows/pages.yml`) |
 | Solana mint (claim service, wallet connect) | ❌ scaffold + plan only (`chain/README.md`, `web/js/mint.js`) |
 | Other repos (g4g site, plotter tooling) | ❓ never inspected — session was scoped to this repo only |
 
@@ -68,9 +68,14 @@ env vars (`AUTOMONS_GOLLY_BASE`, `AUTOMONS_SITE_URL`, etc.).
 
 ## Next steps, in order
 
-1. **Decide the player domain** → set `AUTOMONS_SITE_URL`. Every QR
-   bakes it in; nothing card-related should be generated before this.
-2. **Host `web/`** (GitHub Pages is fine — it's fully static).
+1. ~~Decide the player domain~~ **Done 2026-08-01**: GitHub Pages project
+   site. The repo owner's custom domain applies to all project pages, so
+   the canonical URL is `https://john-winston.com/automons/` (baked into
+   `src/config.py` as the `SITE_BASE_URL` default).
+2. ~~Host `web/`~~ **Done 2026-08-01**: `.github/workflows/pages.yml`
+   deploys `web/` on push to `master` or this branch (the `github-pages`
+   environment allows both). HTTPS enforced; verified live with
+   `#v=1&a=xq4_153&r=b3s23`.
 3. **Search + curate the real ~100 ships** with the existing pipeline
    (periods 4/5/6/7 map to common/uncommon/rare/legendary).
 4. Run the three generators (catalog, metadata, plots) and test-plot a
@@ -83,7 +88,7 @@ env vars (`AUTOMONS_GOLLY_BASE`, `AUTOMONS_SITE_URL`, etc.).
 
 ## Open decisions for the human
 
-- Player domain (step 1 above).
+- ~~Player domain~~ decided: `https://john-winston.com/automons/`.
 - Free claim vs. paid mint (trade-offs in `chain/README.md`).
 - Trails on plotted fronts or clean single-generation fronts.
 - NFT `image`: the pipeline gif, or a rendered frame of the SVG.

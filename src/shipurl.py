@@ -41,11 +41,18 @@ def _b64url_decode(data):
 
 
 def encode_payload(rule=None, rle_text=None, apgcode=None, name=None,
-                   table_hex=None, claim=None):
-    """Build the fragment (no leading '#')."""
+                   table_hex=None, claim=None, ship_id=None):
+    """Build the fragment (no leading '#').
+
+    `a` is the catalog key.  Historically that was an apgcode; the deck
+    now keys by its own ship ids (see build_deck.py), so `ship_id` and
+    `apgcode` name the same parameter.
+    """
+    if ship_id and apgcode:
+        raise ValueError("pass ship_id or apgcode, not both")
     params = [("v", PAYLOAD_VERSION)]
-    if apgcode:
-        params.append(("a", apgcode))
+    if ship_id or apgcode:
+        params.append(("a", ship_id or apgcode))
     if rule:
         params.append(("r", rule))
     if rle_text:

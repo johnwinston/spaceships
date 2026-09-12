@@ -8,9 +8,10 @@ Front: the spaceship's live cells as outlined squares, optionally with
 "motion trail" outlines of past generations on separate layers (separate
 layers = separate pens on an AxiDraw-style plotter).
 
-Back: the QR code as a single SVG path (from the qrcode library's SVG
-factory), plus an optional caption in stroke-only geometry left to the
-plotting software's Hershey-text tooling.
+Back: the QR code drawn as horizontal pen strokes — consecutive dark
+modules merge into one line, and each module row is hatched with enough
+passes (at the configured pen width) to read as solid.  A pen cannot
+"fill", so everything is stroke geometry a plotter can actually draw.
 
 Usage:
     python -m src.plot_svg --demo                 # golden glider front+back
@@ -20,19 +21,19 @@ Output: plots/<period>/<apgcode>_front.svg and _back.svg
 """
 import argparse
 import json
+import math
 import os
-import xml.etree.ElementTree as ET
 
 import qrcode
-import qrcode.image.svg
 
 from . import config
 from . import engine
 from . import rle as rle_codec
 from . import ruletable
 from . import shipurl
+from . import stroke_font
 
-STROKE_MM = 0.35  # typical fineliner width
+STROKE_MM = config.PEN_WIDTH_MM
 
 
 def _svg_header(width_mm, height_mm):
@@ -117,13 +118,8 @@ def card_front_svg(cells, table=None, trail_generations=0):
     return "".join(svg)
 
 
-def qr_path_d(url):
-    """Render the QR for ``url`` and return (path_d, coordinate_span).
-
-    coordinate_span is the width of the QR in the path's own units, read
-    from the generated viewBox (the qrcode SVG factory uses 0.1 units per
-    module, so don't assume 1 unit = 1 module).
-    """
+def qr_matrix(url):
+    """Module matrix (list of rows of bools) for ``url``, no border."""
     qr = qrcode.QRCode(
         error_correction=qrcode.constants.ERROR_CORRECT_M,
         box_size=1,
@@ -131,28 +127,111 @@ def qr_path_d(url):
     )
     qr.add_data(url)
     qr.make(fit=True)
-    img = qr.make_image(image_factory=qrcode.image.svg.SvgPathImage)
-    root = ET.fromstring(img.to_string())
-    path = root.find(".//{http://www.w3.org/2000/svg}path")
-    span = float(root.get("viewBox").split()[2])
-    return path.get("d"), span
+    return qr.get_matrix()
 
 
-def card_back_svg(url):
-    """Back face: centred QR code as filled path (plot with fill routines
-    or a thick pen; modules are square regions)."""
-    d, span = qr_path_d(url)
-    scale = config.QR_TARGET_MM / span
+def _hatch_offsets(band_mm, pen_mm):
+    """Pen-centre offsets that ink a band of ``band_mm`` solid.
+
+    Centres are inset half a pen width from both edges (no bleed into
+    neighbouring light modules) and spaced at most 0.8 pen widths so
+    successive passes overlap.
+    """
+    inner = band_mm - pen_mm
+    if inner <= 0:
+        return [band_mm / 2]
+    n = int(math.ceil(inner / (pen_mm * 0.8))) + 1
+    step = inner / (n - 1)
+    return [pen_mm / 2 + k * step for k in range(n)]
+
+
+def qr_hatch_path(matrix, origin_x, origin_y, module_mm, pen_mm):
+    """Horizontal hatch strokes covering every dark module.
+
+    Consecutive dark modules in a row merge into single lines; endpoints
+    are inset half a pen width so the ink stays inside the run.
+    """
+    parts = []
+    offsets = _hatch_offsets(module_mm, pen_mm)
+    for row_idx, row in enumerate(matrix):
+        y0 = origin_y + row_idx * module_mm
+        runs = []
+        col = 0
+        while col < len(row):
+            if row[col]:
+                start = col
+                while col < len(row) and row[col]:
+                    col += 1
+                runs.append((start, col))
+            else:
+                col += 1
+        for start, end in runs:
+            x1 = origin_x + start * module_mm + pen_mm / 2
+            x2 = origin_x + end * module_mm - pen_mm / 2
+            for dy in offsets:
+                parts.append("M%g %gH%g" % (x1, y0 + dy, x2))
+    return '<path d="%s"/>' % "".join(parts)
+
+
+def back_geometry(url):
+    """(matrix, module_mm, qx, qy, quiet_mm) for the QR on a card back.
+
+    Shared with impose.py so a single card and a sheet of cards place
+    the QR -- and the claim code under it -- identically.
+    """
+    matrix = qr_matrix(url)
+    modules = len(matrix)
+    module_mm = config.QR_TARGET_MM / modules
     qx = (config.CARD_WIDTH_MM - config.QR_TARGET_MM) / 2
     qy = (config.CARD_HEIGHT_MM - config.QR_TARGET_MM) / 2
+    # QR spec: at least a 4-module quiet zone on every side.
+    quiet_mm = 4 * module_mm
+    if min(qx, qy) - 1.0 < quiet_mm:  # 1mm allowance for the frame line
+        raise ValueError(
+            "QR of %d modules at %gmm leaves no quiet zone on the card"
+            % (modules, config.QR_TARGET_MM)
+        )
+    return matrix, module_mm, qx, qy, quiet_mm
+
+
+def claim_code_path_d(code, qy, quiet_mm):
+    """The claim code in stroke font, centred under the QR's quiet zone.
+
+    The code is uppercase letters and digits (no descenders), so its cap
+    height is its full height; it must clear the card's bottom margin.
+    """
+    cap = config.CARD_CLAIM_CAP_MM
+    baseline = qy + config.QR_TARGET_MM + quiet_mm + config.CARD_CLAIM_GAP_MM + cap
+    if baseline > config.CARD_HEIGHT_MM - config.CARD_MARGIN_MM:
+        raise ValueError(
+            "claim code at %gmm caps does not fit under the QR" % cap
+        )
+    return stroke_font.text_path_d(
+        code, config.CARD_WIDTH_MM / 2, baseline, cap, align="center"
+    )
+
+
+def card_back_svg(url, code=None):
+    """Back face: centred QR code as horizontal pen strokes, plus the
+    claim code under it when one is given.
+
+    Every dark module is hatched at the configured pen width; the blank
+    card stock provides the light modules and the quiet zone.
+    """
+    matrix, module_mm, qx, qy, quiet_mm = back_geometry(url)
+    pen_mm = config.PEN_WIDTH_MM
     svg = [_svg_header(config.CARD_WIDTH_MM, config.CARD_HEIGHT_MM)]
     svg.append(_layer("frame", card_frame_path()))
     svg.append(
         '<g inkscape:groupmode="layer" inkscape:label="qr" '
-        'transform="translate(%g %g) scale(%g)">'
-        '<path d="%s" fill="black" stroke="none"/></g>'
-        % (qx, qy, scale, d)
+        'fill="none" stroke="black" stroke-width="%g" '
+        'stroke-linecap="butt">%s</g>'
+        % (pen_mm, qr_hatch_path(matrix, qx, qy, module_mm, pen_mm))
     )
+    if code:
+        svg.append(_layer(
+            "claim", '<path d="%s"/>' % claim_code_path_d(code, qy, quiet_mm)
+        ))
     svg.append("</svg>")
     return "".join(svg)
 

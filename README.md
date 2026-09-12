@@ -1,7 +1,9 @@
-# automons
+# spaceships
 
 Isotropic cellular-automaton spaceships: searched, curated, pen-plotted as
-physical cards, playable in a browser, mintable as Solana NFTs.
+physical cards, playable in a browser, claimable by whoever buys the card.
+(The repo keeps its old name, `automons`; the ships, site and cards are
+"spaceships".)
 
 **Start here: [docs/ROADMAP.md](docs/ROADMAP.md)** — what exists, what's
 planned, and the architecture. Solana plan: [chain/README.md](chain/README.md).
@@ -11,14 +13,16 @@ planned, and the architecture. Solana plan: [chain/README.md](chain/README.md).
 ```
 ./src/auto_ntzfind.py
     -- generates random isotropic (Hensel) rules, runs ntzfind,
-       creates Life 1.05 files in the golly folder
+       creates Life 1.05 files under data/pipeline/
 
-./src/automons.py
-    -- run in golly to create rles of Life 1.05 files
+./src/lif2rle.py
+    -- headless Life 1.05 -> RLE conversion (replaced the old
+       run-inside-Golly step, src/automons.py)
 
 ./src/rle2apgcode.py
-    -- reads rles from golly, gets the apgcode via lifelib,
-       creates the QR code (points at the web player), saves patterns.json
+    -- reads the rles, canonicalises the rule + gets the apgcode via
+       lifelib (x86 venv -- see docs/HANDOFF.md), creates the QR code
+       (points at the web player), saves patterns.json
 
 ./src/cleanup.py
     -- tkinter keep/delete curation of generated ships
@@ -47,15 +51,26 @@ python -m src.plot_svg --periods 4 5 6 7 --trail 3
        trail layers, one pen each), back = QR code as a single path
 
 web/
-    -- static player page the QR codes open: fly the ship, edit cells,
-       mint button (scaffold). Works from any static host.
+    -- static site, any host: index.html lists every ship in the deck
+       with its claim; play.html (what the QR codes open) flies one
+       ship and takes the claim code printed on the card back.
+
+worker/
+    -- the claim service (Cloudflare Worker + KV) behind the claim
+       form.  Deploy + booth-day notes: worker/README.md.
+
+AUTOMONS_CLAIM_SECRET=... python -m src.claimcode --deck data/deck.json
+    -- every card's claim code (HMAC of its id; the same secret goes
+       into the worker).  build_deck and impose plot the code under
+       the QR when the secret is set.
 ```
 
-## Tests
+## Setup + tests
 
 ```
-pip install pillow qrcode pytest
-python -m pytest tests/
+./scripts/setup_mac.sh    # venvs (arm64 + Rosetta/x86 for lifelib),
+                          # ntzfind build, submodule patch, smoke tests
+pytest                    # 41 passed
 ```
 
 The JS engine mirrors `src/engine.py`/`src/ruletable.py`; if you touch

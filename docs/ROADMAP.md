@@ -1,4 +1,4 @@
-# Isotropic Automons — pen-plotted spaceship cards with mintable NFTs
+# Spaceships — pen-plotted spaceship cards, claimable by their holders
 
 The vision: ~100 isotropic cellular-automaton spaceships, pen-plotted as
 physical cards (like the g4g run), each with a QR code on the back that
@@ -18,7 +18,8 @@ Solana NFT.
 | Interactive web player | **Missing** → added `web/` (static, table-driven engine). |
 | URL scheme linking card → player | **Missing** → added `src/shipurl.py` + `web/js/shipurl.js`. |
 | NFT metadata | **Missing** → added `src/nft_metadata.py` (Metaplex standard). |
-| Solana mint | **Missing** → plan + scaffolding in `chain/README.md`, `web/js/mint.js`. |
+| Card claims | **Missing** → added `src/claimcode.py` (codes on the backs) + `worker/` (claim service) + claim UI in `web/`. |
+| Solana mint | **Missing** → plan in `chain/README.md`; would build on the claim record. |
 | Portability | Paths were hard-coded to one machine → centralised in `src/config.py`. |
 
 ## Architecture
@@ -28,12 +29,12 @@ Solana NFT.
 ┌──────────────────┐   patterns.json   ┌────────────────────────────┐
 │ auto_ntzfind     │──────────────────▶│ build_catalog ─▶ web/catalog.json
 │  └─ ntzfind      │                   │ nft_metadata  ─▶ metadata/*.json
-│ golly (automons) │                   │ plot_svg      ─▶ plots/*_{front,back}.svg
+│ lif2rle headless │                   │ plot_svg      ─▶ plots/*_{front,back}.svg
 │ rle2apgcode      │                   └────────────────────────────┘
 │  └─ lifelib ─────┼── transition-table oracle ──┐
 └──────────────────┘                             ▼
                                    web player (static hosting)
-                                   scan QR ─▶ fly ship ─▶ mint (claim service)
+                                   scan QR ─▶ fly ship ─▶ claim (worker/ + KV)
 ```
 
 **The key design decision — transition tables, not a JS rule parser.**
@@ -67,11 +68,14 @@ under the real domain; set `AUTOMONS_SITE_URL`; regenerate QR codes/backs.
 Nice-to-haves: soup search mode, rule editing (needs a JS Hensel parser —
 validate any implementation against `ruletable.verify_oracle`).
 
-**Phase 3 — chain.** Follow `chain/README.md`: devnet mint of Core
-assets, claim service, wallet-adapter in `mint.js`, then mainnet.
+**Phase 3 — claims.** Done in code (2026-09-08): `worker/` verifies the
+code plotted under each QR and records who holds the card; the
+collection page shows it. Deploy per `worker/README.md`. A Solana mint,
+if ever wanted, hangs off the same claim record (`chain/README.md`).
 
-**Phase 4 — production run.** Generate claim tokens, final QR SVGs, plot
-fronts + backs, scratch-off stickers if desired.
+**Phase 4 — production run.** Set `AUTOMONS_CLAIM_SECRET`, rebuild the
+deck (stickers) or sheets (plotted backs) so every back carries its
+code, plot, and print the private code sheet for the booth.
 
 ## Open decisions
 

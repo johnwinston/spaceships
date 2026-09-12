@@ -47,6 +47,7 @@
     };
   }
 
-  window.Automons = window.Automons || {};
-  window.Automons.rle = { parse: parse };
+
+  window.Spaceships = window.Spaceships || {};
+  window.Spaceships.rle = { parse: parse };
 })();

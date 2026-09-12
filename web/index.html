@@ -3,130 +3,82 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automons — fly your spaceship</title>
+<title>Spaceships</title>
+<script>
+  // Card QR codes point at the site root with the ship in the fragment
+  // (#v=1&a=p4-01). Hand those straight to the player before anything
+  // here renders, so the printed links never change.
+  (function () {
+    var h = location.hash || "";
+    if (/[#&](a|p)=/.test(h)) location.replace("play.html" + h);
+  })();
+</script>
 <style>
   :root {
-    --bg: #0b0f14;
-    --panel: #131a23;
-    --ink: #e8e6df;
-    --gold: #ffd75e;
-    --dim: #8b94a1;
+    --bg: #000000;
+    --panel: #0d0d0d;
+    --ink: #ffffff;
+    --gold: #ffffff;
+    --dim: #8a8a8a;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
     font-family: "Futura", "Century Gothic", system-ui, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    padding: 24px 16px 64px;
   }
-  header { text-align: center; padding: 1.2rem 1rem 0.4rem; }
-  header h1 {
-    margin: 0;
-    font-size: 1.4rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
+  header { max-width: 960px; margin: 0 auto 8px; }
+  h1 { font-size: 26px; letter-spacing: 2px; margin: 0; }
+  h1 span { color: var(--gold); }
+  header p { color: var(--dim); margin: 4px 0 0; }
+  main { max-width: 960px; margin: 0 auto; }
+  h2 {
+    font-size: 15px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); border-bottom: 1px solid var(--panel);
+    padding-bottom: 6px; margin: 34px 0 14px;
   }
-  header h1 span { color: var(--gold); }
-  #shipname { font-size: 1.15rem; margin: 0.4rem 0 0; color: var(--gold); }
-  #shiprule { font-family: monospace; color: var(--dim); font-size: 0.85rem; }
-  #shipmeta { color: var(--dim); font-size: 0.8rem; }
-  main {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 1rem;
+  h2 small { color: var(--dim); letter-spacing: 0; text-transform: none; }
+  .grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
-  #board {
-    background: var(--bg);
-    border: 1px solid #26303d;
-    border-radius: 6px;
-    width: min(92vw, 640px);
-    height: auto;
-    image-rendering: pixelated;
-    cursor: crosshair;
+  a.card {
+    display: block; background: var(--panel); border-radius: 10px;
+    padding: 12px; text-decoration: none; color: var(--ink);
+    border: 1px solid transparent;
   }
-  .panel {
-    background: var(--panel);
-    border: 1px solid #26303d;
-    border-radius: 8px;
-    padding: 1rem;
-    min-width: 220px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+  a.card:hover { border-color: var(--gold); }
+  a.card canvas {
+    width: 100%; aspect-ratio: 5 / 7; display: block;
+    background: #000000; border-radius: 6px; image-rendering: pixelated;
   }
-  button {
-    background: #1d2836;
-    color: var(--ink);
-    border: 1px solid #33404f;
-    border-radius: 6px;
-    padding: 0.55rem 0.8rem;
-    font: inherit;
-    cursor: pointer;
+  a.card .code {
+    font-size: 10.5px; color: var(--dim); margin-top: 8px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
-  button:hover { border-color: var(--gold); }
-  #mintbtn {
-    background: var(--gold);
-    color: #14100a;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
-  #mintbtn.disabled { opacity: 0.55; }
-  label { font-size: 0.8rem; color: var(--dim); }
-  input[type=range] { width: 100%; }
-  .counters {
-    display: flex;
-    justify-content: space-between;
-    font-family: monospace;
-    color: var(--dim);
-    font-size: 0.85rem;
-  }
-  .counters b { color: var(--ink); }
-  #status {
-    max-width: 640px;
-    text-align: center;
-    color: var(--dim);
-    font-size: 0.85rem;
-    padding: 0 1rem 1.5rem;
-  }
-  #status.error { color: #ff8a7a; }
+  a.card .meta { font-size: 11.5px; margin-top: 2px; }
+  a.card .claim { font-size: 11px; margin-top: 6px; color: var(--ink); }
+  a.card .claim.unclaimed { color: var(--dim); }
+  a.card.is-claimed { border-color: #2a2a2a; }
+  #tally { color: var(--dim); margin: 6px 0 0; font-size: 14px; }
+  #status { color: var(--dim); max-width: 960px; margin: 24px auto; }
 </style>
 </head>
 <body>
-  <header>
-    <h1>auto<span>mons</span></h1>
-    <p id="shipname">loading…</p>
-    <p id="shiprule"></p>
-    <p id="shipmeta"></p>
-  </header>
-  <main>
-    <canvas id="board"></canvas>
-    <div class="panel">
-      <div class="counters">
-        <span>gen <b id="generation">0</b></span>
-        <span>pop <b id="population">0</b></span>
-      </div>
-      <button id="playpause">Pause</button>
-      <button id="stepbtn">Step</button>
-      <button id="resetbtn">Reset ship</button>
-      <button id="clearbtn">Clear board</button>
-      <label>speed
-        <input id="speed" type="range" min="10" max="500" value="410">
-      </label>
-      <button id="mintbtn">Mint on Solana</button>
-    </div>
-  </main>
-  <p id="status"></p>
-  <script src="js/engine.js"></script>
-  <script src="js/rle.js"></script>
-  <script src="js/shipurl.js"></script>
-  <script src="js/mint.js"></script>
-  <script src="js/player.js"></script>
+<header>
+  <h1>space<span>ships</span></h1>
+  <p><span id="count">…</span> spaceships, each discovered in its own universe.
+     Each card is one ship; the code on its back claims it.</p>
+  <p id="tally"></p>
+</header>
+<main id="tiers"></main>
+<p id="status">loading catalog…</p>
+<script src="js/config.js"></script>
+<script src="js/rle.js"></script>
+<script src="js/claims.js"></script>
+<script src="js/collection.js"></script>
 </body>
 </html>

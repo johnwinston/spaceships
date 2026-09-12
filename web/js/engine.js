@@ -111,8 +111,8 @@
     this.generation++;
   };
 
-  window.Automons = window.Automons || {};
-  window.Automons.engine = {
+  window.Spaceships = window.Spaceships || {};
+  window.Spaceships.engine = {
     NEIGH: NEIGH,
     tableFromHex: tableFromHex,
     totalisticTable: totalisticTable,

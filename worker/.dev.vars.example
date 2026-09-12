@@ -1,0 +1,4 @@
+# Copy to .dev.vars for `wrangler dev` (gitignored). Same secret as
+# AUTOMONS_CLAIM_SECRET on the plotting side.
+CLAIM_SECRET=test-secret
+ADMIN_TOKEN=change-me

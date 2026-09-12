@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spaceships</title>
+<style>
+  :root {
+    --bg: #000000;
+    --panel: #0d0d0d;
+    --ink: #ffffff;
+    --gold: #ffffff;
+    --dim: #8a8a8a;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Futura", "Century Gothic", system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  header { text-align: center; padding: 1.2rem 1rem 0.4rem; }
+  .home {
+    display: inline-block;
+    margin-bottom: 0.9rem;
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+  .home:hover, .home:focus-visible { color: var(--ink); }
+  header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+  header h1 span { color: var(--gold); }
+  #shipname { font-size: 1.15rem; margin: 0.4rem 0 0; color: var(--gold); }
+  #shiprule { font-family: monospace; color: var(--dim); font-size: 0.85rem; }
+  #shipmeta { color: var(--dim); font-size: 0.8rem; }
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  #board {
+    background: var(--bg);
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    width: min(94vw, 720px);
+    aspect-ratio: 1;
+    touch-action: none;
+    cursor: crosshair;
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  button {
+    background: #141414;
+    color: var(--ink);
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 0.55rem 0.8rem;
+    font: inherit;
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--gold); }
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 220px;
+    max-width: 320px;
+  }
+  .claim h2 {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .claim p { margin: 0; font-size: 0.85rem; color: var(--dim); }
+  .claim p.error { color: var(--ink); text-decoration: underline; }
+  .claim form { display: flex; flex-direction: column; gap: 0.6rem; }
+  .claim input[type=text] {
+    width: 100%;
+    background: #000000;
+    color: var(--ink);
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    padding: 0.5rem 0.6rem;
+    font: inherit;
+    letter-spacing: 0.08em;
+  }
+  .claim input[type=text]:focus { outline: none; border-color: var(--ink); }
+  #claimcode { font-family: monospace; text-transform: uppercase; }
+  #claimbtn {
+    background: var(--gold);
+    color: #000000;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  #claimbtn:disabled { opacity: 0.55; cursor: wait; }
+  #claimhint { font-size: 0.75rem; }
+  label { font-size: 0.8rem; color: var(--dim); }
+  input[type=range] { width: 100%; accent-color: var(--ink); }
+  .counters {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    color: var(--dim);
+    font-size: 0.85rem;
+  }
+  .counters b { color: var(--ink); }
+  #status {
+    max-width: 640px;
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.85rem;
+    padding: 0 1rem 1.5rem;
+  }
+  #status.error { color: #ffffff; text-decoration: underline; }
+</style>
+</head>
+<body>
+  <header>
+    <a class="home" href="./">&#8592; the collection</a>
+    <h1>space<span>ships</span></h1>
+    <p id="shipname">loading…</p>
+    <p id="shiprule"></p>
+    <p id="shipmeta"></p>
+  </header>
+  <main>
+    <canvas id="board"></canvas>
+    <div class="side">
+    <div class="panel">
+      <div class="counters">
+        <span>gen <b id="generation">0</b></span>
+        <span>pop <b id="population">0</b></span>
+      </div>
+      <button id="playpause">Pause</button>
+      <button id="stepbtn">Step</button>
+      <button id="resetbtn">Reset ship</button>
+      <label>speed
+        <input id="speed" type="range" min="0" max="100" value="62">
+      </label>
+    </div>
+    <section class="panel claim" id="claim" hidden>
+      <h2>claim this ship</h2>
+      <p id="claimstatus">…</p>
+      <form id="claimform" hidden autocomplete="off">
+        <label>code on the back of the card
+          <input id="claimcode" type="text" placeholder="XXXX-XXXX" maxlength="12"
+                 spellcheck="false" autocapitalize="characters" required>
+        </label>
+        <label>your name, shown on the collection
+          <input id="claimname" type="text" placeholder="optional" maxlength="40">
+        </label>
+        <button type="submit" id="claimbtn">Claim</button>
+        <p id="claimhint"></p>
+      </form>
+    </section>
+    </div>
+  </main>
+  <p id="status"></p>
+  <script src="js/config.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/rle.js"></script>
+  <script src="js/shipurl.js"></script>
+  <script src="js/claims.js"></script>
+  <script src="js/claim-ui.js"></script>
+  <script src="js/player.js"></script>
+</body>
+</html>

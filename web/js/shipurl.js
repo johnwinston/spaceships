@@ -17,6 +17,7 @@
   }
 
   // Returns {version, apgcode, rule, rleText, tableHex, name, claim}
+  // (`apgcode` is the `a=` catalog key -- a deck id like p4-01 these days)
   function decodeHash(hash) {
     var out = {};
     var params = new URLSearchParams((hash || "").replace(/^#/, ""));
@@ -40,17 +41,19 @@
   function resolveShip(payload, catalog) {
     var entry = (payload.apgcode && catalog && catalog[payload.apgcode]) || {};
     return {
+      id: payload.apgcode || null,       // catalog key (p4-01); `apgcode` is the legacy alias
       apgcode: payload.apgcode || null,
       name: payload.name || entry.name || payload.apgcode || "unnamed ship",
       rule: payload.rule || entry.rule || "b3s23",
       rleText: payload.rleText || entry.rle || null,
       tableHex: payload.tableHex || entry.table || null,
       rarity: entry.rarity || null,
+      edition: entry.edition || null,
       period: entry.period || null,
       claim: payload.claim || null,
     };
   }
 
-  window.Automons = window.Automons || {};
-  window.Automons.shipurl = { decodeHash: decodeHash, resolveShip: resolveShip };
+  window.Spaceships = window.Spaceships || {};
+  window.Spaceships.shipurl = { decodeHash: decodeHash, resolveShip: resolveShip };
 })();

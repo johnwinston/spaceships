@@ -1,0 +1,14 @@
+{
+  "name": "spaceships-claims",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test test/",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.1"
+  }
+}

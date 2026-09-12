@@ -1,5 +1,11 @@
 # Solana mint plan
 
+> Status 2026-09-08: the **claim** half of this exists — `worker/` verifies
+> the code on the card back and records the holder in KV; the site shows
+> it. Minting is not built. If it ever is, it should hang off that claim
+> record (add a wallet to the claim, mint on first claim) rather than
+> replace it.
+
 Goal: each physical pen-plotted card carries a QR code. Scanning it opens
 the web player for that exact ship, and the card's owner can mint that
 ship's NFT to their wallet. ~100 one-of-one NFTs.
@@ -14,7 +20,8 @@ able to mint it. That's the "claim" pattern (as used by POAP-style drops):
    (`c=` parameter, see `src/shipurl.py`). The token is an HMAC of the
    apgcode under a secret you keep offline, so tokens can't be forged from
    the public catalog.
-2. The player page shows **Mint on Solana** (`web/js/mint.js`). The user
+2. The player page shows a mint button beside the claim panel in
+   `web/play.html` (not built). The user
    connects a wallet (Phantom/Solflare via wallet-adapter).
 3. The page POSTs `{apgcode, claim, wallet}` to a tiny claim service. The
    service verifies the HMAC, checks the apgcode hasn't been claimed yet,
@@ -50,7 +57,8 @@ function (Vercel/Cloudflare) with a funded keypair is enough for 100 mints.
    Storage can be a single JSON/KV of `apgcode -> {claimed, tx}`.
    Secrets: `CLAIM_HMAC_KEY`, `MINT_AUTHORITY_KEYPAIR`, RPC URL
    (Helius/Triton free tier is fine at this scale).
-4. **Wire the player** — set `CLAIM_ENDPOINT` in `web/js/mint.js`, add
+4. **Wire the player** — `web/js/config.js` already carries
+   `CLAIM_ENDPOINT`; extend `web/js/claim-ui.js` with
    wallet-adapter, test the full scan → play → mint loop on devnet.
 5. **Mainnet** — rotate keys, re-upload nothing (Arweave is permanent),
    flip cluster, mint the collection, generate production QR codes with

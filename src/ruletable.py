@@ -29,6 +29,7 @@ Two generators are provided:
   configurations through lifelib, one generation each.  lifelib is the
   oracle, so the table is exactly as correct as the search pipeline.
 """
+import importlib
 import re
 
 # (dx, dy) for N, NE, E, SE, S, SW, W, NW with y increasing downward.
@@ -112,6 +113,29 @@ def _neighbourhood_rle(idx):
     return "x = 3, y = 3, rule = {rule}\n" + "$".join(rows) + "!"
 
 
+def canonical_rule(rule, lifelib):
+    """Return lifelib's canonical form of an isotropic rule string.
+
+    auto_ntzfind emits clauses in random order (``b3ya2kn.../s6c1e...``);
+    lifelib's ``str2tab`` refuses such strings but names the canonical
+    form in its error message.  Parsing that message keeps lifelib as the
+    only Hensel-notation authority (see the module docstring) — pinned by
+    a test against the vendored lifelib.  Pure Python, no compiled rules
+    needed.
+    """
+    genera = importlib.import_module(lifelib.__name__ + ".genera")
+    isotropic = importlib.import_module(lifelib.__name__ + ".genera.isotropic")
+    rule = genera.sanirule(rule)
+    try:
+        isotropic.str2tab(rule)
+        return rule
+    except Exception as e:
+        m = re.search(r"non-canonical version of (\S+)", str(e))
+        if not m:
+            raise
+        return m.group(1)
+
+
 def int_table_via_lifelib(rule, lifelib):
     """Build the 512-entry table for any rule lifelib understands.
 
@@ -120,6 +144,7 @@ def int_table_via_lifelib(rule, lifelib):
     Because all cells outside the 3x3 block start dead, the centre's next
     state is exactly the local transition.
     """
+    rule = canonical_rule(rule, lifelib)
     lt = lifelib.load_rules(rule).lifetree(n_layers=1)
     probe = lt.pattern("x = 3, y = 3, rule = %s\n3b$bob$3b!" % rule)
     table = [0] * TABLE_SIZE

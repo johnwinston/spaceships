@@ -4,7 +4,7 @@ from . import config
 
 class CLEANUP:
     def __init__(self,period):
-        self.base_path = config.GOLLY_BASE
+        self.base_path = config.PIPELINE_BASE
         self.period = str(period)
         self.rle_path = os.path.join(self.base_path, 'rles', self.period) + '/'
         self.pattern_path = os.path.join(self.base_path, 'ntzfind_patterns', self.period) + '/'

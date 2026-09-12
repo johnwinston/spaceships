@@ -6,6 +6,7 @@ import random
 import imageio
 
 from . import config
+from . import ruletable
 from . import shipurl
 
 def random_color():
@@ -16,8 +17,8 @@ def random_color():
 
 class RLE2APGCODE:
     def __init__(self,lifelib,period):
-        self.period = period
-        self.rle_path = os.path.join(config.GOLLY_BASE, 'rles/', str(period))
+        self.period = str(period)
+        self.rle_path = os.path.join(config.PIPELINE_BASE, 'rles/', str(period))
         self.life_rle_path = './legendary/'
         self.pythlib_path = './submodules/lifelib/pythlib/'
         self.patterns = {}
@@ -39,7 +40,10 @@ class RLE2APGCODE:
     def extract_data(self, rle):
         try:
             match = re.search(r'rule = ([^ \n]+)', rle)
-            rule = match.group(1).lower().replace('/','')
+            # lifelib insists on canonical Hensel form; searched rules
+            # arrive with clauses in random order.
+            rule = ruletable.canonical_rule(match.group(1), self.lifelib)
+            rle = re.sub(r'rule = [^ \n]+', 'rule = ' + rule, rle)
             if rule != self.rule:
                 self.lt = self.lifelib.load_rules(rule).lifetree(n_layers=1)
                 self.rule = rule
@@ -54,8 +58,6 @@ class RLE2APGCODE:
     def make_gif_and_qr(self, pattern, apgcode, rule, url, filename):
         if not os.path.exists('./gifs/'+self.period):
             os.makedirs('./gifs/'+self.period)
-        if not os.path.exists('./qrs/'+self.period):
-            os.makedirs('./qrs/'+self.period)
 
         if self.period == 'life':
             gif = pattern.make_gif(
@@ -67,6 +69,12 @@ class RLE2APGCODE:
                     hue=random_color(),
                     filename='./gifs/'+self.period+'/'+apgcode+'.gif'
                     )
+
+        self.make_qr(apgcode, url, filename)
+
+    def make_qr(self, apgcode, url, filename):
+        if not os.path.exists('./qrs/'+self.period):
+            os.makedirs('./qrs/'+self.period)
 
         qr = qrcode.QRCode(
             version=1,
@@ -88,12 +96,27 @@ class RLE2APGCODE:
             if filename.endswith(".so"):
                 os.remove(os.path.join(self.pythlib_path, filename))
 
-    def run(self):
-        if len(os.listdir(self.rle_path)) == 0:
+    def run(self, files=None, make_gifs=True, out_path=None,
+            cleanup_each=True):
+        """Process RLEs into patterns.json entries.
+
+        files: subset of filenames to process (default: the whole
+        directory) so a driver can split a period across workers.
+        make_gifs: GIF rendering costs minutes per ship and only matters
+        when gifs are the NFT artwork; QR PNGs are always written.
+        cleanup_each: the historical behaviour deleted every compiled .so
+        after every pattern, recompiling each ship from cold and breaking
+        concurrent workers; pass False and clean once per batch instead.
+        out_path: where to write the JSON (default: the period's
+        patterns.json; workers write part files a driver merges).
+        """
+        if files is None:
+            files = sorted(os.listdir(self.rle_path))
+        if len(files) == 0:
             print("No rle files found. Run automons.py in Golly")
             return False
 
-        for filename in os.listdir(self.rle_path):
+        for filename in files:
             self.patterns[filename] = self.return_node()
 
             file_path = os.path.join(self.rle_path, filename)
@@ -107,7 +130,10 @@ class RLE2APGCODE:
                 continue
             if pattern is None:
                 continue
-            self.patterns[filename]["rle"] = rle
+            # store with the canonical rule header (the player and
+            # catalog builder treat the canonical form as identity)
+            self.patterns[filename]["rle"] = re.sub(
+                r'rule = [^ \n]+', 'rule = ' + rule, rle)
             self.patterns[filename]["rule"] = rule
             self.patterns[filename]["apgcode"] = apgcode
             # QR codes point at the web player; catagolue kept for reference
@@ -116,12 +142,22 @@ class RLE2APGCODE:
             self.patterns[filename]["catagolue"] = shipurl.catagolue_url(
                 apgcode, rule)
 
-            self.make_gif_and_qr(pattern, apgcode, rule, self.patterns[filename]["url"], filename[:-4])
-            self.cleanup_shared_objects()
+            if make_gifs:
+                self.make_gif_and_qr(
+                    pattern, apgcode, rule,
+                    self.patterns[filename]["url"], filename[:-4])
+            else:
+                self.make_qr(apgcode, self.patterns[filename]["url"],
+                             filename[:-4])
+            if cleanup_each:
+                self.cleanup_shared_objects()
 
-        if not os.path.exists('./data/' + self.period):
-            os.makedirs('./data/' + self.period)
-        with open('./data/' + self.period + '/patterns.json', 'w') as json_file:
+        if out_path is None:
+            if not os.path.exists('./data/' + self.period):
+                os.makedirs('./data/' + self.period)
+            out_path = './data/' + self.period + '/patterns.json'
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        with open(out_path, 'w') as json_file:
             json.dump(self.patterns, json_file, indent=4)
 
         return self.patterns

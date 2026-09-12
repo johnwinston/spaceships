@@ -1,7 +1,8 @@
 """Crosshatch pattern generation for pen plotters.
 
-Vendored from the johnwinston/plotter repo (src/hatching.py) -- the
-engine behind the original plotted Game of Life cards.  Unit-agnostic:
+Vendored from plotter/lifeplot/hatching.py (the original Game of Life
+plotting tool, now in this repo under plotter/) -- the engine behind
+the G4G plotted cards.  Unit-agnostic:
 feed it rectangles in mm and it hatches in mm.  Emits paths as command
 tuples; impose.paths_to_d serializes them for SVG.
 """

@@ -86,7 +86,8 @@ code, plot, and print the private code sheet for the booth.
 
 ## Related work in other repos
 
-This session only had access to `automons`. If the g4g site, plotter
-tooling (e.g. AxiDraw scripts), or any wallet/mint experiments live in
-other repos, add them to a session and reconcile — most useful would be
-the g4g QR/print settings and any existing plotter workflow.
+None any more. The old `plotter` repo (the G4G Game of Life plotting
+tool plus the AxiDraw operating notes) was folded into this one on
+2026-09-12 as `plotter/` and `docs/OPERATING.md`, and archived on
+GitHub. The original g4g ship data is gone; content comes from a fresh
+search.

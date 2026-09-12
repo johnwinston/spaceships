@@ -3,8 +3,9 @@
 Read this first when picking the project back up. Written 2026-08-01 at
 the end of the foundation session; updated 2026-08-06 after porting the
 whole pipeline to the Apple Silicon Mac (Golly removed, lifelib under
-Rosetta, QR backs made plottable). Everything described here is on branch
-`claude/isotropic-automata-nft-a9szhi` (not merged to master yet).
+Rosetta, QR backs made plottable); updated 2026-09-12 when the old
+`plotter` repo was folded in as `plotter/` and the work was merged to
+`master` (it was developed on `claude/isotropic-automata-nft-a9szhi`).
 
 ## The project in one paragraph
 
@@ -24,14 +25,14 @@ claim it with the code plotted under the QR; the collection page
 | Web player (`web/`) | ✅ built, works — table-driven engine, URL scheme, demo glider |
 | Plotter SVG cards (`src/plot_svg.py`) | ✅ works; QR backs are now stroke-hatched (pen-plottable), no fills anywhere |
 | Catalog + NFT metadata generators | ✅ built and exercised on a real searched INT ship |
-| Tests | ✅ 41 passing (bare `pytest` works — root `conftest.py` + `pytest.ini`) |
+| Tests | ✅ 139 passing (bare `pytest` works — root `conftest.py` + `pytest.ini`; covers `tests/` and `plotter/tests/`) |
 | Real ~100 ships | ❌ not searched/curated yet — but the full pipeline was proven end-to-end on 2026-08-06 with one freshly searched p4 ship (`xq4_1vl0o88o0lv1z0aa7y07aazy07w7`) |
 | Curation UI (`src/cleanup.py`) | ✅ tkinter installed (`python-tk@3.14`), imports clean in the arm venv |
 | Hosting + real domain | ✅ live at https://john-winston.com/automons/ (GitHub Pages, deploys via `.github/workflows/pages.yml`) |
 | Card claims (`src/claimcode.py`, `worker/`, claim UI in `web/`) | ✅ built + tested 2026-09-08; **not deployed** — follow `worker/README.md`, then set `CLAIM_ENDPOINT` in `web/js/config.js` |
 | Solana mint | ❌ plan only (`chain/README.md`); would build on the claim record |
-| Plotter hardware/software | ❌ AxiDraw is the target; no axicli/saxi/Inkscape installed yet, no device seen on USB |
-| Other repos (g4g site, plotter tooling) | ❓ never inspected — original g4g data is gone; content will come from a fresh search |
+| Plotter hardware/software | ✅ AxiDraw + `saxi` (locally patched), first plots 2026-08-06 and 2026-08-23; procedure and settings in `docs/OPERATING.md`, machine scripts in `scripts/` |
+| Other repos (g4g site, plotter tooling) | ✅ the `plotter` repo (the G4G Life plotting tool) was folded in as `plotter/` on 2026-09-12 and archived on GitHub; the original g4g ship data is gone, content comes from a fresh search |
 
 ## The three design decisions that matter
 
@@ -67,7 +68,7 @@ SSE4.2). Everything else — tests, search, totalistic demo — uses the
 arm64 `.venv`.
 
 ```bash
-.venv/bin/pytest                                 # 41 passed
+.venv/bin/pytest                                 # 139 passed
 
 # search -> lif -> rle (arm64, headless — no Golly):
 .venv/bin/python main.py                         # interactive driver, or:
@@ -98,9 +99,8 @@ plots is `AUTOMONS_PEN_MM` (default 0.35).
    `#v=1&a=xq4_153&r=b3s23`.
 3. **Search + curate the real ~100 ships** with the existing pipeline
    (periods 4/5/6/7 map to common/uncommon/rare/legendary). The pipeline
-   is proven end-to-end on this Mac, curation UI included. Install
-   AxiDraw tooling (`saxi` via npm, or `pyaxidraw`) before the test
-   plots.
+   is proven end-to-end on this Mac, curation UI included. AxiDraw
+   tooling is installed and proven — see `docs/OPERATING.md`.
 4. Run the three generators (catalog, metadata, plots) and test-plot a
    few cards; judge the `--trail` look on paper.
 5. **Claims** are built (`worker/`, `src/claimcode.py`, claim UI in

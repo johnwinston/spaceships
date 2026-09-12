@@ -65,12 +65,30 @@ AUTOMONS_CLAIM_SECRET=... python -m src.claimcode --deck data/deck.json
        the QR when the secret is set.
 ```
 
+## Plotting on the AxiDraw
+
+[docs/OPERATING.md](docs/OPERATING.md) is the machine procedure: saxi
+setup and its local patches, pen calibration, homing, the flags every
+pass uses and why. The sheet scripts in `scripts/` encode the same
+settings:
+
+```
+python3 scripts/bake_plot_svg.py ...   # imposed sheet -> flat px SVG per pass
+scripts/plot_sheet_cards.sh s01        # plot one sheet, card by card
+scripts/plot_cuts.sh                   # cut lines only
+```
+
+`plotter/` is the original Game of Life plotting tool (the G4G cards),
+folded in from the old `plotter` repo on 2026-09-12: single-pattern
+panels and grids from an RLE, with `--table` for isotropic rules. See
+[plotter/README.md](plotter/README.md).
+
 ## Setup + tests
 
 ```
 ./scripts/setup_mac.sh    # venvs (arm64 + Rosetta/x86 for lifelib),
                           # ntzfind build, submodule patch, smoke tests
-pytest                    # 41 passed
+pytest                    # 139 passed (tests/ + plotter/tests/)
 ```
 
 The JS engine mirrors `src/engine.py`/`src/ruletable.py`; if you touch

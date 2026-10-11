@@ -40,7 +40,8 @@
     var el = document.createElement("div");
     if (claim) {
       el.className = "claim";
-      el.textContent = claim.name ? "claimed · " + claim.name : "claimed";
+      el.textContent = (claim.name ? "claimed · " + claim.name : "claimed") +
+        (claim.wallet ? " · NFT in wallet" : "");
     } else {
       el.className = "claim unclaimed";
       el.textContent = "unclaimed";

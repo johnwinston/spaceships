@@ -2,3 +2,6 @@
 # AUTOMONS_CLAIM_SECRET on the plotting side.
 CLAIM_SECRET=test-secret
 ADMIN_TOKEN=change-me
+# Only needed to send NFTs (see chain/README.md); leave unset for name-only claims.
+# SOLANA_RPC_URL=https://api.devnet.solana.com
+# VAULT_SECRET_KEY=[...64 numbers from the vault keypair file...]

@@ -1,0 +1,15 @@
+{
+  "name": "spaceships-chain",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "new-vault": "node src/new-vault.mjs",
+    "premint": "node src/premint.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@metaplex-foundation/mpl-core": "1.10.0",
+    "@metaplex-foundation/umi": "1.6.0",
+    "@metaplex-foundation/umi-bundle-defaults": "1.6.0"
+  }
+}

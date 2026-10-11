@@ -1,78 +1,101 @@
-# Solana mint plan
+# Spaceships on Solana
 
-> Status 2026-09-08: the **claim** half of this exists — `worker/` verifies
-> the code on the card back and records the holder in KV; the site shows
-> it. Minting is not built. If it ever is, it should hang off that claim
-> record (add a wallet to the claim, mint on first claim) rather than
-> replace it.
+Every card's ship is a Solana NFT. All 99 are minted up front into a
+**vault** wallet that John controls. When someone buys a card, John hands
+them that card's **claim QR** from a private booklet. They scan it, paste
+their wallet address, and the claim service sends the ship from the vault
+to their wallet. The buyer needs no SOL and pays nothing.
 
-Goal: each physical pen-plotted card carries a QR code. Scanning it opens
-the web player for that exact ship, and the card's owner can mint that
-ship's NFT to their wallet. ~100 one-of-one NFTs.
+## Pieces
 
-## Why this isn't a vanilla candy machine
+| Piece | Where | What it does |
+|---|---|---|
+| Metadata + art | `python -m src.nft_metadata` → `web/nft/` | One JSON + looping gif per ship, served by GitHub Pages at `<site>/nft/<id>.json` |
+| Vault wallet | `chain/src/new-vault.mjs` | Makes the keypair that holds unclaimed ships and pays fees |
+| Pre-mint | `chain/src/premint.mjs` | One Core collection + one Core asset per ship, owned by the vault; records addresses in `chain/deployments/<cluster>.json`, `worker/src/deployment.json`, `web/nft/deployment.json` |
+| Claim booklet | `python -m src.claim_sheet` → `data/claim_sheet.html` | Private, printable: one QR per ship that opens the player with its claim code filled in |
+| Claim service | `worker/` (`POST /claim` with `wallet`) | Checks the code, sends the asset from the vault (`worker/src/solana.js`), records who holds it; never sends a ship twice |
+| Claim page | `web/play.html` | Code (prefilled from the QR), wallet address or "use my Phantom wallet", result with an explorer link |
+| Collection | `web/index.html` | Every ship, claimed or not, and whether its NFT is in a wallet |
 
-Candy machines vend a *random* item from a pool. Here every card maps to a
-*specific* ship, and only the person physically holding the card should be
-able to mint it. That's the "claim" pattern (as used by POAP-style drops):
+## Choices, and why
 
-1. Each card's QR encodes the play URL **plus a single-use claim token**
-   (`c=` parameter, see `src/shipurl.py`). The token is an HMAC of the
-   apgcode under a secret you keep offline, so tokens can't be forged from
-   the public catalog.
-2. The player page shows a mint button beside the claim panel in
-   `web/play.html` (not built). The user
-   connects a wallet (Phantom/Solflare via wallet-adapter).
-3. The page POSTs `{apgcode, claim, wallet}` to a tiny claim service. The
-   service verifies the HMAC, checks the apgcode hasn't been claimed yet,
-   then mints (or transfers) the asset to the user's wallet and records
-   the claim.
+- **Solana, Metaplex Core.** Core is the cheapest full NFT on Solana and
+  a transfer is a single instruction. Compressed NFTs would save a few
+  dollars in total but need a paid indexer (DAS) to transfer each one.
+  That isn't worth it at n = 99.
+- **Pre-mint into a vault, transfer on claim.** All ships show up as one
+  verified collection before anyone buys. The chain decides who holds
+  each NFT, so a lost KV write can't send a ship twice: the second
+  transfer fails because the vault no longer owns it.
+- **Claim codes stay off the cards.** Plotted backs carry only the play
+  link. The secret is in the booklet QR, which John keeps. Sheets 01–11
+  were plotted with an 8-character code under the QR. Deploy the claim
+  service with a **new** `CLAIM_SECRET` so those printed codes are dead.
+- **Metadata on the site, not Arweave (for now).** Hosting it on the
+  site is free. The vault is the update authority, so the URIs can move
+  to permanent storage later without re-minting.
+- **No royalties** for now. Adding a Royalties plugin to the collection
+  is a later, one-transaction change.
 
-The claim service is the only piece that holds a key. A single serverless
-function (Vercel/Cloudflare) with a funded keypair is enough for 100 mints.
+## Cost
 
-## Recommended stack (2026)
+Per Metaplex's docs (Oct 2026), a Core asset costs about 0.003 SOL: about
+0.0015 SOL of rent and a 0.0015 SOL protocol fee. A transfer is about
+0.000005 SOL.
 
-- **Metaplex Core** (`mpl-core`) assets, one per ship — the cheapest full
-  NFT primitive on Solana (~0.003–0.004 SOL rent each; the whole set of
-  100 costs well under 1 SOL to mint, plus ~0.02 SOL of tx fees).
-  Compressed NFTs (Bubblegum) are cheaper still but add Merkle-tree
-  infrastructure that isn't worth it at n=100.
-- **Umi + JS SDK** (`@metaplex-foundation/umi`,
-  `@metaplex-foundation/mpl-core`) in the claim service.
-- **Irys (Arweave)** for permanent storage of the gif + metadata JSON
-  produced by `python -m src.nft_metadata` — a few cents per file.
-- A **Core Collection** asset so all 100 ships group under one verified
-  collection in wallets and marketplaces.
+| | SOL |
+|---|---|
+| Collection | ~0.003 |
+| 99 assets | ~0.31 |
+| 99 claim transfers | ~0.001 |
+| **Total** | **~0.32** (≈ $35 at $110/SOL) |
 
-## Build order
+`premint.mjs --dry-run` prints the live estimate and the vault balance.
+Devnet costs nothing.
 
-1. **Metadata** — run the pipeline, then `python -m src.nft_metadata
-   --periods ...`. Upload gifs, re-run with `--image-base`, upload JSONs.
-2. **Devnet dry run** — script `createCollection` + `create` (mint one
-   Core asset per metadata URI) against devnet. Verify how wallets render
-   the gif + `animation_url` (the player link).
-3. **Claim service** — one endpoint:
-   `POST /api/claim {apgcode, claim, wallet}`.
-   Storage can be a single JSON/KV of `apgcode -> {claimed, tx}`.
-   Secrets: `CLAIM_HMAC_KEY`, `MINT_AUTHORITY_KEYPAIR`, RPC URL
-   (Helius/Triton free tier is fine at this scale).
-4. **Wire the player** — `web/js/config.js` already carries
-   `CLAIM_ENDPOINT`; extend `web/js/claim-ui.js` with
-   wallet-adapter, test the full scan → play → mint loop on devnet.
-5. **Mainnet** — rotate keys, re-upload nothing (Arweave is permanent),
-   flip cluster, mint the collection, generate production QR codes with
-   claim tokens, plot the cards.
+## Runbook
 
-## Decisions to make
+Run everything below on the Mac from the repo root unless noted.
 
-- **Mint-on-claim vs pre-mint + transfer.** Mint-on-claim (recommended):
-  nothing exists until a card is scanned, unclaimed ships cost nothing.
-  Pre-mint looks better on marketplaces before the drop but you pay rent
-  up front and the transfer flow is slightly more code.
-- **Price.** Free claim (card price covers it) is simplest — the claim
-  service pays fees. Charging in SOL means the service builds a
-  transaction the user signs-and-pays; slightly more code.
-- **Claim token placement.** In the same QR = anyone who sees a good photo
-  of the card back can mint. Common mitigations: scratch-off sticker over
-  the QR, or a second private QR inside the packaging.
+```bash
+# 0. metadata + art live on the site (merge to master; Pages deploys web/)
+python -m src.nft_metadata
+
+# 1. vault wallet (once).  Prints its address; keep the file safe.
+cd chain && npm install
+node src/new-vault.mjs                      # ~/.config/spaceships/vault.keypair.json
+
+# 2. devnet rehearsal: free test SOL, nothing real
+node src/premint.mjs --airdrop --only p4-01,p4-02      # two ships first
+node src/premint.mjs --airdrop                          # then the rest
+#    (the public faucet is rate limited; faucet.solana.com works too)
+
+# 3. claim service (worker/README.md has the first-time steps)
+python -m src.claimcode --new-secret        # NEW secret, not the one on the plotted backs
+npx wrangler secret put CLAIM_SECRET
+npx wrangler secret put SOLANA_RPC_URL      # https://api.devnet.solana.com for the rehearsal
+npx wrangler secret put VAULT_SECRET_KEY < ~/.config/spaceships/vault.keypair.json
+npx wrangler deploy                         # deploys worker/src/deployment.json with it
+
+# 4. booklet: same new secret
+AUTOMONS_CLAIM_SECRET=... python -m src.claim_sheet     # data/claim_sheet.html, print it
+
+# 5. mainnet: send ~0.33 SOL to the vault address, then
+node src/premint.mjs --cluster mainnet-beta --dry-run
+node src/premint.mjs --cluster mainnet-beta --spend-real-sol
+#    commit the deployment files it wrote, set SOLANA_RPC_URL to a mainnet
+#    RPC (Helius free tier is plenty), redeploy the worker, push web/
+```
+
+Steps 1 and 2 are safe to run any time. Step 5 spends real SOL.
+
+## Known limits
+
+- The public RPC endpoints are rate limited. Pre-minting 99 ships is
+  fine; a free Helius key is more reliable for the claim service.
+- The Worker loads the Solana libraries only when a claim includes a
+  wallet. If a claim ever hits the free plan's CPU limit, the $5/month
+  Workers plan raises it.
+- KV is eventually consistent. Two claims racing on one ship can both
+  write a name, but only one transfer can succeed.

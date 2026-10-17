@@ -5,7 +5,8 @@
  * address transfers that asset to the buyer; the vault pays the fee
  * (~0.000005 SOL), so the buyer needs no SOL at all.
  *
- *   SOLANA_RPC_URL      secret: an RPC endpoint for the cluster in assets.json
+ *   SOLANA_RPC_URL      secret: an RPC endpoint for the cluster in deployment.json
+ *                       (not the public solana.com ones: they 403 Workers)
  *   VAULT_SECRET_KEY    secret: the vault keypair, as the JSON byte array
  *                       solana-keygen / chain/src/new-vault.mjs write
  *

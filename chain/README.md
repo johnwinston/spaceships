@@ -74,7 +74,7 @@ node src/premint.mjs --airdrop                          # then the rest
 # 3. claim service (worker/README.md has the first-time steps)
 python -m src.claimcode --new-secret        # NEW secret, not the one on the plotted backs
 npx wrangler secret put CLAIM_SECRET
-npx wrangler secret put SOLANA_RPC_URL      # https://api.devnet.solana.com for the rehearsal
+npx wrangler secret put SOLANA_RPC_URL      # a Helius devnet URL; see Known limits
 npx wrangler secret put VAULT_SECRET_KEY < ~/.config/spaceships/vault.keypair.json
 npx wrangler deploy                         # deploys worker/src/deployment.json with it
 
@@ -92,8 +92,12 @@ Steps 1 and 2 are safe to run any time. Step 5 spends real SOL.
 
 ## Known limits
 
-- The public RPC endpoints are rate limited. Pre-minting 99 ships is
-  fine; a free Helius key is more reliable for the claim service.
+- The public RPC endpoints (api.devnet / api.mainnet-beta.solana.com)
+  answer 403 to any request from a Cloudflare Worker, so the claim
+  service needs a third-party RPC even for the devnet rehearsal. A free
+  Helius account gives both a devnet and a mainnet URL. Pre-minting from
+  a laptop works against the public endpoints, though they rate limit;
+  premint resumes where it stopped.
 - The Worker loads the Solana libraries only when a claim includes a
   wallet. If a claim ever hits the free plan's CPU limit, the $5/month
   Workers plan raises it.

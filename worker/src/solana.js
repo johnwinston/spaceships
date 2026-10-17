@@ -34,14 +34,39 @@ export function makeChain(env, deployment) {
       return String(fetched.owner);
     },
 
-    /** Transfer `asset` from the vault to `wallet`; resolves the tx signature. */
+    /** Transfer `asset` from the vault to `wallet`; resolves the tx signature.
+     *  Confirms by polling rather than umi's sendAndConfirm: that waits on a
+     *  websocket subscription which never fires inside a Worker, so it sat
+     *  until the blockhash expired and threw although the transfer landed. */
     async send(asset, wallet) {
-      const result = await transferV1(umi, {
+      const signature = await transferV1(umi, {
         asset: publicKey(asset),
         newOwner: publicKey(wallet),
         collection,
-      }).sendAndConfirm(umi);
-      return base58.deserialize(result.signature)[0];
+      }).send(umi);
+      await waitForSignature((sigs) => umi.rpc.getSignatureStatuses(sigs), signature);
+      return base58.deserialize(signature)[0];
     },
   };
+}
+
+const CONFIRMED = new Set(["confirmed", "finalized"]);
+
+/** Poll `getStatuses([signature])` until the transaction is confirmed.
+ *  Throws if it failed on chain or isn't confirmed within `timeoutMs`
+ *  (index.js then asks the chain who owns the asset). */
+export async function waitForSignature(getStatuses, signature, {
+  timeoutMs = 30000, intervalMs = 1000,
+  sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
+} = {}) {
+  const deadline = Date.now() + timeoutMs;
+  for (;;) {
+    const [status] = await getStatuses([signature]);
+    if (status && status.error) {
+      throw new Error(`transaction failed: ${JSON.stringify(status.error)}`);
+    }
+    if (status && CONFIRMED.has(status.commitment)) return status;
+    if (Date.now() >= deadline) throw new Error("transaction not confirmed in time");
+    await sleep(intervalMs);
+  }
 }

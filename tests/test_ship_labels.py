@@ -16,7 +16,8 @@ def test_labels_fill_sheets_in_edition_order():
     page = ship_labels.render(rows)
     assert page.count('class="sheet"') == 2          # 32 labels -> 30 + 2
     assert page.count('class="label"') == 32
-    assert page.index("Spaceship #1<") < page.index("Spaceship #30<") < page.index("Spaceship #31<")
+    assert page.index(">p4-01<") < page.index(">p4-30<") < page.index(">p4-31<")
+    assert "Spaceship #" not in page
     assert "outline" not in page.split("<body>")[1]   # no borders on the real labels
 
 
@@ -25,3 +26,8 @@ def test_alignment_page_is_one_sheet_of_outlines():
     assert page.count('class="sheet"') == 1
     assert page.count('class="label outline"') == 30
     assert 'class="qr"' not in page
+
+
+def test_tall_ships_are_turned_lengthwise():
+    svg = ship_labels._ship_svg_wide("o$o$o!")   # 1 wide, 3 tall
+    assert 'viewBox="0 0 3 1"' in svg

@@ -29,6 +29,7 @@
   h2 { font-size: clamp(40px, 8vw, 104px); line-height: .95; margin: 0 0 4vh; font-weight: 500; letter-spacing: -1px; }
   .line { font-size: clamp(18px, 2.4vw, 28px); color: var(--dim); margin: 3vh 0 0; max-width: 34ch; }
   .line b { color: var(--ink); font-weight: 500; }
+  .p { font-size: clamp(17px, 1.6vw, 21px); line-height: 1.55; color: #cfcfcf; max-width: 54ch; margin: 2.5vh 0 0; }
   .media { max-width: 1280px; margin: 0 auto; }
   .media video, .media img, .media iframe { display: block; width: 100%; background: #000; }
   .media iframe { aspect-ratio: 16 / 9; height: auto; border: 0; }
@@ -91,6 +92,7 @@
       <p class="k">1970</p>
       <h2>Conway's<br>Game of Life</h2>
       <p>John Horton Conway · 1937–2020</p>
+      <p class="p">A "game" with no players. Set up some live cells on a grid, then watch: every generation, each cell lives or dies by counting its neighbours. Martin Gardner published it in Scientific American in October 1970, and people have been finding new things in it ever since.</p>
     </div>
   </div>
   <p class="credit">Photo: Thane Plambeck, via <a href="https://commons.wikimedia.org/wiki/File:John_H_Conway_2005_(cropped).jpg">Wikimedia Commons</a></p>
@@ -105,11 +107,12 @@
 <section>
   <div class="t"><p class="k">The rules</p><h2>Count the<br>neighbours</h2></div>
   <div class="media"><video src="about/rules.mp4" poster="about/rules.jpg" muted loop playsinline preload="none"></video></div>
-  <div class="t"><p class="line"><b>3</b> neighbours: born. <b>2 or 3</b>: stays. Otherwise: gone.</p></div>
+  <div class="t"><p class="line"><b>3</b> neighbours: born. <b>2 or 3</b>: stays. Otherwise: gone.</p>
+  <p class="p">Every cell updates at the same moment. That's the whole game, written <b>B3/S23</b>: born with 3, survives with 2 or 3.</p></div>
 </section>
 
 <section>
-  <div class="t"><p class="k">Try it</p><h2>Draw. Play.</h2></div>
+  <div class="t"><p class="k">Try it</p><h2>Draw. Play.</h2><p class="p">Tap cells to draw, then press Play. Or load the R-pentomino and watch it run.</p></div>
   <div class="tryit">
     <canvas id="board" aria-label="Game of Life board. Click or drag to draw cells."></canvas>
     <div class="bar">
@@ -126,7 +129,8 @@
 <section>
   <div class="t"><p class="k">R-pentomino</p><h2>The first<br>natural glider</h2></div>
   <div class="media"><video src="about/rpentomino.mp4" poster="about/rpentomino.jpg" muted loop playsinline preload="none"></video></div>
-  <div class="t"><p class="line">Five cells. At generation <b>69</b>, something walks away.</p></div>
+  <div class="t"><p class="line">Five cells. At generation <b>69</b>, something walks away.</p>
+  <p class="p">The R-pentomino churns for 1,103 generations before it settles. In 1970 Richard Guy spotted a piece breaking off and walking across the board: the first glider anyone had seen. Nobody designed it.</p></div>
 </section>
 
 <section>
@@ -134,23 +138,27 @@
 </section>
 
 <section>
-  <div class="t"><p class="k">Spaceships</p><h2>Patterns<br>that fly</h2></div>
+  <div class="t"><p class="k">Spaceships</p><h2>Patterns<br>that fly</h2>
+  <p class="p">A spaceship returns to its own shape, shifted over, and keeps going forever. Conway found the lightweight, middleweight and heavyweight ships in 1970. They move at c/2, half the "speed of light" of one cell per generation. The glider moves at c/4.</p></div>
   <div class="media"><video src="about/spaceships.mp4" poster="about/spaceships.jpg" muted loop playsinline preload="none"></video></div>
 </section>
 
 <section>
   <div class="t"><p class="k">Different rules</p><h2>Same cells,<br>new universe</h2></div>
   <div class="media"><video src="about/rule-swap.mp4" poster="about/rule-swap.jpg" muted loop playsinline preload="none"></video></div>
-  <div class="t"><p class="line">Conway's rule · ship p4-01's rule · ship p4-24's rule</p></div>
+  <div class="t"><p class="line">Conway's rule · ship p4-01's rule · ship p4-24's rule</p>
+  <p class="p">Change which neighbour counts cause a birth or a survival and you get a different universe. The ships in this collection use rules that also look at <i>where</i> the neighbours are, not just how many.</p></div>
 </section>
 
 <section>
-  <div class="t"><h2>100 ships,<br>100 rules</h2></div>
+  <div class="t"><h2>100 ships,<br>100 rules</h2>
+  <p class="p">A search invented random rules and looked for spaceships in each one. Every ship here lives in its own rule, and each one is pen-plotted on a card.</p></div>
   <div class="media"><video src="about/collection-rules.mp4" poster="about/collection-rules.jpg" muted loop playsinline preload="none"></video></div>
 </section>
 
 <section>
-  <div class="t"><p class="k">2020 · John Winston Garth</p><h2>Doo-dah</h2></div>
+  <div class="t"><p class="k">2020 · John Winston Garth</p><h2>Doo-dah</h2>
+  <p class="p">A new spaceship in Conway's own rule, found on December 6, 2020 by feeding ikpx2 partials into apgsearch. It has its own LifeWiki page, it was named in The New York Times, and it is NFT #1 in Catagolue's Life Patterns collection.</p></div>
   <div class="media"><video src="about/doo-dah.mp4" poster="about/doo-dah.jpg" muted loop playsinline preload="none"></video></div>
   <div class="t">
     <div class="stats">
@@ -168,7 +176,8 @@
 </section>
 
 <section>
-  <div class="t"><p class="k">No formula</p><h2>Every ship is<br>searched for</h2></div>
+  <div class="t"><p class="k">No formula</p><h2>Every ship is<br>searched for</h2>
+  <p class="p">There is no formula that produces spaceships. The only way to know what a pattern does is to run it, and there are far too many patterns to try them all. So searches build ships one row at a time, and throw away rows that can't work.</p></div>
   <div class="media"><video src="about/search-grows.mp4" poster="about/search-grows.jpg" muted loop playsinline preload="none"></video></div>
 </section>
 
@@ -177,6 +186,7 @@
   <div class="media"><video src="about/sir-robin-partials.mp4" poster="about/sir-robin-partials.jpg" muted loop playsinline preload="none"></video></div>
   <div class="t">
     <p class="line">Half a ship flies, then falls apart. <b>ikpx2</b> grows partials until one closes.</p>
+    <p class="p">Sir Robin, the first ship that moves like a chess knight, was found in 2018 by Adam P. Goucher by extending a partial. Here it is cut after 20, 38 and 56 rows, next to the whole ship. You can hand ikpx2 the head of a partial and it will keep searching from there.</p>
     <div class="btns">
       <a class="btn" href="https://gitlab.com/apgoucher/ikpx2">ikpx2</a>
       <a class="btn" href="https://conwaylife.com/wiki/Sir_Robin">Sir Robin</a>
@@ -189,6 +199,7 @@
   <div class="media"><video src="about/soup.mp4" poster="about/soup.jpg" muted loop playsinline preload="none"></video></div>
   <div class="t">
     <p class="line">Random soups, run on volunteers' computers. <b>Hundreds of trillions</b> so far.</p>
+    <p class="p">Catagolue is a shared census of everything that appears when Life starts from random noise. Anyone can join by running apgsearch on their own computer, and your finds go in with your name.</p>
     <div class="btns">
       <a class="btn solid" href="https://conwaylife.com/wiki/Tutorials/Contributing_to_Catagolue">Contribute</a>
       <a class="btn" href="https://catagolue.hatsya.com/home">Catagolue</a>
@@ -198,6 +209,7 @@
 
 <section>
   <div class="t"><p class="k">LifeWiki</p><h2>Notable</h2>
+    <p class="p">Most patterns never get their own LifeWiki page. A pattern earns one by doing at least one of these:</p>
     <div class="chips">
       <span>Historic</span><span>Famous</span><span>Solved an open question</span>
       <span>Set a record</span><span>A first</span><span>In the news</span>

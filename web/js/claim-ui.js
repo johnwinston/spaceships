@@ -34,6 +34,7 @@
     var sent = Boolean(claim && claim.wallet);
     el.hidden = !sent;
     $("walletfield").hidden = sent;
+    $("claimwallet").required = !sent; // a hidden required field would block "Update name"
     $("wallethelp").hidden = sent;
     if (!sent) return;
     var C = window.Spaceships.claims;

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spaceship</title>
+<style>
+  /* Layout: one ship at a time. Big viewer (photo or live grid) left, ship sheet right; deck strip below. */
+  :root {
+    --bg: #000000;
+    --panel: #0b0b0b;
+    --line: #262626;
+    --line-strong: #3a3a3a;
+    --ink: #ffffff;
+    --dim: #8a8a8a;
+    --paper: #f2f1ee;
+    --display: "Futura", "Jost", "Century Gothic", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--display);
+    padding-inline: 16px;
+    padding-block: 0 2.5rem;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+  header {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+    gap: 0.5rem 1.5rem; padding-block: 1.4rem 0.6rem; border-bottom: 1px solid var(--line);
+  }
+  header h1 { margin: 0; font-size: 1.15rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; }
+  header p { margin: 0; color: var(--dim); font-size: 0.8rem; letter-spacing: 0.08em; }
+  header h1 a.home { color: inherit; text-decoration: none; }
+  .pn { display: flex; gap: 1.1rem; font: 0.78rem var(--mono); letter-spacing: 0.08em; }
+  .pn a { color: var(--dim); text-decoration: none; }
+  .pn a:hover { color: var(--ink); }
+
+  .stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 1.25rem; align-items: start; }
+  @media (max-width: 860px) { .stage { grid-template-columns: minmax(0, 1fr); } }
+
+  .viewer { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
+  .frame {
+    position: relative; width: min(100%, calc(76vh / 1.41)); max-width: 100%; aspect-ratio: 1 / 1.41; margin-inline: auto;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  }
+  .frame img, .frame canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .frame img { object-fit: contain; background: var(--paper); }
+  .frame canvas { touch-action: none; cursor: crosshair; }
+
+  .modes { width: min(100%, calc(76vh / 1.41)); margin-inline: auto; display: flex; row-gap: 0.6rem; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; }
+  .switch { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px; }
+  .switch button {
+    background: transparent; color: var(--dim); border: 0; border-radius: 999px;
+    padding: 0.5rem 1.1rem; font: 500 0.82rem var(--display); letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
+  }
+  .switch button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .controls { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+  .controls[hidden] { display: none !important; }
+  .btn {
+    background: #141414; color: var(--ink); border: 1px solid var(--line-strong); border-radius: 6px;
+    padding: 0.45rem 0.75rem; font: inherit; font-size: 0.82rem; cursor: pointer;
+  }
+  .btn:hover { border-color: var(--ink); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); font-weight: 700; }
+  .btn.tog[aria-pressed="true"] { border-color: var(--ink); }
+  .btn.tog[aria-pressed="false"] { color: var(--dim); }
+  .seg { display: inline-flex; flex-wrap: wrap; gap: 0.4rem; }
+  .sep { width: 1px; align-self: stretch; background: var(--line-strong); margin-inline: 0.15rem; }
+  .gen { font: 0.75rem var(--mono); color: var(--dim); font-variant-numeric: tabular-nums; min-width: 7ch; }
+  .photos { display: flex; gap: 0.35rem; }
+  .photos[hidden] { display: none !important; }
+
+  .sheet {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 1.1rem; display: flex; flex-direction: column; gap: 1rem; min-width: 0;
+  }
+  .ed { font-size: 2.2rem; font-weight: 500; letter-spacing: 0.04em; line-height: 1; margin: 0; }
+  .ed small { font-size: 0.9rem; color: var(--dim); letter-spacing: 0.1em; }
+  .meta { display: grid; grid-template-columns: auto 1fr; gap: 0.45rem 0.9rem; margin: 0; font-size: 0.8rem; }
+  .meta dt { color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.68rem; padding-top: 0.15rem; }
+  .meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+  .meta dd.rule { font: 0.74rem/1.45 var(--mono); color: var(--ink); }
+  .pill {
+    display: inline-block; font: 500 0.66rem var(--mono); letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--ink); border-radius: 999px; padding: 0.15rem 0.55rem;
+  }
+  .own { display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+  .own h2 { margin: 0; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); font-weight: 500; }
+  .cta {
+    display: block; text-align: center; text-decoration: none; border-radius: 6px; padding: 0.7rem;
+    font-weight: 700; letter-spacing: 0.06em; font-size: 0.9rem;
+  }
+  .cta.primary { background: var(--ink); color: var(--bg); }
+  .cta.secondary { border: 1px solid var(--line-strong); color: var(--ink); font-weight: 500; }
+  .cta[aria-disabled="true"] { cursor: not-allowed; }
+  .note { margin: 0; font-size: 0.74rem; color: var(--dim); line-height: 1.5; }
+  .claim p { margin: 0; font-size: 0.85rem; color: var(--dim); }
+  .claim p.error { color: var(--ink); text-decoration: underline; }
+  .claim form { display: flex; flex-direction: column; gap: 0.6rem; }
+  .claim label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.78rem; color: var(--dim); }
+  .claim input[type=text] {
+    width: 100%; background: #000000; color: var(--ink); border: 1px solid var(--line-strong);
+    border-radius: 6px; padding: 0.5rem 0.6rem; font: inherit; letter-spacing: 0.08em;
+  }
+  .claim input[type=text]:focus { outline: none; border-color: var(--ink); }
+  #claimcode, #claimwallet { font-family: var(--mono); }
+  #claimcode { text-transform: uppercase; }
+  #claimwallet { font-size: 0.75rem; letter-spacing: 0; }
+  .wallethelp { font-size: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; }
+  .wallethelp:empty { display: none; }
+  .wallethelp button, #claimnft a { color: var(--ink); }
+  .wallethelp button { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; }
+  #claimnft { font-size: 0.85rem; }
+  #claimbtn {
+    background: var(--ink); color: var(--bg); border: 0; border-radius: 6px; padding: 0.7rem;
+    font: 700 0.9rem var(--display); letter-spacing: 0.06em; cursor: pointer;
+  }
+  #claimbtn:disabled { opacity: 0.55; cursor: wait; }
+  #claimhint { font-size: 0.75rem; }
+  .note a { color: var(--ink); }
+
+  .deck h2 { margin: 0 0 0.6rem; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); font-weight: 500; }
+  .deckhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 0.6rem; }
+  .deckhead h2 { margin: 0; }
+  .filter { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px; }
+  .filter button { background: transparent; color: var(--dim); border: 0; border-radius: 999px; padding: 0.35rem 0.8rem; font: 500 0.72rem var(--display); letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+  .filter button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .period { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+  .period h3 { margin: 0; font: 500 0.7rem var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+  .strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 0.5rem; }
+  .thumb .none { width: 100%; aspect-ratio: 1 / 1.41; border: 1px dashed var(--line-strong); border-radius: 3px; display: grid; place-items: center; color: var(--dim); font: 0.62rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; padding: 0.3rem; }
+  .thumb.missing { color: var(--ink); }
+  .nophoto { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 2rem; color: var(--dim); font-size: 0.9rem; line-height: 1.5; }
+  .thumb {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 0.35rem;
+    cursor: pointer; color: var(--dim); font: 0.7rem var(--mono); display: flex; flex-direction: column; gap: 0.35rem; text-align: left;
+  }
+  .thumb img { width: 100%; aspect-ratio: 1 / 1.41; object-fit: cover; border-radius: 3px; display: block; }
+  .thumb[aria-current="true"] { border-color: var(--ink); color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1><a class="home" href="index.html">Spaceships</a></h1>
+    <nav class="pn" aria-label="Ships">
+      <a id="prev" href="#">Prev</a>
+      <a href="index.html">All ships</a>
+      <a id="next" href="#">Next</a>
+    </nav>
+  </header>
+
+  <section class="stage">
+    <div class="viewer">
+      <div class="frame" id="frame">
+        <img id="photo" alt="">
+        <p class="nophoto" id="nophoto" hidden>No photo of this card yet.<br>Press Fly it to see the ship.</p>
+        <canvas id="board" hidden aria-label="Live simulation of the ship. Drag to draw or erase cells."></canvas>
+      </div>
+      <div class="modes">
+        <div class="switch" role="group" aria-label="View">
+          <button id="m-art" aria-pressed="true">Artwork</button>
+          <button id="m-live" aria-pressed="false">Fly it</button>
+        </div>
+        <div class="photos" id="photos"></div>
+        <div class="controls" id="controls" hidden>
+          <button class="btn primary" id="play">Play</button>
+          <button class="btn" id="step">Step</button>
+          <button class="btn" id="reset">Reset</button>
+          <span class="gen" id="gen">gen 0</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="sheet">
+      <p class="ed" id="ed">…</p>
+      <dl class="meta">
+        <dt>Ship</dt><dd id="sid"></dd>
+        <dt>Rarity</dt><dd><span class="pill" id="rarity"></span></dd>
+        <dt>Period</dt><dd id="period"></dd>
+        <dt>Rule</dt><dd class="rule" id="rule"></dd>
+      </dl>
+      <section class="own claim" id="claim" hidden>
+        <h2>Claim this ship</h2>
+        <p id="claimstatus">…</p>
+        <p id="claimnft" hidden></p>
+        <form id="claimform" hidden autocomplete="off">
+          <label>claim code
+            <input id="claimcode" type="text" placeholder="XXXX-XXXX" maxlength="12"
+                   spellcheck="false" autocapitalize="characters" required>
+          </label>
+          <label id="walletfield">your Solana wallet address, to receive the NFT
+            <input id="claimwallet" type="text" maxlength="44" required
+                   pattern="[1-9A-HJ-NP-Za-km-z]{32,44}" title="a Solana wallet address"
+                   spellcheck="false" autocapitalize="off" autocomplete="off">
+          </label>
+          <p class="wallethelp" id="wallethelp">
+            <button type="button" id="phantombtn" hidden>use my Phantom wallet</button>
+          </p>
+          <label>your name, shown on the collection
+            <input id="claimname" type="text" placeholder="optional" maxlength="40">
+          </label>
+          <button type="submit" id="claimbtn">Claim</button>
+          <p id="claimhint"></p>
+        </form>
+      </section>
+    </aside>
+  </section>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/shipurl.js"></script>
+<script src="js/claims.js"></script>
+<script src="js/claim-ui.js"></script>
+<script>
+// Filled from catalog.json (the minted deck) before the first ship opens.
+var SHIPS = {};
+var PHOTOS = {"p4-01":["p4-01"],"p4-02":["p4-02"],"p4-03":["p4-03"],"p4-04":["p4-04"],"p4-05":["p4-05"],"p4-06":["p4-06"],"p4-07":["p4-07"],"p4-08":["p4-08"],"p4-09":["p4-09"],"p4-10":["p4-10"],"p4-11":["p4-11"],"p4-12":["p4-12"],"p4-13":["p4-13"],"p4-14":["p4-14"],"p4-15":["p4-15"],"p4-16":["p4-16"],"p4-17":["p4-17"],"p4-18":["p4-18"],"p4-19":["p4-19"],"p4-20":["p4-20"],"p4-21":["p4-21"],"p4-22":["p4-22"],"p4-23":["p4-23"],"p4-24":["p4-24"],"p4-25":["p4-25"],"p4-26":["p4-26"],"p4-27":["p4-27"],"p4-28":["p4-28"],"p4-29":["p4-29"],"p4-30":["p4-30"],"p4-31":["p4-31"],"p4-32":["p4-32"],"p4-33":["p4-33"],"p4-34":["p4-34"],"p4-35":["p4-35"],"p4-36":["p4-36"],"p4-37":["p4-37"],"p4-38":["p4-38"],"p4-39":["p4-39"],"p4-40":["p4-40"],"p4-41":["p4-41"],"p4-42":["p4-42"],"p4-43":["p4-43"],"p4-44":["p4-44"],"p4-45":["p4-45"],"p5-01":["p5-01"],"p5-02":["p5-02"],"p5-03":["p5-03"],"p5-04":["p5-04"],"p5-05":["p5-05"],"p5-06":["p5-06"],"p5-07":["p5-07"],"p5-08":["p5-08"],"p5-09":["p5-09"],"p5-10":["p5-10"],"p5-11":["p5-11"],"p5-12":["p5-12"],"p5-13":["p5-13"],"p5-14":["p5-14"],"p5-15":["p5-15"],"p5-16":["p5-16"],"p5-17":["p5-17"],"p5-18":["p5-18"],"p5-19":["p5-19"],"p5-20":["p5-20"],"p5-21":["p5-21"],"p5-22":["p5-22"],"p5-23":["p5-23"],"p5-24":["p5-24"],"p5-25":["p5-25"],"p5-26":["p5-26"],"p5-27":["p5-27"],"p6-01":["p6-01"],"p6-02":["p6-02"],"p6-03":["p6-03"],"p6-04":["p6-04"],"p6-05":["p6-05"],"p6-06":["p6-06"],"p6-07":["p6-07"],"p6-08":["p6-08"],"p6-09":["p6-09"],"p6-10":["p6-10"],"p6-11":["p6-11"],"p6-12":["p6-12"],"p6-13":["p6-13"],"p6-14":["p6-14"],"p6-15":["p6-15"],"p6-16":["p6-16"],"p6-17":["p6-17"],"p6-18":["p6-18"],"p7-01":["p7-01","p7-01_2"],"p7-02":["p7-02"],"p7-03":["p7-03"],"p7-04":["p7-04"],"p7-05":["p7-05"],"p7-06":["p7-06"],"p5-28":["p5-28"],"p5-29":["p5-29"],"p5-30":["p5-30"]};
+var GRIDBOX = {"p4-01":[0.1125,0.0868,0.8863,0.9123,787,1100],"p4-02":[0.1137,0.0891,0.8857,0.9105,783,1100],"p4-03":[0.1101,0.0882,0.888,0.9127,786,1100],"p4-04":[0.1138,0.0877,0.8882,0.9114,778,1100],"p4-05":[0.1141,0.09,0.8891,0.9109,780,1100],"p4-06":[0.1133,0.0927,0.8906,0.9118,777,1100],"p4-07":[0.1127,0.0873,0.8867,0.9114,786,1100],"p4-08":[0.1103,0.0509,0.8865,0.8814,793,1100],"p4-09":[0.1162,0.0545,0.8876,0.8836,796,1100],"p4-10":[0.1279,0.08,0.9039,0.9064,786,1100],"p4-11":[0.117,0.0845,0.8931,0.9105,786,1100],"p4-12":[0.1124,0.0836,0.8876,0.9059,783,1100],"p4-13":[0.116,0.0859,0.8852,0.9105,793,1100],"p4-14":[0.1128,0.0859,0.8878,0.9118,789,1100],"p4-15":[0.114,0.0855,0.8854,0.9109,785,1100],"p4-16":[0.1184,0.0877,0.8917,0.9109,794,1100],"p4-17":[0.1151,0.0877,0.8907,0.9127,782,1100],"p4-18":[0.1171,0.0886,0.8892,0.9145,790,1100],"p4-19":[0.1283,0.0791,0.906,0.9036,787,1100],"p4-20":[0.1338,0.0791,0.9064,0.905,796,1100],"p4-21":[0.1302,0.0791,0.9104,0.9036,776,1100],"p4-22":[0.1338,0.0782,0.9083,0.9036,785,1100],"p4-23":[0.1388,0.075,0.9119,0.9009,789,1100],"p4-24":[0.1364,0.0764,0.911,0.9045,781,1100],"p4-25":[0.1354,0.0773,0.9114,0.9036,779,1100],"p4-26":[0.1191,0.0882,0.8918,0.915,781,1100],"p4-27":[0.1147,0.0855,0.8904,0.9127,780,1100],"p4-28":[0.1088,0.0927,0.8817,0.9155,786,1100],"p4-29":[0.108,0.0914,0.8824,0.9123,778,1100],"p4-30":[0.11,0.0909,0.8835,0.9127,777,1100],"p4-31":[0.109,0.0886,0.8859,0.9123,780,1100],"p4-32":[0.1123,0.0914,0.8858,0.9132,779,1100],"p4-33":[0.1119,0.0891,0.8849,0.9132,782,1100],"p4-34":[0.1127,0.085,0.8842,0.9086,790,1100],"p4-35":[0.1135,0.0868,0.8897,0.9114,780,1100],"p4-36":[0.117,0.0891,0.8868,0.9109,782,1100],"p4-37":[0.1078,0.0936,0.8806,0.9136,779,1100],"p4-38":[0.1093,0.0905,0.8824,0.9123,778,1100],"p4-39":[0.1082,0.0945,0.8816,0.9136,781,1100],"p4-40":[0.1142,0.0886,0.8858,0.9109,784,1100],"p4-41":[0.1123,0.0905,0.8864,0.9136,779,1100],"p4-42":[0.1127,0.0936,0.8866,0.9155,785,1100],"p4-43":[0.1153,0.0873,0.8892,0.9064,776,1100],"p4-44":[0.1118,0.0886,0.8857,0.9077,774,1100],"p4-45":[0.1155,0.0895,0.8864,0.9118,779,1100],"p5-01":[0.1041,0.0832,0.8775,0.91,788,1100],"p5-02":[0.1011,0.0809,0.8761,0.9141,791,1100],"p5-03":[0.1033,0.0814,0.8747,0.9136,794,1100],"p5-04":[0.1089,0.0882,0.8804,0.9136,790,1100],"p5-05":[0.108,0.0895,0.8806,0.9141,787,1100],"p5-06":[0.109,0.0886,0.8802,0.9105,789,1100],"p5-07":[0.1082,0.0905,0.8814,0.905,776,1100],"p5-08":[0.1079,0.0886,0.8844,0.9086,774,1100],"p5-09":[0.1138,0.0882,0.8856,0.9073,778,1100],"p5-10":[0.1065,0.0823,0.8819,0.9091,779,1100],"p5-11":[0.1133,0.0864,0.8892,0.9118,781,1100],"p5-12":[0.1142,0.0864,0.8909,0.9114,779,1100],"p5-13":[0.1119,0.09,0.8887,0.9141,782,1100],"p5-14":[0.1145,0.0868,0.89,0.9123,782,1100],"p5-15":[0.1173,0.0882,0.8929,0.9136,780,1100],"p5-16":[0.1054,0.0832,0.8862,0.9105,778,1100],"p5-17":[0.1079,0.0836,0.8871,0.91,788,1100],"p5-18":[0.1112,0.085,0.8927,0.9132,778,1100],"p5-19":[0.109,0.0841,0.8858,0.9073,775,1100],"p5-20":[0.1127,0.0873,0.8867,0.9114,779,1100],"p5-21":[0.118,0.0873,0.8948,0.9159,784,1100],"p5-22":[0.1179,0.0818,0.8878,0.9095,789,1100],"p5-23":[0.1199,0.0845,0.8929,0.9045,780,1100],"p5-24":[0.1204,0.0859,0.8924,0.9091,785,1100],"p5-25":[0.1209,0.0845,0.8911,0.9114,794,1100],"p5-26":[0.1191,0.0864,0.8911,0.9114,785,1100],"p5-27":[0.1184,0.0873,0.8905,0.9186,790,1100],"p6-01":[0.1115,0.0868,0.886,0.9123,776,1077],"p6-02":[0.1073,0.0882,0.8915,0.9191,797,1100],"p6-03":[0.1111,0.0868,0.8883,0.9159,783,1100],"p6-04":[0.1098,0.0845,0.8883,0.9105,788,1100],"p6-05":[0.1177,0.0845,0.8931,0.9118,786,1100],"p6-06":[0.1158,0.085,0.8912,0.9118,786,1100],"p6-07":[0.1127,0.0873,0.8867,0.9114,788,1100],"p6-08":[0.1148,0.095,0.8864,0.9177,788,1100],"p6-09":[0.1218,0.0941,0.8923,0.9118,780,1100],"p6-10":[0.1212,0.0923,0.8954,0.9132,784,1100],"p6-11":[0.122,0.0905,0.894,0.91,783,1100],"p6-12":[0.112,0.0873,0.8848,0.9114,781,1100],"p6-13":[0.11,0.0859,0.8835,0.9109,777,1100],"p6-14":[0.1117,0.0886,0.8851,0.9123,783,1100],"p6-15":[0.1167,0.0855,0.8929,0.9114,780,1100],"p6-16":[0.1079,0.0691,0.8812,0.8909,783,1100],"p6-17":[0.1085,0.0741,0.8845,0.8945,779,1100],"p6-18":[0.1199,0.0859,0.894,0.9127,788,1100],"p7-01":[0.1106,0.0895,0.884,0.9141,823,1100],"p7-01_2":[0.1103,0.0882,0.8847,0.9132,789,1100],"p7-02":[0.1069,0.0905,0.8841,0.9145,781,1100],"p7-03":[0.1081,0.0914,0.8861,0.9155,777,1100],"p7-04":[0.1064,0.0886,0.8854,0.9114,785,1100],"p7-05":[0.1096,0.0873,0.886,0.9123,785,1100],"p7-06":[0.1091,0.09,0.8852,0.9145,788,1100],"_default":[0.1127,0.0873,0.8867,0.9114,1000,1410],"p5-28":[0.1113,0.0845,0.8881,0.9109,782,1100],"p5-29":[0.1112,0.0868,0.8882,0.9123,778,1100],"p5-30":[0.1093,0.0873,0.8901,0.9136,778,1100]};
+function photosOf(id) { return PHOTOS[id] || []; }
+var DECK_SIZE = 99;
+
+/* Engine + RLE parser: same logic as web/js/engine.js and rle.js in automons. */
+var NEIGH = [[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]];
+function tableFromHex(hex) {
+  var t = new Uint8Array(512);
+  for (var j = 0; j < 128; j++) { var n = parseInt(hex[j], 16); for (var k = 0; k < 4; k++) t[j*4+k] = (n >> k) & 1; }
+  return t;
+}
+function parseRle(text) {
+  var body = [];
+  text.split(/\r?\n/).forEach(function (l) { l = l.trim(); if (l && l[0] !== "#" && l[0] !== "x") body.push(l); });
+  var s = body.join(""), cells = [], x = 0, y = 0, count = "";
+  for (var i = 0; i < s.length; i++) {
+    var ch = s[i];
+    if (ch >= "0" && ch <= "9") { count += ch; continue; }
+    var n = count ? parseInt(count, 10) : 1; count = "";
+    if (ch === "b" || ch === ".") x += n;
+    else if (ch === "$") { y += n; x = 0; }
+    else if (ch === "!") break;
+    else if (/[a-zA-Z]/.test(ch)) for (var k = 0; k < n; k++) { cells.push([x, y]); x++; }
+  }
+  return cells;
+}
+
+/* Live view. The world is the card's own 18x27 grid, wrapped into a torus: a ship that leaves
+   the top comes back at the bottom. Extra cells extend it to fill the view. Two ships
+   grow wider than the card mid-flight and would collide with themselves, so their world
+   gets a few extra rows/columns around the card. The camera opens on exactly where the grid
+   appears in the photo. */
+var CARD_W = 18, CARD_H = 27, BOX_W = 16, BOX_H = 25, PAD = 1;
+var EXTRA = { "p6-03": [0, 1], "p6-07": [1, 2] };
+var W = CARD_W, H = CARD_H, CWX = 0, CWY = 0;
+var grid, table, gen = 0, running = false, timer = null, initial = [];
+var canvas = document.getElementById("board"), ctx = canvas.getContext("2d");
+var current = null, photoIdx = 0, mode = "art", showLines = true;
+var cam = { x: 0, y: 0, z: 10, ax: 0, ay: 0 };   // world point (x,y) sits at screen anchor (ax,ay), z px per cell
+
+function step() {
+  var dst = new Uint8Array(W * H);
+  for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
+    var idx = grid[y*W+x] ? 256 : 0;
+    for (var i = 0; i < 8; i++) if (grid[((y+NEIGH[i][1]+H)%H)*W + (x+NEIGH[i][0]+W)%W]) idx |= 1 << i;
+    dst[y*W+x] = table[idx];
+  }
+  grid = dst; gen++;
+}
+function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+// Where the card's grid is drawn in the photo, in canvas pixels.
+function photoGridRect(fw, fh) {
+  var list = photosOf(current), name = list.length ? list[photoIdx] : null;
+  var box = (name && GRIDBOX[name]) || GRIDBOX._default;   // [x0, y0, x1, y1] as fractions, then image width, height
+  var iw = box[4], ih = box[5];
+  var s = Math.min(fw / iw, fh / ih), dw = iw * s, dh = ih * s, dx = (fw - dw) / 2, dy = (fh - dh) / 2;
+  return { x: dx + box[0] * dw, y: dy + box[1] * dh, w: (box[2] - box[0]) * dw, h: (box[3] - box[1]) * dh };
+}
+// Grow the world past the card on every side until it fills the whole view, keeping the
+// card's 18x27 cells exactly where they sit in the photo.
+function layoutWorld() {
+  var fr = document.getElementById("frame").getBoundingClientRect();
+  var r = photoGridRect(fr.width, fr.height), z = Math.min(r.w / CARD_W, r.h / CARD_H);
+  var ex = EXTRA[current] || [0, 0];
+  var left = Math.max(ex[0], Math.ceil(r.x / z)), right = Math.max(ex[0], Math.ceil((fr.width - r.x - r.w) / z));
+  var top = Math.max(ex[1], Math.ceil(r.y / z)), bottom = Math.max(ex[1], Math.ceil((fr.height - r.y - r.h) / z));
+  CWX = left; CWY = top; W = CARD_W + left + right; H = CARD_H + top + bottom;
+}
+function fitCard() {
+  sizeCanvas();
+  var r = photoGridRect(canvas.width, canvas.height);
+  cam.z = Math.min(r.w / CARD_W, r.h / CARD_H);
+  cam.x = CWX + CARD_W / 2; cam.y = CWY + CARD_H / 2;
+  cam.ax = r.x + r.w / 2; cam.ay = r.y + r.h / 2;
+}
+function sizeCanvas() {
+  var r = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  var w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
+  if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+}
+function toScreen(x, y) { return [cam.ax + (x - cam.x) * cam.z, cam.ay + (y - cam.y) * cam.z]; }
+function toWorld(px, py) { return [cam.x + (px - cam.ax) / cam.z, cam.y + (py - cam.ay) / cam.z]; }
+
+function draw() {
+  sizeCanvas();
+  var cw = canvas.width, ch = canvas.height, z = cam.z;
+  ctx.fillStyle = css("--bg"); ctx.fillRect(0, 0, cw, ch);
+  var tl = toWorld(0, 0), br = toWorld(cw, ch);
+  var x0 = Math.floor(tl[0]), y0 = Math.floor(tl[1]), x1 = Math.ceil(br[0]), y1 = Math.ceil(br[1]);
+  // The world is a torus (cells wrap in step()), but only one copy of it is drawn.
+  var wa = toScreen(0, 0), wb = toScreen(W, H);
+  ctx.fillStyle = css("--panel"); ctx.fillRect(wa[0], wa[1], wb[0] - wa[0], wb[1] - wa[1]);
+  x0 = Math.max(0, x0); y0 = Math.max(0, y0); x1 = Math.min(W, x1); y1 = Math.min(H, y1);
+  if (showLines && z >= 4) {
+    ctx.strokeStyle = css("--line"); ctx.lineWidth = 1; ctx.beginPath();
+    for (var x = x0; x <= x1; x++) { var p = toScreen(x, 0)[0]; ctx.moveTo(p, wa[1]); ctx.lineTo(p, wb[1]); }
+    for (var y = y0; y <= y1; y++) { var q = toScreen(0, y)[1]; ctx.moveTo(wa[0], q); ctx.lineTo(wb[0], q); }
+    ctx.stroke();
+  // the card's own grid, a step brighter, so the opening view reads as the card
+    var ca = toScreen(CWX, CWY), cb = toScreen(CWX + CARD_W, CWY + CARD_H);
+    ctx.strokeStyle = css("--line-strong"); ctx.beginPath();
+    for (var i = 0; i <= CARD_W; i++) { var px = ca[0] + i * z; ctx.moveTo(px, ca[1]); ctx.lineTo(px, cb[1]); }
+    for (var j = 0; j <= CARD_H; j++) { var py = ca[1] + j * z; ctx.moveTo(ca[0], py); ctx.lineTo(cb[0], py); }
+    ctx.stroke();
+  }
+  ctx.fillStyle = css("--ink");
+  var gap = z >= 6 ? 1 : 0;
+  for (var yy = y0; yy < y1; yy++) for (var xx = x0; xx < x1; xx++) {
+    if (!grid[yy*W+xx]) continue;
+    var s = toScreen(xx, yy); ctx.fillRect(s[0] + gap, s[1] + gap, z - 2*gap, z - 2*gap);
+  }
+  document.getElementById("gen").textContent = "gen " + gen;
+}
+function resetWorld() {
+  setRunning(false);
+  grid = new Uint8Array(W * H); gen = 0;
+  initial.forEach(function (p) { grid[((p[1]+H)%H)*W + (p[0]+W)%W] = 1; });
+  if (mode === "live") { fitCard(); draw(); }
+}
+function setRunning(on) {
+  running = on; clearInterval(timer);
+  document.getElementById("play").textContent = on ? "Pause" : "Play";
+  if (on) timer = setInterval(function () { step(); draw(); }, 90);
+}
+
+function loadShip(id) {
+  current = id; photoIdx = 0;
+  var s = SHIPS[id];
+  table = tableFromHex(s.table);
+  layoutWorld();
+  // Same orientation as the card and the site's player: every ship flies up.
+  var cells = parseRle(s.rle);
+  // Same placement as the plotted card (src/impose.py): centred in the 16x25 box, one cell of padding.
+  var mx = Infinity, my = Infinity, Mx = 0, My = 0;
+  cells.forEach(function (p) { mx = Math.min(mx, p[0]); my = Math.min(my, p[1]); Mx = Math.max(Mx, p[0]); My = Math.max(My, p[1]); });
+  var ox = CWX + PAD + Math.floor((BOX_W - (Mx - mx + 1)) / 2) - mx, oy = CWY + PAD + Math.floor((BOX_H - (My - my + 1)) / 2) - my;
+  initial = cells.map(function (p) { return [p[0] + ox, p[1] + oy]; });
+
+  document.getElementById("ed").innerHTML = "#" + s.edition + " <small>of " + DECK_SIZE + "</small>";
+  document.getElementById("sid").textContent = id;
+  document.getElementById("rarity").textContent = s.rarity;
+  document.getElementById("period").textContent = s.period;
+  document.getElementById("rule").textContent = s.rule;
+  document.querySelectorAll(".thumb").forEach(function (t) { t.setAttribute("aria-current", t.dataset.id === id ? "true" : "false"); });
+
+  var ph = document.getElementById("photos"); ph.innerHTML = "";
+  if (photosOf(id).length > 1) photosOf(id).forEach(function (_, i) {
+    var b = document.createElement("button"); b.className = "btn"; b.textContent = "Photo " + (i + 1);
+    b.onclick = function () { photoIdx = i; showPhoto(); }; ph.appendChild(b);
+  });
+  showPhoto();
+  resetWorld();
+  setMode(photosOf(id).length ? mode : "live");
+  openClaim(id);
+}
+function openClaim(id) {
+  var p = window.Spaceships.shipurl.decodeHash(location.hash);
+  document.getElementById("claimcode").value = "";
+  window.Spaceships.claimUI.init({ id: id, edition: SHIPS[id].edition },
+                                 p.apgcode === id ? p.claim : null);
+}
+function showPhoto() {
+  var img = document.getElementById("photo"), list = photosOf(current);
+  document.getElementById("nophoto").hidden = list.length > 0;
+  if (!list.length) { img.removeAttribute("src"); img.alt = ""; return; }
+  img.src = "img/" + list[photoIdx] + ".jpg";
+  img.alt = "Pen-plotted card for ship " + current + ", " + SHIPS[current].rarity;
+}
+function setMode(m) {
+  mode = m;
+  var live = m === "live";
+  document.getElementById("photo").hidden = live || !photosOf(current).length;
+  document.getElementById("nophoto").hidden = live || photosOf(current).length > 0;
+  canvas.hidden = !live;
+  document.getElementById("controls").hidden = !live;
+  document.getElementById("photos").hidden = live || photosOf(current).length < 2;
+  document.getElementById("m-art").setAttribute("aria-pressed", String(!live));
+  document.getElementById("m-live").setAttribute("aria-pressed", String(live));
+  if (live) { fitCard(); draw(); } else setRunning(false);
+}
+
+document.getElementById("photo").addEventListener("load", function () { if (mode === "live" && !running && gen === 0) { fitCard(); draw(); } });
+document.getElementById("m-art").onclick = function () { setMode("art"); };
+document.getElementById("m-live").onclick = function () { setMode("live"); };
+document.getElementById("play").onclick = function () { setRunning(!running); };
+document.getElementById("step").onclick = function () { setRunning(false); step(); draw(); };
+document.getElementById("reset").onclick = function () { resetWorld(); };
+
+var pointers = {}, painting = false, paintVal = 1;
+function canvasPt(e) { var r = canvas.getBoundingClientRect(), d = canvas.width / r.width; return [(e.clientX - r.left) * d, (e.clientY - r.top) * d]; }
+function cellAtPt(p) { var w = toWorld(p[0], p[1]), x = Math.floor(w[0]), y = Math.floor(w[1]); return (x < 0 || y < 0 || x >= W || y >= H) ? null : [x, y]; }
+canvas.addEventListener("pointerdown", function (e) {
+  canvas.setPointerCapture(e.pointerId);
+  pointers[e.pointerId] = canvasPt(e);
+  if (Object.keys(pointers).length > 1) { painting = false; return; }
+  var c = cellAtPt(pointers[e.pointerId]); if (!c) return;
+  painting = true; paintVal = grid[c[1]*W+c[0]] ? 0 : 1; grid[c[1]*W+c[0]] = paintVal; draw();
+});
+canvas.addEventListener("pointermove", function (e) {
+  if (!(e.pointerId in pointers)) return;
+  pointers[e.pointerId] = canvasPt(e);
+  if (painting) { var c = cellAtPt(pointers[e.pointerId]); if (c) { grid[c[1]*W+c[0]] = paintVal; draw(); } }
+});
+function release(e) {
+  delete pointers[e.pointerId];
+  if (!Object.keys(pointers).length) painting = false;
+}
+canvas.addEventListener("pointerup", release);
+canvas.addEventListener("pointercancel", release);
+window.addEventListener("resize", function () {
+  if (!running && gen === 0 && current) { loadShip(current); return; }   // untouched: re-fit the world to the new size
+  if (mode === "live") { fitCard(); draw(); }
+});
+
+var ids = [];
+// Same address scheme as the card-back QR codes: #v=1&a=<ship id> (src/shipurl.py).
+function shipFromUrl() {
+  var m = /[#&]a=([^&]+)/.exec(location.hash), q = m ? decodeURIComponent(m[1]) : "";
+  return SHIPS[q] ? q : ids[0];
+}
+function shipHref(id) { return "ship.html#v=1&a=" + id; }
+function setNav(id) {
+  var i = ids.indexOf(id), p = ids[(i + ids.length - 1) % ids.length], n = ids[(i + 1) % ids.length];
+  var a = document.getElementById("prev"), b = document.getElementById("next");
+  a.href = shipHref(p); a.textContent = "\u2190 #" + SHIPS[p].edition;
+  b.href = shipHref(n); b.textContent = "#" + SHIPS[n].edition + " \u2192";
+  document.title = "Spaceship #" + SHIPS[id].edition + " \u00b7 " + id;
+}
+function openFromUrl() { var id = shipFromUrl(); setRunning(false); setMode("art"); setNav(id); loadShip(id); }
+window.addEventListener("hashchange", openFromUrl);
+fetch("catalog.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (catalog) {
+  Object.keys(catalog).forEach(function (id) {
+    var e = catalog[id];
+    if (Number(e.edition) > 0) SHIPS[id] = { edition: Number(e.edition), period: e.period, rarity: e.rarity, rle: e.rle, rule: e.rule, table: e.table };
+  });
+  ids = Object.keys(SHIPS).sort(function (a, b) { return SHIPS[a].edition - SHIPS[b].edition; });
+  DECK_SIZE = ids.length;
+  openFromUrl();
+}).catch(function (err) {
+  document.getElementById("ed").textContent = "Couldn't load the ships. Try reloading.";
+});
+</script>
+
+</body>
+</html>

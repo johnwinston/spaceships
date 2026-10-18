@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spaceships</title>
+<script>
+  // Deck ships have their own page now (photo, Fly it, claim). Older links to
+  // play.html#v=1&a=p4-01 go there with the fragment (and any c= code) intact.
+  (function () {
+    var h = location.hash || "";
+    if (/[#&]a=p\d+-\d+(&|$)/.test(h)) location.replace("ship.html" + h);
+  })();
+</script>
 <style>
   :root {
     --bg: #000000;

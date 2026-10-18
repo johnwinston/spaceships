@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spaceships</title>
 <script>
-  // Card QR codes point at the site root with the ship in the fragment
-  // (#v=1&a=p4-01). Hand those straight to the player before anything
-  // here renders, so the printed links never change.
+  // Card, sticker and claim-booklet QR codes point at the site root with the
+  // ship in the fragment (#v=1&a=p4-01, maybe &c=<code>). Hand deck ships to
+  // their page, anything else to the player, keeping the whole fragment.
   (function () {
     var h = location.hash || "";
-    if (/[#&](a|p)=/.test(h)) location.replace("play.html" + h);
+    if (/[#&]a=p\d+-\d+(&|$)/.test(h)) location.replace("ship.html" + h);
+    else if (/[#&](a|p)=/.test(h)) location.replace("play.html" + h);
   })();
 </script>
 <style>
@@ -40,7 +41,6 @@
     color: var(--gold); border-bottom: 1px solid var(--panel);
     padding-bottom: 6px; margin: 34px 0 14px;
   }
-  h2 small { color: var(--dim); letter-spacing: 0; text-transform: none; }
   .grid {
     display: grid; gap: 14px;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -51,9 +51,9 @@
     border: 1px solid transparent;
   }
   a.card:hover { border-color: var(--gold); }
-  a.card canvas {
-    width: 100%; aspect-ratio: 5 / 7; display: block;
-    background: #000000; border-radius: 6px; image-rendering: pixelated;
+  a.card img {
+    width: 100%; aspect-ratio: 1 / 1.41; object-fit: cover; display: block;
+    background: #1a1a1a; border-radius: 6px;
   }
   a.card .code {
     font-size: 10.5px; color: var(--dim); margin-top: 8px;
@@ -63,21 +63,16 @@
   a.card .claim { font-size: 11px; margin-top: 6px; color: var(--ink); }
   a.card .claim.unclaimed { color: var(--dim); }
   a.card.is-claimed { border-color: #2a2a2a; }
-  #tally { color: var(--dim); margin: 6px 0 0; font-size: 14px; }
   #status { color: var(--dim); max-width: 960px; margin: 24px auto; }
 </style>
 </head>
 <body>
 <header>
   <h1>space<span>ships</span></h1>
-  <p><span id="count">…</span> spaceships, each discovered in its own universe.
-     Each card is one ship, and whoever buys it owns the ship as an NFT on Solana.</p>
-  <p id="tally"></p>
 </header>
 <main id="tiers"></main>
 <p id="status">loading catalog…</p>
 <script src="js/config.js"></script>
-<script src="js/rle.js"></script>
 <script src="js/claims.js"></script>
 <script src="js/collection.js"></script>
 </body>

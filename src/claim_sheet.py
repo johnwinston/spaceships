@@ -9,7 +9,7 @@ Every tile is a secret -- whoever scans it can claim that ship -- so the
 output goes under data/ (gitignored), never into the repo or web/.
 
     AUTOMONS_CLAIM_SECRET=... python -m src.claim_sheet
-    -> data/claim_sheet.html   open in a browser, print (A4, 12 per page)
+    -> data/claim_sheet.html   open in a browser, print (US Letter or --paper a4, 12 per page)
 """
 import argparse
 import html
@@ -24,6 +24,7 @@ from .nft_metadata import deck_entries
 
 OUT_PATH = os.path.join("data", "claim_sheet.html")
 PER_PAGE = 12
+PAPER = {"letter": "letter", "a4": "A4"}  # CSS @page sizes
 
 
 def claim_url(ship_id, code, site=None):
@@ -61,7 +62,7 @@ def tiles(catalog, secret, site=None):
     return out
 
 
-def render(rows, deck_size):
+def render(rows, deck_size, paper="letter"):
     pages = []
     for start in range(0, len(rows), PER_PAGE):
         cells = []
@@ -75,17 +76,17 @@ def render(rows, deck_size):
                             _qr_svg(url), html.escape(code))
             )
         pages.append('<section class="page">%s</section>' % "".join(cells))
-    return PAGE_TEMPLATE % {"deck": deck_size, "pages": "".join(pages)}
+    return PAGE_TEMPLATE % {"deck": deck_size, "pages": "".join(pages), "paper": PAPER[paper]}
 
 
 PAGE_TEMPLATE = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>Spaceships claim booklet (private)</title>
 <style>
-  @page { size: A4; margin: 10mm; }
+  @page { size: %(paper)s; margin: 10mm; }
   body { font: 11px/1.3 -apple-system, system-ui, sans-serif; margin: 0; color: #111; background: #fff; }
   .note { padding: 8mm 10mm 0; }
-  .page { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 66mm;
+  .page { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 64mm;
           gap: 0; width: 190mm; margin: 0 auto; page-break-after: always; }
   .tile { border: 0.2mm dashed #aaa; padding: 3mm; display: flex; flex-direction: column; gap: 2mm; }
   .head { display: flex; justify-content: space-between; font-size: 12px; }
@@ -97,7 +98,7 @@ PAGE_TEMPLATE = """<!doctype html>
   .code { font-family: ui-monospace, monospace; font-size: 13px; letter-spacing: 0.1em; text-align: center; }
   @media print { .note { display: none; } }
 </style></head><body>
-<p class="note">Private: every tile claims its ship. %(deck)d cards. Print on A4, cut along the dashes.</p>
+<p class="note">Private: every tile claims its ship. %(deck)d cards. Print on %(paper)s at 100%% scale, cut along the dashes.</p>
 %(pages)s
 </body></html>
 """
@@ -108,6 +109,7 @@ def main(argv=None):
     parser.add_argument("--catalog", default=os.path.join("web", "catalog.json"))
     parser.add_argument("--site", default=None, help="player base URL (default: config)")
     parser.add_argument("-o", "--out", default=OUT_PATH)
+    parser.add_argument("--paper", choices=sorted(PAPER), default="letter")
     args = parser.parse_args(argv)
     secret = claimcode.claim_secret()
     with open(args.catalog) as f:
@@ -115,7 +117,7 @@ def main(argv=None):
     rows = tiles(catalog, secret, args.site)
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w") as f:
-        f.write(render(rows, len(rows)))
+        f.write(render(rows, len(rows), args.paper))
     print("wrote %d claim tiles to %s -- keep it private" % (len(rows), args.out))
 
 

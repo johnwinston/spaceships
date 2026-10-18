@@ -6,6 +6,6 @@
     // URL of the deployed claim service (worker/), no trailing slash,
     // e.g. "https://spaceships-claims.<account>.workers.dev".
     // null = claims aren't open yet; the pages say so instead of erroring.
-    CLAIM_ENDPOINT: null,
+    CLAIM_ENDPOINT: "https://spaceships-claims.johnwinstong.workers.dev",
   };
 })();

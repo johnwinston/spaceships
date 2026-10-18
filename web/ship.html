@@ -72,6 +72,8 @@
   .btn.tog[aria-pressed="false"] { color: var(--dim); }
   .seg { display: inline-flex; flex-wrap: wrap; gap: 0.4rem; }
   .sep { width: 1px; align-self: stretch; background: var(--line-strong); margin-inline: 0.15rem; }
+  .speed { display: flex; align-items: center; gap: 0.4rem; font: 0.75rem var(--mono); color: var(--dim); }
+  .speed input { width: 7rem; accent-color: var(--ink); touch-action: manipulation; }
   .gen { font: 0.75rem var(--mono); color: var(--dim); font-variant-numeric: tabular-nums; min-width: 7ch; }
   .photos { display: flex; gap: 0.35rem; }
   .photos[hidden] { display: none !important; }
@@ -112,10 +114,7 @@
   #claimcode, #claimwallet { font-family: var(--mono); }
   #claimcode { text-transform: uppercase; }
   #claimwallet { font-size: 0.75rem; letter-spacing: 0; }
-  .wallethelp { font-size: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; }
-  .wallethelp:empty { display: none; }
-  .wallethelp button, #claimnft a { color: var(--ink); }
-  .wallethelp button { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; }
+  #claimnft a { color: var(--ink); }
   #claimnft { font-size: 0.85rem; }
   #claimbtn {
     background: var(--ink); color: var(--bg); border: 0; border-radius: 6px; padding: 0.7rem;
@@ -175,6 +174,7 @@
           <button class="btn primary" id="play">Play</button>
           <button class="btn" id="step">Step</button>
           <button class="btn" id="reset">Reset</button>
+          <label class="speed">speed <input id="speed" type="range" min="0" max="100" value="52" aria-label="Speed"></label>
           <span class="gen" id="gen">gen 0</span>
         </div>
       </div>
@@ -202,9 +202,6 @@
                    pattern="[1-9A-HJ-NP-Za-km-z]{32,44}" title="a Solana wallet address"
                    spellcheck="false" autocapitalize="off" autocomplete="off">
           </label>
-          <p class="wallethelp" id="wallethelp">
-            <button type="button" id="phantombtn" hidden>use my Phantom wallet</button>
-          </p>
           <label>your name, shown on the collection
             <input id="claimname" type="text" placeholder="optional" maxlength="40">
           </label>
@@ -345,10 +342,16 @@ function resetWorld() {
   initial.forEach(function (p) { grid[((p[1]+H)%H)*W + (p[0]+W)%W] = 1; });
   if (mode === "live") { fitCard(); draw(); }
 }
+// Slider 0..100 maps to 600 ms (one step you can watch) .. 16 ms a
+// generation, on a log scale; the default 52 is the old fixed 90 ms.
+function speedMs() {
+  var t = Number(document.getElementById("speed").value) / 100;
+  return Math.round(600 * Math.pow(16 / 600, t));
+}
 function setRunning(on) {
   running = on; clearInterval(timer);
   document.getElementById("play").textContent = on ? "Pause" : "Play";
-  if (on) timer = setInterval(function () { step(); draw(); }, 90);
+  if (on) timer = setInterval(function () { step(); draw(); }, speedMs());
 }
 
 function loadShip(id) {
@@ -413,6 +416,7 @@ document.getElementById("m-live").onclick = function () { setMode("live"); };
 document.getElementById("play").onclick = function () { setRunning(!running); };
 document.getElementById("step").onclick = function () { setRunning(false); step(); draw(); };
 document.getElementById("reset").onclick = function () { resetWorld(); };
+document.getElementById("speed").oninput = function () { if (running) setRunning(true); };
 
 var pointers = {}, painting = false, paintVal = 1;
 function canvasPt(e) { var r = canvas.getBoundingClientRect(), d = canvas.width / r.width; return [(e.clientX - r.left) * d, (e.clientY - r.top) * d]; }

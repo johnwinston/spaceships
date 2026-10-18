@@ -35,7 +35,6 @@
     el.hidden = !sent;
     $("walletfield").hidden = sent;
     $("claimwallet").required = !sent; // a hidden required field would block "Update name"
-    $("wallethelp").hidden = sent;
     if (!sent) return;
     var C = window.Spaceships.claims;
     el.textContent = "";
@@ -91,24 +90,6 @@
     }
   }
 
-  /* Phantom injects window.phantom.solana in its own in-app browser and
-   * as a desktop extension; there, offer to fill the address from it. */
-  function setUpPhantom() {
-    var provider = window.phantom && window.phantom.solana;
-    if (provider && provider.isPhantom) {
-      var btn = $("phantombtn");
-      btn.hidden = false;
-      btn.onclick = async function () {
-        try {
-          var res = await provider.connect();
-          $("claimwallet").value = res.publicKey.toString();
-        } catch (e) {
-          setStatus("Phantom didn't connect. You can paste the address instead.", true);
-        }
-      };
-    }
-  }
-
   async function init(ship, prefillCode) {
     var section = $("claim");
     if (!section || !ship || !ship.id || !Number(ship.edition)) return; // demo ships aren't cards
@@ -121,7 +102,6 @@
     var form = $("claimform");
     form.hidden = false;
     if (prefillCode) $("claimcode").value = prefillCode;
-    setUpPhantom();
     form.onsubmit = function (ev) { ev.preventDefault(); submit(ship); };
     try {
       render(await C.get(ship.id));

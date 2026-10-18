@@ -160,7 +160,7 @@
         <span>gen <b id="generation">0</b></span>
         <span>pop <b id="population">0</b></span>
       </div>
-      <button id="playpause">Pause</button>
+      <button id="playpause">Play</button>
       <button id="stepbtn">Step</button>
       <button id="resetbtn">Reset ship</button>
       <label>speed
@@ -177,13 +177,12 @@
                  spellcheck="false" autocapitalize="characters" required>
         </label>
         <label id="walletfield">your Solana wallet address, to receive the NFT
-          <input id="claimwallet" type="text" placeholder="optional" maxlength="44"
+          <input id="claimwallet" type="text" maxlength="44" required
+                 pattern="[1-9A-HJ-NP-Za-km-z]{32,44}" title="a Solana wallet address"
                  spellcheck="false" autocapitalize="off" autocomplete="off">
         </label>
         <p class="wallethelp" id="wallethelp">
           <button type="button" id="phantombtn" hidden>use my Phantom wallet</button>
-          <a id="phantomlink" hidden>open this page in Phantom</a>
-          <a href="https://phantom.com/download" target="_blank" rel="noopener">no wallet yet?</a>
         </p>
         <label>your name, shown on the collection
           <input id="claimname" type="text" placeholder="optional" maxlength="40">

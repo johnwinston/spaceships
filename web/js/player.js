@@ -249,7 +249,7 @@
     speedMs = speedFromSlider(parseInt($("speed").value, 10));
     wireControls();
     resetWorld();
-    setRunning(true);
+    setRunning(false); // frozen on generation 0 until the visitor presses Play
     status("Drag on the grid to draw or erase. This ship is yours to fly.");
     // A `c=` in the link (a QR that carries the code) pre-fills the form.
     window.Spaceships.claimUI.init(ship, payload.claim);

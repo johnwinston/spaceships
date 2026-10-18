@@ -91,8 +91,7 @@
   }
 
   /* Phantom injects window.phantom.solana in its own in-app browser and
-   * as a desktop extension; elsewhere, offer to reopen this page in the
-   * Phantom app, where the button then works. */
+   * as a desktop extension; there, offer to fill the address from it. */
   function setUpPhantom() {
     var provider = window.phantom && window.phantom.solana;
     if (provider && provider.isPhantom) {
@@ -106,13 +105,6 @@
           setStatus("Phantom didn't connect. You can paste the address instead.", true);
         }
       };
-      return;
-    }
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      var link = $("phantomlink");
-      link.href = "https://phantom.app/ul/browse/" + encodeURIComponent(location.href) +
-        "?ref=" + encodeURIComponent(location.origin);
-      link.hidden = false;
     }
   }
 

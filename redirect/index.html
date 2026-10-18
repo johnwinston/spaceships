@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Spaceships has moved</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<script>
+  // john-winston.com/automons/<path>#<ship> -> john-winston.com/spaceships/<path>#<ship>
+  // The #fragment carries the ship (and, from the claim booklet, its code), so keep it.
+  (function () {
+    var path = location.pathname.replace(/^\/automons(\/|$)/, "/spaceships/");
+    location.replace(path + location.search + location.hash);
+  })();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://john-winston.com/spaceships/"></noscript>
+<style>body{font:16px/1.4 system-ui,sans-serif;margin:3em auto;max-width:30em;padding:0 1em}</style>
+</head><body>
+<p>Spaceships has moved to <a id="to" href="https://john-winston.com/spaceships/">john-winston.com/spaceships</a>.</p>
+<script>document.getElementById("to").href = location.pathname.replace(/^\/automons(\/|$)/, "/spaceships/") + location.search + location.hash;</script>
+</body></html>

@@ -2,22 +2,29 @@
  *
  *   GET  /claims            every claim: { "<ship>": { name, claimedAt } }
  *   GET  /claims/<ship>     one claim, or 404
- *   POST /claim             { ship, code, name? } -> records the claim
- *                           (a valid code on an already-claimed ship
- *                           updates the name, so typos are fixable)
+ *   POST /claim             { ship, code, name?, wallet? } -> records the
+ *                           claim (a valid code on an already-claimed ship
+ *                           updates the name, so typos are fixable); with
+ *                           a wallet, also sends the ship's NFT there
+ *                           from the vault (see solana.js), once
  *   POST /admin/unclaim     { ship }, Authorization: Bearer <ADMIN_TOKEN>
  *
  * The only secret-bearing step is code verification: codes are derived
  * from CLAIM_SECRET (see claimcode.js), never stored, so the KV holds
- * nothing an attacker could use to forge one.
+ * nothing an attacker could use to forge one.  The vault key that sends
+ * NFTs is the other secret; the chain, not KV, is the truth about who
+ * holds an NFT, so a lost KV write can never send a ship twice.
  */
 import { verifyCode, normalise, timingSafeEqualStrings } from "./claimcode.js";
+import deployment from "./deployment.json" with { type: "json" };
 
 const KEY_PREFIX = "claim:";
 const SHIP_ID = /^[a-z0-9][a-z0-9_-]{0,31}$/;
 const NAME_MAX = 40;
 const BODY_MAX = 4096;
 const LIST_MAX_AGE_S = 15;
+// A Solana address: 32 bytes in base58, 32 to 44 characters.
+const BASE58 = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 
 export default {
   async fetch(request, env, ctx) {
@@ -69,6 +76,7 @@ async function listClaims(env) {
       claims[key.name.slice(KEY_PREFIX.length)] = {
         name: meta.name || "",
         claimedAt: meta.claimedAt || null,
+        wallet: meta.wallet || null,
       };
     }
     cursor = page.list_complete ? undefined : page.cursor;
@@ -104,17 +112,85 @@ async function claim(request, env) {
     return json({ error: "That code doesn't match this ship." }, 403);
   }
 
+  const wallet = cleanWallet(body.value.wallet);
+  if (wallet === null) {
+    return json({ error: "That doesn't look like a Solana wallet address." }, 400);
+  }
+
   const key = KEY_PREFIX + ship;
   const existing = await env.CLAIMS.get(key, "json");
   const now = new Date().toISOString();
-  const record = existing
+  let record = existing
     ? { ...existing, name, updatedAt: now }
     : { ship, name, claimedAt: now };
-  await env.CLAIMS.put(key, JSON.stringify(record), {
-    metadata: { name: record.name, claimedAt: record.claimedAt },
-  });
-  console.log(JSON.stringify({ message: existing ? "claim updated" : "claimed", ship }));
+
+  if (wallet) {
+    const sent = await sendNft(ship, wallet, record, env);
+    if (sent.error) {
+      // Still keep the claim itself (and the name) if it's new.
+      if (!existing) await save(env, key, record);
+      return json({ error: sent.error, claim: publicView(sent.record || record) }, sent.status);
+    }
+    record = sent.record;
+  }
+
+  await save(env, key, record);
+  console.log(JSON.stringify({
+    message: wallet ? "nft sent" : existing ? "claim updated" : "claimed", ship,
+  }));
   return json({ ok: true, updated: Boolean(existing), claim: publicView(record) });
+}
+
+/** Transfer the ship's NFT to `wallet`, at most once.  Resolves
+ *  { record } on success or { error, status, record? }. */
+async function sendNft(ship, wallet, record, env) {
+  if (record.wallet) {
+    return { error: "This ship's NFT is already in a wallet.", status: 409, record };
+  }
+  const asset = (deployment.assets || {})[ship];
+  if (!asset) return { error: "The NFTs aren't minted yet. Check back soon.", status: 503 };
+  const chain = await loadChain(env);
+  if (!chain) return { error: "NFT sending isn't switched on yet.", status: 503 };
+
+  let tx;
+  try {
+    tx = await chain.send(asset, wallet);
+  } catch (err) {
+    console.error(JSON.stringify({
+      message: "nft send failed", ship,
+      error: err instanceof Error ? err.message : String(err),
+    }));
+    // A transfer that failed because the vault no longer holds the asset
+    // means it already went out (a racing claim, or KV lost the write).
+    let owner = null;
+    try { owner = await chain.ownerOf(asset); } catch { /* RPC down */ }
+    if (owner && owner !== chain.vault) {
+      const fixed = { ...record, wallet: owner, asset, cluster: deployment.cluster };
+      await save(env, KEY_PREFIX + ship, fixed);
+      return { error: "This ship's NFT is already in a wallet.", status: 409, record: fixed };
+    }
+    return { error: "Couldn't send the NFT just now. Try again in a minute.", status: 502 };
+  }
+  return {
+    record: {
+      ...record, wallet, asset, tx,
+      cluster: deployment.cluster, sentAt: new Date().toISOString(),
+    },
+  };
+}
+
+async function save(env, key, record) {
+  await env.CLAIMS.put(key, JSON.stringify(record), {
+    metadata: { name: record.name, claimedAt: record.claimedAt, wallet: record.wallet || null },
+  });
+}
+
+/* Tests hand in a fake as env.CHAIN; production builds the real one
+ * (and only pays to load the Solana libraries when a wallet is given). */
+async function loadChain(env) {
+  if (env.CHAIN) return env.CHAIN;
+  const { makeChain } = await import("./solana.js");
+  return makeChain(env, deployment);
 }
 
 async function unclaim(request, env) {
@@ -143,6 +219,10 @@ function publicView(record) {
     name: record.name || "",
     claimedAt: record.claimedAt || null,
     updatedAt: record.updatedAt || null,
+    wallet: record.wallet || null,
+    asset: record.asset || null,
+    tx: record.tx || null,
+    cluster: record.cluster || null,
   };
 }
 
@@ -151,6 +231,13 @@ function cleanName(raw) {
   if (raw === undefined || raw === null) return "";
   const name = String(raw).replace(/[\p{Cc}\p{Cf}]/gu, "").replace(/\s+/g, " ").trim();
   return name.length > NAME_MAX ? null : name;
+}
+
+/** "" when absent, the address when it looks like one, null otherwise. */
+function cleanWallet(raw) {
+  if (raw === undefined || raw === null || raw === "") return "";
+  const wallet = String(raw).trim();
+  return BASE58.test(wallet) ? wallet : null;
 }
 
 async function readJson(request) {

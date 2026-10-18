@@ -28,7 +28,7 @@ claim it with the code plotted under the QR; the collection page
 | Tests | ✅ 139 passing (bare `pytest` works — root `conftest.py` + `pytest.ini`; covers `tests/` and `plotter/tests/`) |
 | Real ~100 ships | ❌ not searched/curated yet — but the full pipeline was proven end-to-end on 2026-08-06 with one freshly searched p4 ship (`xq4_1vl0o88o0lv1z0aa7y07aazy07w7`) |
 | Curation UI (`src/cleanup.py`) | ✅ tkinter installed (`python-tk@3.14`), imports clean in the arm venv |
-| Hosting + real domain | ✅ live at https://john-winston.com/automons/ (GitHub Pages, deploys via `.github/workflows/pages.yml`) |
+| Hosting + real domain | ✅ https://john-winston.com/spaceships/ (GitHub Pages, deploys via `.github/workflows/pages.yml`); the old /automons/ address redirects (see `redirect/`) |
 | Card claims (`src/claimcode.py`, `worker/`, claim UI in `web/`) | ✅ built + tested 2026-09-08; **not deployed** — follow `worker/README.md`, then set `CLAIM_ENDPOINT` in `web/js/config.js` |
 | Solana mint | ❌ plan only (`chain/README.md`); would build on the claim record |
 | Plotter hardware/software | ✅ AxiDraw + `saxi` (locally patched), first plots 2026-08-06 and 2026-08-23; procedure and settings in `docs/OPERATING.md`, machine scripts in `scripts/` |
@@ -91,8 +91,9 @@ plots is `AUTOMONS_PEN_MM` (default 0.35).
 
 1. ~~Decide the player domain~~ **Done 2026-08-01**: GitHub Pages project
    site. The repo owner's custom domain applies to all project pages, so
-   the canonical URL is `https://john-winston.com/automons/` (baked into
-   `src/config.py` as the `SITE_BASE_URL` default).
+   the canonical URL is `https://john-winston.com/spaceships/` (baked into
+   `src/config.py` as the `SITE_BASE_URL` default). It was /automons/ until
+   2026-10-18; cards plotted before then point there and are redirected.
 2. ~~Host `web/`~~ **Done 2026-08-01**: `.github/workflows/pages.yml`
    deploys `web/` on push to `master` or this branch (the `github-pages`
    environment allows both). HTTPS enforced; verified live with
@@ -113,7 +114,7 @@ plots is `AUTOMONS_PEN_MM` (default 0.35).
 
 ## Open decisions for the human
 
-- ~~Player domain~~ decided: `https://john-winston.com/automons/`.
+- ~~Player domain~~ decided: `https://john-winston.com/spaceships/` (moved from /automons/ 2026-10-18).
 - Free claim vs. paid mint (trade-offs in `chain/README.md`).
 - Trails on plotted fronts or clean single-generation fronts.
 - NFT `image`: the pipeline gif, or a rendered frame of the SVG.

@@ -10,12 +10,12 @@
   },
   "p4-01": {
     "name": "p4-01",
-    "rule": "b2k3-knqy4aijrw7es2aek3cery4jt5-a",
-    "rle": "x = 16, y = 25, rule = b2k3-knqy4aijrw7es2aek3cery4jt5-a\n2bo10bo$b3o8b3o$2o12b2o$2bobob4obobo$bo3b2o2b2o3bo$4bo2b2o2bo$5b6o$6b4\no$7b2o$b3o8b3o$o2bo8bo2bo$o2b3o4b3o2bo$2bob8obo$3bobob2obobo$6bo2bo$6b\no2bo$7b2o$2b2o8b2o$2o2bo6bo2b2o$o2bo8bo2bo$2bobobo2bobobo$2bobob4obobo\n$7b2o$7b2o$6bo2bo!\n",
+    "rule": "b3-n5eiy7es1e2ace3aenry4-acr5-nq6kn7c",
+    "rle": "x = 16, y = 25, rule = b3-n5eiy7es1e2ace3aenry4-acr5-nq6kn7c\n3b2o6b2o$2b3o2b2o2b3o$6bo2bo$3o2bo4bo2b3o$o2b2o6b2o2bo$b4o6b4o$2bo3bo2\nbo3bo$4bobo2bobo$3bo3b2o3bo$3bo2b4o2bo$2b2o8b2o$2bo2bo4bo2bo$3bo8bo$2b\nobo6bobo$5bo4bo$b2obo6bob2o$2obobo4bobob2o$o2bo8bo2bo$bo12bo$3b2o6b2o$\n2bo10bo$2bobo6bobo$2b3o6b3o$b2obobo2bobob2o$4bo6bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 1,
-    "table": "082ecea721402711ce13a531a30131108b42320040102008a7003110300810848621c33821683aa2665fbda61b8686612140fa86499686611986876107616100"
+    "table": "0806862986606110866161906102100182616110419402482910140010482084afc193f908bfb6e436c7bfe297ff5ac9648ee6e5bfa7ff737de547dec5736c12"
   },
   "p4-02": {
     "name": "p4-02",
@@ -28,12 +28,12 @@
   },
   "p4-03": {
     "name": "p4-03",
-    "rule": "b2n3-knq5-cjry6-ck7cs1e3-acjy4-iz5c6-k7c",
-    "rle": "x = 14, y = 20, rule = b2n3-knq5-cjry6-ck7cs1e3-acjy4-iz5c6-k7c\nb2o8b2o$4o6b4o$2b3o4b3o$3b2o4b2o$5b4o$2bo3b2o3bo$2bo3b2o3bo$b3o6b3o$2o\n10b2o2$bob2o4b2obo$2b4o2b4o$b3o6b3o$b2o8b2o$b3o6b3o$obo8bobo$5b4o$3b2o\n4b2o$3bobo2bobo$5bo2bo!\n",
+    "rule": "b3-c4-t7cs2-an3-jy5aij6i7e",
+    "rle": "x = 16, y = 21, rule = b3-c4-t7cs2-an3-jy5aij6i7e\nbobo8bobo$b3ob6ob3o$bobo2b4o2bobo$3b2o6b2o$5b6o2$7b2o$5b6o$4b2ob2ob2o$\n3bo2b4o2bo3$6b4o$b4o6b4o$b6o2b6o$7o2b7o$2bob2ob2ob2obo$3b4o2b4o$o2bo3b\n2o3bo2bo$b4ob4ob4o$b2o10b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 3,
-    "table": "080686294060291e8649211429809c2d8258680a419e04c4290a906b9ac4a973218c9a668e8766791ea7ef6bc3706b1e8ca7a759a6695194c3786b1a79949a63"
+    "table": "088e8ee78ea7e7518ee3e771e77171188ea76771a7617110e7717118701018020ae4e369a75960146731710041101041c56931147810108969900000902c6094"
   },
   "p4-04": {
     "name": "p4-04",
@@ -46,35 +46,35 @@
   },
   "p4-05": {
     "name": "p4-05",
-    "rule": "b2aci7es3ajkn4-ntwz",
-    "rle": "x = 15, y = 24, rule = b2aci7es3ajkn4-ntwz\n7bo$bo5bo5bo$bo5bo5bo$bo2bobobobo2bo$b2o9b2o$b2o9b2o$6bobo$o13bo$3b2o5\nb2o$2b3o5b3o$3bobo3bobo2$6bobo$obo9bobo$5bo3bo$5bo3bo$b2o2bobobo2b2o$4\no3bo3b4o$2bo4bo4bo$3b2o2bo2b2o$3b3o3b3o3$4bo5bo!\n",
+    "rule": "b3-cej5einr7cs1c2ein3-en4aceirwz5-jqy6-ik7e",
+    "rle": "x = 16, y = 23, rule = b3-cej5einr7cs1c2ein3-en4aceirwz5-jqy6-ik7e\n2b2o3b2o3b2o$b4ob4ob4o$bob2obo2bob2obo$bo4bo2bo4bo2$4b2o4b2o$b3ob2o2b2\nob3o$b2o3bo2bo3b2o$3obo6bob3o$2bob2ob2ob2obo$bobobob2obobobo$bo3b6o3bo\n$5bob2obo$6b4o$b3o3b2o3b3o$bob3ob2ob3obo$2o3bob2obo3b2o$2b12o$7b2o$2bo\n3b4o3bo$7b2o$b2o3bo2bo3b2o$bo12bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 5,
-    "table": "8441201000101000010000001000000060000000100000081000000000080084088a0cc70a83030188a2c671227171100e00074126617100e660710020001000"
+    "table": "08848069862160920469400441141029842169902184906069148008164129024a1eadafd660e59fad695a1fe5853b379a7b69b841dea46caf1dba52bec9b3f5"
   },
   "p4-06": {
     "name": "p4-06",
-    "rule": "b2-ac3inqr4aijkn5acejq7cs2-i5jq6n",
-    "rle": "x = 14, y = 23, rule = b2-ac3inqr4aijkn5acejq7cs2-i5jq6n\n4bo4bo$3bobo2bobo$2b2o6b2o$5bo2bo$bo10bo$5bo2bo$4bo4bo$4bo4bo$2bo8bo$2\nb2o6b2o$bo3bo2bo3bo$o12bo$o2bobo2bobo2bo$4bob2obo$4bo4bo$5bo2bo$3bobo2\nbobo$4b2o2b2o$3bo6bo$2bo2b4o2bo2$3b2o4b2o$bob2ob2ob2obo!\n",
+    "rule": "b2-i4t5-ajkr7es3-cik4cjqy5aceky6ack",
+    "rle": "x = 16, y = 23, rule = b2-i4t5-ajkr7es3-cik4cjqy5aceky6ack\n2bobo6bobo$2bobo6bobo$o5bo2bo5bo3$2bobo6bobo$2bobo6bobo$o5bo2bo5bo3$2b\nobo6bobo$2bobo6bobo$o5bo2bo5bo3$2bobo6bobo$2bobo6bobo$bo3bo4bo3bo3$o5b\no2bo5bo2$2bobo6bobo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 6,
-    "table": "02ace1e4e50f6a5565939c624b3186588dbd3616aa843151c5924329f070581286614110611818006010100018008c4061101006180000011082002300204000"
+    "table": "8661411861101822601c18861802862161109802108402481802862103482184088286618ca1630c8643adba63da52860629625925e75e4261781fc488428631"
   },
   "p4-07": {
     "name": "p4-07",
-    "rule": "b2-k3cey5ir6-ns1c2c3ackq4jnqtwyz6c7c",
-    "rle": "x = 13, y = 22, rule = b2-k3cey5ir6-ns1c2c3ackq4jnqtwyz6c7c\nbo4bo4bo$bo4bo4bo$bo2bobobo2bo$o3bo3bo3bo2$4b2ob2o$ob2o5b2obo$3b2obob2\no$5bobo$obo3bo3bobo$2bobobobobo$2bobo3bobo$2bo2b3o2bo$2bobobobobo$5bob\no2$bo2b2ob2o2bo$2bob2ob2obo$bo9bo$2bo7bo2$o11bo!\n",
+    "rule": "b2-an3c4-ijrty5-q6-c7es1e2-ai3c4-jr5-ejkn6aik7e",
+    "rle": "x = 14, y = 19, rule = b2-an3c4-ijrty5-q6-c7es1e2-ai3c4-jr5-ejkn6aik7e\n2bobo4bobo$2bo2bo2bo2bo$4bob2obo$2b3ob2ob3o$o5b2o5bo$bo10bo$bo10bo$o12\nbo$2bo8bo$5bo2bo$14o$6o2b6o$3b3o2b3o$2b3ob2ob3o$4b6o$4bo4bo$3bo2b2o2bo\n$3b2o4b2o$5b4o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 7,
-    "table": "864123184070108823403108100c008760504088511888a6180c08840c87a661485000019ed4c6600026c428c640500a50e78371d43140102071091841100a02"
+    "table": "0268610c295e84cf61981ac684ae4af549ce1caddade8fff88adc6d6eefff5f52368518c69d68ced70941ac28c6fc69549de94ebd671ebba8c6f46b5ed1fb4b5"
   },
   "p4-08": {
     "name": "p4-08",
     "rule": "b2-e6ik7cs1c3-cin5enq",
-    "rle": "x = 16, y = 24, rule = b2-e6ik7cs1c3-cin5enq\n3bo8bo$3bo8bo$bo3bo4bo3bo$4bo6bo$5b2o2b2o$4bo6bo$5bob2obo$7b2o$4bo6bo$\n2bo10bo$5b2o2b2o$3bobo4bobo$2b2o8b2o2$2bobo6bobo3$2b2obo4bob2o$o3b2o4b\n2o3bo$5b6o$bo2bo6bo2bo$4bo6bo$2bobo6bobo$3bo8bo!\n",
+    "rle": "x = 16, y = 23, rule = b2-e6ik7cs1c3-cin5enq\n2bobo6bobo2$2b2obo4bob2o2$3bobo4bobo2$5bob2obo$4b2ob2ob2o$3bo3b2o3bo$3\nb2obo2bob2o$2b2o8b2o3$bo2bo6bo2bo$3bo8bo$3bo8bo$2b3o6b3o$bo4bo2bo4bo$b\n2o10b2o$2obo2bo2bo2bob2o$3bo8bo$b2o10b2o$2bo2bo4bo2bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 8,
@@ -82,21 +82,21 @@
   },
   "p4-09": {
     "name": "p4-09",
-    "rule": "b2-e4-eky5cy7es2-ac3-ey6e",
-    "rle": "x = 13, y = 21, rule = b2-e4-eky5cy7es2-ac3-ey6e\n6bo$obo3bo3bobo$3bobobobo$b2o2bobo2b2o2$2bobo3bobo$bob2o3b2obo$2obo2bo\n2bob2o$2bobo3bobo$5bobo$5bobo$4bobobo$5bobo$6bo$6bo$5bobo$4b2ob2o2$5b3\no$4bobobo$6bo!\n",
+    "rule": "b2i3-r5-y6-an7cs1e2ce3-r4ciknqr7e",
+    "rle": "x = 16, y = 21, rule = b2i3-r5-y6-an7cs1e2ce3-r4ciknqr7e\n7b2o$4b3o2b3o2$6o4b6o$b2o10b2o$2b2o8b2o$b2ob2o4b2ob2o$5bo4bo$2b2ob2o2b\n2ob2o$3bo2bo2bo2bo$2bo2bo4bo2bo$2o2b2ob2ob2o2b2o$o5b4o5bo$3bo8bo$2o12b\n2o$3b2o6b2o$2obo8bob2o$bob3o4b3obo$2b3o6b3o$3bo8bo$2b2o8b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 9,
-    "table": "846968966914966149168ca396036310699692219040221896212710611810840aa6e561e7416110e53150106110100087713110601810046110100010800040"
+    "table": "08862649866949968368691e689c96eb86694996699e9ce768969aed96e76f522bc61fc38e774150bae0715160317100c6e54511f35031186630700050180084"
   },
   "p4-10": {
     "name": "p4-10",
-    "rule": "b2-k3aknq6-ck7cs2a6-ak",
-    "rle": "x = 15, y = 24, rule = b2-k3aknq6-ck7cs2a6-ak\n4bo5bo$4bo5bo$4bo2bo2bo$4b2obob2o2$2b2o7b2o$bo2b2o3b2o2bo$5b2ob2o$5bo3\nbo$5b2ob2o4$bo3bo3bo3bo$bo11bo$bo2bo5bo2bo$b2obo5bob2o$4bo2bo2bo$o3b2o\nbob2o3bo$bo11bo$4bo2bo2bo$4bo5bo$2bo3b3o3bo$4b7o!\n",
+    "rule": "b3-jn4q6ek7es1c2eik3-cr4iyz5-j6e7c",
+    "rle": "x = 14, y = 21, rule = b3-jn4q6ek7es1c2eik3-cr4iyz5-j6e7c\n4bo4bo$3b3o2b3o$4b6o$3bobo2bobo$4bo4bo$3bo6bo$2bobo4bobo$b2o8b2o$2bo8b\no$b2o8b2o$2obo6bob2o2$3b2o4b2o$3bo6bo$3bo6bo$2bo8bo$2bob2o2b2obo$4b2o2\nb2o$6b2o$5b4o$5bo2bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 10,
-    "table": "8ec12151c6115008212050005010180c64310118300810847018000a088488638401001000001000000000081000080220000000000800841000080200840240"
+    "table": "080482218e6060100661610041085080806161114118080e21300084108a04c44ab667c9b7a1c996e37879966cd79629972959f225aff6646c57966996c12952"
   },
   "p4-11": {
     "name": "p4-11",
@@ -118,134 +118,134 @@
   },
   "p4-13": {
     "name": "p4-13",
-    "rule": "b2e3-j5ek7es1c2-n3-jn7c",
-    "rle": "x = 15, y = 22, rule = b2e3-j5ek7es1c2-n3-jn7c\n7bo$4bo5bo$3b2obobob2o$4b2o3b2o$4bo2bo2bo$5b2ob2o$4bobobobo$2bo3bobo3b\no$2bo2b2ob2o2bo$2bo9bo$6bobo$4bo5bo$5b2ob2o$4bobobobo$6bobo$2b3obobob3\no$2o3b2ob2o3b2o$2ob2obobob2ob2o$3b2o5b2o$6bobo$5b2ob2o$5b2ob2o!\n",
+    "rule": "b2eik3-cjn4-cjk5js1c3-i6n7e",
+    "rle": "x = 16, y = 23, rule = b2eik3-cjn4-cjk5js1c3-i6n7e\n3bo8bo$bo3bo4bo3bo2$obo3bo2bo3bobo$bobo2bo2bo2bobo$b2o2b2o2b2o2b2o$3b4\no2b4o$6bo2bo2$3bo3b2o3bo$4b2o4b2o$4b2ob2ob2o$5bo4bo$6bo2bo$4b2o4b2o2$5\nbob2obo$3b3o4b3o$4b2o4b2o$4b2o4b2o$4b2o4b2o$5b2o2b2o$4bo6bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 13,
-    "table": "0a84836186616010266171004190100084616110619614486110004010480084ce75e331b77070106771710051001008f1617110511000003110000810000802"
+    "table": "0a2ceba7aface4716f757301c541715089a7f1758d216011a7f12010713050004892866196616100866161106110180016616110611010086110100200080084"
   },
   "p4-14": {
     "name": "p4-14",
-    "rule": "b2ce3-e4z5-y6ns1e2i3-acj4eijkqwz5k6-i7e",
-    "rle": "x = 15, y = 25, rule = b2ce3-e4z5-y6ns1e2i3-acj4eijkqwz5k6-i7e\n7bo$3o3b3o3b3o$6bobo$bo11bo$b3o2bobo2b3o$6b3o$3b2ob3ob2o$5bo3bo$5bo3bo\n$5bobobo$4b3ob3o2$3b2ob3ob2o$3b3obob3o$3bo2bobo2bo$2b2o2bobo2b2o$2b2o2\nbobo2b2o$4bobobobo$4bobobobo$5b2ob2o$6bobo$6bobo2$6b3o$6b3o!\n",
+    "rule": "b2ce3acejr4jnz5-i6ek7cs1c3acei4aikntw7c",
+    "rle": "x = 14, y = 23, rule = b2ce3acejr4jnz5-i6ek7cs1c3acei4aikntw7c\nobo8bobo$b4o4b4o$2bo2bo2bo2bo$2b3ob2ob3o$3b2ob2ob2o2$6b2o$5b4o$6b2o$4b\nob2obo$3b2o4b2o$3bobo2bobo$4b2o2b2o$5b4o$4b2o2b2o$2bobob2obobo2$4bo4bo\n$bo2b6o2bo$obobo4bobobo$o4bo2bo4bo$bob3o2b3obo$3b2o4b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 14,
-    "table": "0ac685698679e996a46958166d949e61c66969b67996946169979263966161102184b2e08e23e61817e3e768c7b9488684236739230a3d0e453949d6188a86e5"
+    "table": "0a428721005cabc6a60bbdb62f8e96e842cc2aa6d89e8e77218797edc6f34d52481c028510460471028421408021101898c68400c2102110a400401871101802"
   },
   "p4-15": {
     "name": "p4-15",
-    "rule": "b3-kn4atz5cqry6-i7cs1c3-ay4ainrw5-cq7e",
-    "rle": "x = 14, y = 24, rule = b3-kn4atz5cqry6-i7cs1c3-ay4ainrw5-cq7e\n3bo6bo$b3ob4ob3o$b3ob4ob3o$2obo2b2o2bob2o$2bob2o2b2obo$3b3o2b3o$4bo4bo\n$2b2o6b2o$2b10o$2b3ob2ob3o$4b2o2b2o$4bo4bo$4bo4bo$4b6o$6b2o$6b2o$4b6o$\n3b2ob2ob2o$3b3o2b3o$2bob6obo$2bob2o2b2obo$b3o2b2o2b3o$bo2bo4bo2bo$bobo\n6bobo!\n",
+    "rule": "b2ack6cei7es1c2cen4-eijkr5cjkq6-n7e",
+    "rle": "x = 16, y = 23, rule = b2ack6cei7es1c2cen4-eijkr5cjkq6-n7e\n2bobo6bobo$2bobo6bobo$o5bo2bo5bo3$2bobo6bobo$2bobo6bobo$o5bo2bo5bo3$2b\nobo6bobo$2bobo6bobo$o5bo2bo5bo2$2bobo6bobo2$2b2obo4bob2o2$2bo10bo$b2o1\n0b2o$2bob2o4b2obo2$3bo2bo2bo2bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 15,
-    "table": "080e86258460e9b98645299a6d0e9e9e8a61e0ba41188a26a11f1eaf3d839e63409e8eee964d65d78e296195e19721719eef2994e896b679cf94b450f6797194"
+    "table": "84614010211010004010000810000002610010001008008c10000800008c02c442580104589c8c692004180a8cc8c6d65896806f9c6b4c9f80eb0af569bed6e5"
   },
   "p4-16": {
     "name": "p4-16",
-    "rule": "b2ik3-enqy4-a5-ac6-ai7cs2-n4-aez7c",
-    "rle": "x = 13, y = 19, rule = b2ik3-enqy4-a5-ac6-ai7cs2-n4-aez7c\n6bo$3bob3obo$2b2ob3ob2o$2b2o5b2o$5b3o$3bobobobo$bo3bobo3bo$2o2b2ob2o2b\n2o$2b2o5b2o$bobo2bo2bobo$2b2o2bo2b2o2$4b5o$4bobobo$2b4ob4o$b2o7b2o$bob\nob3obobo$b2o2b3o2b2o$5b3o!\n",
+    "rule": "b2aci3ckqry7cs1c",
+    "rle": "x = 14, y = 25, rule = b2aci3ckqry7cs1c\n4bo4bo$4bo4bo$4ob4ob4o$3b2o4b2o$o3bo4bo3bo$b3o6b3o$bo10bo$b3ob4ob3o$3b\no2b2o2bo$3bo2b2o2bo$6b2o$5bo2bo$5bo2bo$6b2o2$4bo4bo$2b4o2b4o$4b6o$2bob\n2o2b2obo$3b2o4b2o$3bobo2bobo$3b3o2b3o$3bob4obo$3bo6bo$5bo2bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 16,
-    "table": "0826ecab2bceaff2cdbfc6fdafeffdeb83c6bfe7ceffef772fe7fdff57f36f428661699229961660699694619261610861869641966161101660611841100802"
+    "table": "8441a030867070000561400051000008606161105110000011100008000008024010000010000000000000000000000010000000000000000000000000000000"
   },
   "p4-17": {
     "name": "p4-17",
-    "rule": "b2ceks1e2eik3n4aryz5cenqr6cei7c",
-    "rle": "x = 15, y = 25, rule = b2ceks1e2eik3n4aryz5cenqr6cei7c\n7bo$5b2ob2o$4bo5bo$4bo5bo$bobob2ob2obobo$bobo7bobo$bobo7bobo$bobo7bobo\n$bobo2bobo2bobo$4bo5bo$3b2obobob2o$5bo3bo$bobo3bo3bobo$bobo7bobo$bobo7\nbobo$bobo3bo3bobo$bobobo3bobobo$bobobo3bobobo$bo3bo3bo3bo$7ob7o$b2o9b2\no$bo4bobo4bo$3bo7bo$o13bo$4bo5bo!\n",
+    "rule": "b2ack5-ys1e2cik3-k4cijqtwy5nqy6a7c",
+    "rle": "x = 16, y = 21, rule = b2ack5-ys1e2cik3-k4cijqtwy5nqy6a7c\n3bo8bo$bobobo4bobobo$2bobo6bobo$b2ob2o4b2ob2o$2bobo6bobo$2bobo6bobo$2b\nob2o4b2obo$2bo10bo$2bo10bo$b4o6b4o$ob2o8b2obo$bobo8bobo$bo2b2o4b2o2bo$\no3b2o4b2o3bo$3bobo4bobo$5bo4bo$5b6o$5b6o2$7b2o$6b4o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 17,
-    "table": "026041002110000060101000000000004100100010000000000000000000000023a87946218188837918180f0c54a73a0d0018e224add0e4c247aa2926c51b42"
+    "table": "846140182118188640180806188486616108188618868461188682618661611029e6f6e1adf16f3ad75fa5b4eb53d42cc763fa5b75717200657a95391b008923"
   },
   "p4-18": {
     "name": "p4-18",
-    "rule": "b3-eky5rs1e2-an3-ei4y5-c6-ek7e",
-    "rle": "x = 16, y = 23, rule = b3-eky5rs1e2-an3-ei4y5-c6-ek7e\n2b2o8b2o$o3bo6bo3bo$b2obo6bob2o$bo2bo6bo2bo$5bob2obo$2bo10bo$3bob2o2b2\nobo$5bo4bo2$2b2o8b2o$2b2o8b2o$2bo2bo4bo2bo$b2o2b2o2b2o2b2o$4b2o4b2o$3o\nb3o2b3ob3o$bo4bo2bo4bo$2bobobo2bobobo$2b2o8b2o$2bobo6bobo2$6b4o2$6bo2b\no!\n",
+    "rule": "b3-c4aijkrys1e2-ai3en4akn5k6-k7c",
+    "rle": "x = 16, y = 25, rule = b3-c4aijkrys1e2-ai3en4akn5k6-k7c\n4bo6bo$2b2ob2o2b2ob2o3$3b3o4b3o$2b5o2b5o2$4bo6bo$2b2ob2o2b2ob2o2$3b3o4\nb3o$3b3o4b3o$4bo6bo$3b3o4b3o$2bobo6bobo$bo12bo$o2b2obo2bob2o2bo$o5bo2b\no5bo$2bo3b4o3bo$6b4o$4b8o$3b3o4b3o2$5bo4bo$5b2o2b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 18,
-    "table": "08868461844161908401001061141000866120906010902061141000140100002be2f569a7f9698ef579509c69d69c67476979de7db7d6e969de9c638e6de3b5"
+    "table": "088e8ee786a363118ee3e571637131108e21675027217100e75071003000100023e85344611700497290314800b0081e4d941408b20a1594c008484a68949a63"
   },
   "p4-19": {
     "name": "p4-19",
-    "rule": "b2e3-e4-aiyz5an6c7es1c2a3ijy4i5-j6cik7e",
-    "rle": "x = 13, y = 19, rule = b2e3-e4-aiyz5an6c7es1c2a3ijy4i5-j6cik7e\n6bo$5bobo$4bobobo$2bobobobobo$4bo3bo$o2bo5bo2bo$bob2o3b2obo$3bo5bo$bo9\nbo$bobobobobobo$3bo5bo$2bobo3bobo$2bo2bobo2bo$2bo7bo$2b2o5b2o$3bobobob\no$3bo5bo$b3o5b3o$3bo5bo!\n",
+    "rule": "b2-ei5aikrs1c3j4-ety6-e",
+    "rle": "x = 16, y = 21, rule = b2-ei5aikrs1c3j4-ety6-e\n2b3o6b3o2$4bo6bo2$bobo3b2o3bobo$2bobo6bobo$bobob2o2b2obobo$obo10bobo$b\no12bo$7b2o2$5bob2obo$6b4o$7b2o$6bo2bo$2bo3bo2bo3bo$4b2ob2ob2o$4bo6bo$b\nob2obo2bob2obo2$bo2bo6bo2bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 19,
-    "table": "0a868d638e676776acefd67de330712286efef11e35011186330f910d3180394c4170498102019968048089e388f86a3b20848820186aeea1c069ee5964f2794"
+    "table": "8461401861101084401000001084000161181080100284201804004084012010401a0c861806874988828479a62969961a860629824029928629799668169621"
   },
   "p4-20": {
     "name": "p4-20",
-    "rule": "b3-q4-ins3cijkr4-cer5-kqy6-a",
-    "rle": "x = 16, y = 22, rule = b3-q4-ins3cijkr4-cer5-kqy6-a\n4bo6bo$2bob3o2b3obo$3bob2o2b2obo$2o2b3o2b3o2b2o$b2o2b6o2b2o$ob3o2b2o2b\n3obo$2b2o8b2o$b6o2b6o$3b10o$2bo2b6o2bo$2b3ob4ob3o$obobo6bobobo$2bobo2b\n2o2bobo$b2ob2ob2ob2ob2o$b2obo6bob2o$2bob3o2b3obo$6b4o3$6b4o$6b4o$7b2o!\n",
+    "rule": "b2-ci6-in7cs1e2-en3ejnqr4cky5ey6-ik7c",
+    "rle": "x = 16, y = 23, rule = b2-ci6-in7cs1e2-en3ejnqr4cky5ey6-ik7c\n6b4o$5bob2obo2$6bo2bo$4bob4obo$3b2obo2bob2o$4bo2b2o2bo$2bobobo2bobobo$\n2bob2o4b2obo$2bob2o4b2obo$bob2o6b2obo$2obo8bob2o$bobo8bobo$bo4b4o4bo$b\no2bo2b2o2bo2bo$bo2bobo2bobo2bo$bo3bob2obo3bo$bobobo4bobobo$bo3bo4bo3bo\n$2obobo4bobob2o$b3obob2obob3o$2b2obob2obob2o$4bobo2bobo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 20,
-    "table": "088e8e670ae3a7318ee7e771a77071108e42e76167715100e361711031001000000e84ac0acea7f784afcc7ea76d4af38aceafe5cebde9f78de5db96f7f77750"
+    "table": "8621411061001008601010081008008e21101008000808061008088c08828e63a5e3f670a5937108d79121d87172080e6721345836ed534451585c0a08c08a63"
   },
   "p4-21": {
     "name": "p4-21",
-    "rule": "b2k3-n6e7es2ak3inq4iq5cr6-cn7c",
-    "rle": "x = 13, y = 19, rule = b2k3-n6e7es2ak3inq4iq5cr6-cn7c\n6bo$4b2ob2o$3bo5bo$5bobo$bobo5bobo$bo2bo3bo2bo$2o2bo3bo2b2o$2bobo3bobo\n$2bobo3bobo$2bo7bo$2o9b2o$2bo7bo$b3o5b3o$bobo5bobo$b3o5b3o$obo2bobo2bo\nbo$obo7bobo$2o9b2o$bobo5bobo!\n",
+    "rule": "b2-i4-cnqwy5cnry7cs3ck4-rw6-ak7e",
+    "rle": "x = 16, y = 23, rule = b2-i4-cnqwy5cnry7cs3ck4-rw6-ak7e\n2bobo6bobo$2bo3bo2bo3bo$o14bo$4bo6bo$6bo2bo$4bo6bo$3b2o6b2o$5bo4bo$4b3\no2b3o$4b3o2b3o$4bobo2bobo$3bobob2obobo$5bob2obo$bo5b2o5bo$3bo3b2o3bo2$\nbob2ob4ob2obo2$3bo3b2o3bo2$7b2o2$4bobo2bobo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 21,
-    "table": "0826c621a7606110c671611061001000836171104118000c21101000108800c484a540d0ad01509840100802501d428ca52110992008b8a6543c028c1c878c63"
+    "table": "86694996611292a3689e9ee71627233869109ea01200a3209605e70827011902000800840ac6826100a6c6680661481208c48761c679619c84614902619c12c4"
   },
   "p4-22": {
     "name": "p4-22",
-    "rule": "b3-cjr4-ery6-n7es1c2-cn3-knqy4-a5ck6-e7e",
-    "rle": "x = 11, y = 18, rule = b3-cjr4-ery6-n7es1c2-cn3-knqy4-a5ck6-e7e\nbo7bo$3ob3ob3o$5ob5o$b3o3b3o$bo3bo3bo$4o3b4o$5ob5o$5bo$3o5b3o$4bobo$b3\no3b3o$2b3ob3o$3b5o$3bobobo$4b3o$4bobo2$3b2ob2o!\n",
+    "rule": "b2eik3-as3-ajkq5-jy",
+    "rle": "x = 16, y = 23, rule = b2eik3-as3-ajkq5-jy\n7b2o$3bobo4bobo2$2bobobo2bobobo$bobo8bobo$ob2o8b2obo$3bo8bo$3bo8bo$4bo\nbo2bobo$3bo8bo$5bo4bo$2b2o8b2o$3bob2o2b2obo$3bob6obo$3b2o6b2o$3bo8bo$7\nb2o$4bo6bo$4b8o2$7b2o$5b2o2b2o$7b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 22,
-    "table": "088c02c58e27c67902e6e568c63950968ca7c739a348399ee4394994799e96e5ce37efb339c6b778ef97bf7bb7e97b86b3c6b669c6736d9a37697bd6591e86a5"
+    "table": "02a6e760a7616110e771711061100000876171106110100041101000100000000084826800612896064929060994862184486882619694604906826196412110"
   },
   "p4-23": {
     "name": "p4-23",
-    "rule": "b2ek3ij4-j5eky7cs1e2aci3-en4-eij5k6-en7c",
-    "rle": "x = 13, y = 21, rule = b2ek3ij4-j5eky7cs1e2aci3-en4-eij5k6-en7c\nbo4bo4bo$obo2bobo2bobo$obob2ob2obobo$2b4ob4o$3b3ob3o$4bobobo$6bo$b3obo\nbob3o$4ob3ob4o$2b2o5b2o$obobo3bobobo$2b2o5b2o$4bo3bo$2bo7bo$bobob3obob\no$5b3o$3b2o3b2o$b2o3bo3b2o2$5b3o$5bobo!\n",
+    "rule": "b2-ac3-aery5-aery6-es1c2ce3c4-n5-jqy6i7c",
+    "rle": "x = 16, y = 25, rule = b2-ac3-aery5-aery6-es1c2ce3c4-n5-jqy6i7c\n7b2o$3o2b2o2b2o2b3o$o2bo8bo2bo$2bo2b6o2bo$bobob2o2b2obobo$3bob2o2b2obo\n2$5bob2obo$5b2o2b2o$3b4o2b4o$4bo6bo$6bo2bo$4bobo2bobo$4b3o2b3o$7b2o$6b\n4o$3bo8bo$4b2o4b2o3$5bob2obo$7b2o$3o10b3o$o2bo8bo2bo$bobo8bobo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 23,
-    "table": "022e4d8629868571e89412d1a4e361188b86946186e767508661745871501802ad4fbc378ef6f5799de54059f5e8719eeae7e579d7734d92b37978dc79169e23"
+    "table": "02a66548e749491ae138581e68988ee78771191e68121c83489a9ae71a26e7214258098e18d286a7288e9e6786e56339584a8ee156f7e5e08e65e358a7453912"
   },
   "p4-24": {
     "name": "p4-24",
-    "rule": "b2-en5j6-cns1c2c4cey",
-    "rle": "x = 15, y = 20, rule = b2-en5j6-cns1c2c4cey\n3bo7bo$bo3bo3bo3bo2$b2o2b2ob2o2b2o$2bo9bo2$2b2o7b2o$3bo2bobo2bo$6bobo$\n3b3o3b3o$6bobo$4bo5bo$3bo7bo$3bo3bo3bo$bo3b2ob2o3bo$2bo4bo4bo$2ob2o5b2\nob2o$bobo7bobo$2b2o7b2o$3bo7bo!\n",
+    "rule": "b2i3-c4-k7es1e2-ak3-ejkn4cijrwyz5acjn6-ck7e",
+    "rle": "x = 14, y = 23, rule = b2i3-c4-k7es1e2-ak3-ejkn4cijrwyz5acjn6-ck7e\n6b2o$4bob2obo$3bo6bo$3bo6bo$5b4o$6b2o$4b2o2b2o$5b4o$6b2o$bobobo2bobobo\n$3bobo2bobo$2b4o2b4o$b12o$2o2bo4bo2b2o$2bob2o2b2obo$5b4o2$4bo4bo$2bobo\n4bobo$2bob2o2b2obo$3bobo2bobo$2b2o6b2o$3b2o4b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 24,
-    "table": "846160102118100841100000100800c46100100c180808871088008408a6c4614050000010900000000002000040000050000040146140000040000000000000"
+    "table": "088eaee78ea5e7718f67e731e75171108ea7e371a5617018e7713110711810842b44b9a3c4f8e61e3d4b9c27c7413b64c07b6a7c5d79608d27d9a3129aacc1f5"
   },
   "p4-25": {
     "name": "p4-25",
-    "rule": "b2-e3-eikq4-iq5ajkry6ikn7cs2cen4jknqy5jq7c",
-    "rle": "x = 15, y = 24, rule = b2-e3-eikq4-iq5ajkry6ikn7cs2cen4jknqy5jq7c\n7bo$7bo$7bo$7bo$6bobo$4bobobobo$2bobobobobobo$2bobobobobobo$2bobob3obo\nbo$2bobo5bobo$obobo5bobobo$2bo4bo4bo$2bo2bo3bo2bo$5b2ob2o$o2bobo3bobo2\nbo$bo2b3ob3o2bo$5b5o$3bo3bo3bo$bobo2b3o2bobo$bo4bobo4bo$bobo2b3o2bobo$\nbo2bo5bo2bo$b2obobobobob2o$b13o!\n",
+    "rule": "b2-kn3c4eknrty5-cq7es2k3aiky4-wy6ace7c",
+    "rle": "x = 16, y = 23, rule = b2-kn3c4eknrty5-cq7es2k3aiky4-wy6ace7c\n2bobo6bobo3$2bobo6bobo$3bo8bo$bobobo4bobobo$2b2o8b2o$3bo8bo$3bobo4bobo\n$6b4o$2b2o3b2o3b2o$2b2o3b2o3b2o$3o2b6o2b3o$bobob2o2b2obobo$bo2bo2b2o2b\no2bo$7b2o$5b6o$7b2o2$5bob2obo$7b2o2$6b4o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 25,
-    "table": "8cebec7761ffb7e5cdd786f1b7fe39d86fdef6e4ff73dfb3f3c575dee5375c1202400100489e0a40208294600a60c448409406479e21411100e2412940304802"
+    "table": "8641291a00de10e6298c12c510e6216160cc8cc4deb7c7791ac4e440c7796194082c48872b26827948f6c6690621711e8984d72983482114a629690879909a63"
   },
   "p4-26": {
     "name": "p4-26",
-    "rule": "b3-nry5-cjkys1c2-c3-ijnr4aeq6ce7c",
-    "rle": "x = 16, y = 24, rule = b3-nry5-cjkys1c2-c3-ijnr4aeq6ce7c\n7b2o$5b2o2b2o$5bo4bo$3bo2bo2bo2bo$4bo6bo$6b4o$2b2o8b2o$bo2bob4obo2bo$o\n4b6o4bo$o2bobob2obobo2bo$4b2ob2ob2o$5bo4bo$3b2obo2bob2o$2bo3b4o3bo$7b2\no$2bob2o4b2obo$3bo8bo$4bo6bo$2bo2bo4bo2bo$2b2o8b2o$3bo8bo$2b4o4b4o$5bo\n4bo$2b2o8b2o!\n",
+    "rule": "b2en3-ery4ir5ajkq6-ik7cs1c2k3-cen4aiqr5ajqy6ci7c",
+    "rle": "x = 14, y = 21, rule = b2en3-ery4ir5ajkq6-ik7cs1c2k3-cen4aiqr5ajqy6ci7c\n2b2o6b2o$2bo3b2o3bo$2bob6obo$bo2b6o2bo$b2ob2o2b2ob2o$2o2bob2obo2b2o$4o\nbo2bob4o$obo3b2o3bobo$4bob2obo$2b2o6b2o$o5b2o5bo$2bobo4bobo$3b2ob2ob2o\n$2b3ob2ob3o$b12o$b12o$3obob2obob3o3$b2o8b2o$2b2o6b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 26,
-    "table": "0806060986404996822861146804942182690992409480602816902196412110ce396315ff605001637073085000501a3971511141180004b030080820801a42"
+    "table": "0a860dc3c649491ca82050196891bd4e8679011e681a3405669a386b98a0ca73483ecca7bf286915cc7140996903f55a9b29711709002281a7b23c29b0245a12"
   },
   "p4-27": {
     "name": "p4-27",
     "rule": "b2ek3-knr4-ai5jkq6cen7es1e3-a4ceijwyz5a6cin7c",
-    "rle": "x = 14, y = 22, rule = b2ek3-knr4-ai5jkq6cen7es1e3-a4ceijwyz5a6cin7c\n3b2o4b2o$2b2o6b2o$6b2o$3bo6bo$3b3o2b3o$6b2o$3bo6bo$6b2o$4bo4bo$4b2o2b2\no$4bo4bo$3b3o2b3o$4bo4bo$3bo6bo$bob2o4b2obo$2bo8bo$obo8bobo2$o2b2o4b2o\n2bo$o2bo6bo2bo$bo10bo$2o10b2o!\n",
+    "rle": "x = 14, y = 21, rule = b2ek3-knr4-ai5jkq6cen7es1e3-a4ceijwyz5a6cin7c\n2b2o6b2o$3b2o4b2o$6b2o$5b4o$4bob2obo$4b2o2b2o2$3b8o$5b4o$3b3o2b3o2$3b3\no2b3o$3bobo2bobo$3b2o4b2o$2b2o6b2o$4o6b4o$2bo8bo$b3o6b3o$o12bo$b2obo4b\nob2o$3o8b3o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 27,
@@ -253,30 +253,30 @@
   },
   "p4-28": {
     "name": "p4-28",
-    "rule": "b3aikq4-nrw5ak6-in7es1e2-ae4-j5-j6n7c",
-    "rle": "x = 13, y = 21, rule = b3aikq4-nrw5ak6-in7es1e2-ae4-j5-j6n7c\n6bo$obo3bo3bobo$obo3bo3bobo$bo4bo4bo$obo2bobo2bobo$o2b3ob3o2bo$bo2b5o2\nbo$3bo2bo2bo$2b3obob3o$3b3ob3o$3bobobobo$3b7o2$4bo3bo$4b2ob2o$5bobo$2b\nobobobobo$4bo3bo$2bo7bo$2bo3bo3bo$3bob3obo!\n",
+    "rule": "b2k3-knqy4aijrw7es2aek3cery4jt5-a",
+    "rle": "x = 16, y = 25, rule = b2k3-knqy4aijrw7es2aek3cery4jt5-a\n2b2o8b2o$2o2bo6bo2b2o$o2bo8bo2bo$2bobobo2bobobo$2bobob4obobo$7b2o$7b2o\n$6bo2bo$bobo8bobo$ob2o8b2obo$o3bo2b2o2bo3bo$bo3bob2obo3bo$3b2o6b2o$7b2\no$6bo2bo$5bo4bo$2bo3bo2bo3bo$b3o8b3o$2o12b2o$2bobob4obobo$bo3b2o2b2o3b\no$4bo2b2o2bo$5b6o$6b4o$7b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 28,
-    "table": "080c00858e82c23d00a6c66846e9509688298779066b6d0ea47949c4b98a96f52168788e69968ce7599c0ac78ce7ef39499e9ce396e7e7708e67e67be7513912"
+    "table": "082ecea721402711ce13a531a30131108b42320040102008a7003110300810848621c33821683aa2665fbda61b8686612140fa86499686611986876107616100"
   },
   "p4-29": {
     "name": "p4-29",
-    "rule": "b2-a4ijwz5aeijn6-is1c2-ce3-ajq4-ity5acr6n7e",
-    "rle": "x = 16, y = 26, rule = b2-a4ijwz5aeijn6-is1c2-ce3-ajq4-ity5acr6n7e\n3bo8bo$bo2b2o4b2o2bo$2b2o2bo2bo2b2o$bob2o6b2obo$o3bob4obo3bo$4o2bo2bo2\nb4o$3o10b3o$bo4bo2bo4bo$bo4bo2bo4bo2$obo10bobo3$b2o10b2o$bo12bo$bo2b2o\n4b2o2bo$b2ob3o2b3ob2o$bobo8bobo$4b2ob2ob2o$3b2obo2bob2o$3bo3b2o3bo$ob2\no8b2obo$3ob2ob2ob2ob3o$5bo4bo$3b3o4b3o$5bo4bo!\n",
+    "rule": "b3-r4aer5-anrs1c2-ck3aeikn5-ij7e",
+    "rle": "x = 16, y = 23, rule = b3-r4aer5-anrs1c2-ck3aeikn5-ij7e\n7b2o$3b3ob2ob3o$2bobobo2bobobo$5bo4bo$bobo8bobo$o2b2o6b2o2bo$2o12b2o$b\no2b2o4b2o2bo$o14bo$2o12b2o$bo12bo$2ob3o4b3ob2o$4bo6bo$o4bo4bo4bo$3obob\no2bobob3o$bo12bo$o3b2o4b2o3bo$2obo8bob2o$b3o8b3o$bob2o6b2obo$bob2o6b2o\nbo$2bobo6bobo$4bo6bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 29,
-    "table": "026061886118860e611a942c860908e7411a1a2c188c28470c8989968ae2e771c4bdea767b67b6d54ff3ef6397346b10bdde77a1e3509138d3256312f4191094"
+    "table": "088e0e4f866949118a606b936892b7518e61411669961641ea92366130607000ce952351520118962328798618969620b4180982208696687006866196490194"
   },
   "p4-30": {
     "name": "p4-30",
-    "rule": "b3-eq4cknrtw5-jk6-ns1c2-an4-rtw5-r6ein7c",
-    "rle": "x = 14, y = 24, rule = b3-eq4cknrtw5-jk6-ns1c2-an4-rtw5-r6ein7c\n6b2o$6b2o$2b2o2b2o2b2o$bo2b2o2b2o2bo$3bo6bo$4bo4bo2$b3o6b3o$o3bo4bo3bo\n$2bo3b2o3bo$2bob6obo2$2b3o4b3o$2bob6obo$2bo3b2o3bo$4b6o$3b8o$3bo2b2o2b\no$2bo8bo$2b2obo2bob2o$3b2o4b2o$2b4o2b4o$b2o8b2o$4bo4bo!\n",
+    "rule": "b3-eky5rs1e2-an3-ei4y5-c6-ek7e",
+    "rle": "x = 16, y = 21, rule = b3-eky5rs1e2-an3-ei4y5-c6-ek7e\n2b2o8b2o$b2ob2o4b2ob2o$3obo6bob3o$b3ob2o2b2ob3o$4bo2b2o2bo$4b2ob2ob2o$\n3bobob2obobo2$3bo8bo$2b2o8b2o$2bob2o4b2obo$2bob2o4b2obo$b3o8b3o$2o3bo4\nbo3b2o$2o4bo2bo4b2o$b2o3bo2bo3b2o$3o10b3o$4bobo2bobo2$6bo2bo$6b4o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 30,
-    "table": "08868c6b02672dfe8ced48dfa93eb7a786ceed8ae3dc9bf66b0efeb5dfd7a7714278618c399e8a47619a9ee60ee3ce79598c1e679eef67d58ce3c76be2f47952"
+    "table": "08868461844161908401001061141000866120906010902061141000140100002be2f569a7f9698ef579509c69d69c67476979de7db7d6e969de9c638e6de3b5"
   },
   "p4-31": {
     "name": "p4-31",
@@ -289,48 +289,48 @@
   },
   "p4-32": {
     "name": "p4-32",
-    "rule": "b2-ai3ajr5-iny6cik7es2a3inq4-cn6aci7c",
-    "rle": "x = 15, y = 28, rule = b2-ai3ajr5-iny6cik7es2a3inq4-cn6aci7c\n7bo$2bo9bo$4b2obob2o$2bo2bo3bo2bo$3bo7bo$4bo2bo2bo$ob2o7b2obo$bo4b3o4b\no$3b2ob3ob2o$5bo3bo$7bo2$7bo$5b2ob2o$6b3o2$4bobobobo3$2bo3bobo3bo$bobo\nb2ob2obobo$2obo7bob2o$3o9b3o$b2ob2o3b2ob2o$bo3bo3bo3bo$6bobo$4bo5bo$4b\no5bo!\n",
+    "rule": "b3-nry5-cjkys1c2-c3-ijnr4aeq6ce7c",
+    "rle": "x = 16, y = 23, rule = b3-nry5-cjkys1c2-c3-ijnr4aeq6ce7c\n6b4o$5b6o$4bo6bo$3b4o2b4o$4bo6bo$3bo3b2o3bo$2b2obo4bob2o$b4obo2bob4o$2\no5b2o5b2o$3b2o6b2o$5b6o$4bo2b2o2bo$3b2obo2bob2o$2b2o8b2o$3bobob2obobo$\n2b3o6b3o$3bo8bo$3b2o6b2o$2bob2o4b2obo$4bo6bo$2bobo6bobo$2b2obo4bob2o$3\nbobo4bobo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 32,
-    "table": "0a62c52161182984e411181a298c96c24318308618868ceb21861ae5846f4694848d08d68c83d63908868669d671611eac23867926217180d679691839049a23"
+    "table": "0806060986404996822861146804942182690992409480602816902196412110ce396315ff605001637073085000501a3971511141180004b030080820801a42"
   },
   "p4-33": {
     "name": "p4-33",
-    "rule": "b1e2ce3-in4kqrwyz5ckqr6-k7cs2-i3-ar4act5eikqr6acn7e",
-    "rle": "x = 13, y = 23, rule = b1e2ce3-in4kqrwyz5ckqr6-k7cs2-i3-ar4act5eikqr6acn7e\n5b3o$5bobo$6bo$6bo2$5b3o$5bobo$6bo$6bo2$5b3o$5bobo$6bo$6bo2$obo2b3o2bo\nbo$3o2bobo2b3o$3o3bo3b3o$6bo2$2bo7bo$2b2ob3ob2o$2b2o5b2o!\n",
+    "rule": "b2ack6aes2in3-j4-cer5ckny6e7c",
+    "rle": "x = 14, y = 23, rule = b2ack6aes2in3-j4-cer5ckny6e7c\n3bo6bo$bo3bo2bo3bo$6b2o$bobobo2bobobo$3bo2b2o2bo$5b4o$3bobo2bobo$6b2o4\n$2bobob2obobo$2bob6obo$bobo2b2o2bobo$5bo2bo$o2b3o2b3o2bo$2bo3b2o3bo2$o\n3bo4bo3bo$3b2o4b2o$4b2o2b2o$3bo6bo$bo10bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 33,
-    "table": "2b429f238ef2ed88bee1795bede4ff0e426365fb573bc5a4237f7a7b0c858a6386ef475ce77159b9e274711878948c17ef71d19a71d69468d81e18633d49b2a5"
+    "table": "8461401021101008401000001000000461001008100800041008000008808061088ca2e5cee7e67307efede6c7f352388cf7ef71e73b7714e571c75873901942"
   },
   "p4-34": {
     "name": "p4-34",
-    "rule": "b2-eis5ekny7c",
-    "rle": "x = 14, y = 22, rule = b2-eis5ekny7c\n3bo6bo$bo3bo2bo3bo2$b2o3b2o3b2o$3o3b2o3b3o$2b2o2b2o2b2o$b3o6b3o$3b2o4b\n2o$3bo2b2o2bo2$bob3o2b3obo2$o3b2o2b2o3bo$4b2o2b2o$2bo8bo$5bo2bo2$5bo2b\no2$3bo6bo2$3bo6bo!\n",
+    "rule": "b2-ak3aeiq4-eknw5e7es3-eij4-ackw7c",
+    "rle": "x = 14, y = 21, rule = b2-ak3aeiq4-eknw5e7es3-eij4-ackw7c\n6b2o$5bo2bo$5bo2bo$4bob2obo$3bo2b2o2bo$2bobo4bobo$3bob4obo$bo10bo2$3bo\n6bo$2b2o6b2o$obobo4bobobo$bo10bo$ob2o6b2obo2$2bo8bo$bo10bo2$bo10bo$bo1\n0bo$bo10bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 34,
-    "table": "84614010611010004010000010000000611010001000000010000000000000000000000000000002000800840082002800000800008606400000844802400902"
+    "table": "0a4c2b87cc90c2312b06b52146417110c831827114e56048a671210031481084088088e38ee5e2600c67c6214751710804e5e371e53170106771210841100802"
   },
   "p4-35": {
     "name": "p4-35",
-    "rule": "b2-ai3ajn4rwy5-knr6e7cs1e2-k4-aqtyz5-aeir6e7e",
-    "rle": "x = 16, y = 20, rule = b2-ai3ajn4rwy5-knr6e7cs1e2-k4-aqtyz5-aeir6e7e\n3bo8bo$bo3bo4bo3bo$ob3obo2bob3obo$2bo3bo2bo3bo$2bo4b2o4bo$4bobo2bobo$4\nb2o4b2o2$2b2obob2obob2o$2obo2b4o2bob2o$b2o10b2o$bo2bobo2bobo2bo$4b2ob2\nob2o$4b2o4b2o$4bo2b2o2bo$4b2o4b2o$2b5o2b5o$3b3o4b3o2$2bo10bo!\n",
+    "rule": "b3-eq4cknrtw5-jk6-ns1c2-an4-rtw5-r6ein7c",
+    "rle": "x = 14, y = 23, rule = b3-eq4cknrtw5-jk6-ns1c2-an4-rtw5-r6ein7c\n6b2o$3bob4obo$bo10bo$2b4o2b4o$2bo8bo$3b2o4b2o$bo10bo$2ob2o4b2ob2o$2b2o\nbo2bob2o$b3obo2bob3o$2bobob2obobo$2bobo4bobo$b2ob6ob2o$b2ob6ob2o$4b2o2\nb2o2$5b4o$2b3o4b3o2$4b2o2b2o$2bobo4bobo$bo2bo4bo2bo$4bo4bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 35,
-    "table": "0ae24d4b61990d04e8101893a852b749471a10463cad52456ac2363980e06852a7413992401e1e42398a9ee79aa3a76060960e069a4a271d1682e77142b841c4"
+    "table": "08868c6b02672dfe8ced48dfa93eb7a786ceed8ae3dc9bf66b0efeb5dfd7a7714278618c399e8a47619a9ee60ee3ce79598c1e679eef67d58ce3c76be2f47952"
   },
   "p4-36": {
     "name": "p4-36",
-    "rule": "b2cin3-ry4-a5cir7cs1c2-ck4jr5-in7c",
-    "rle": "x = 11, y = 20, rule = b2cin3-ry4-a5cir7cs1c2-ck4jr5-in7c\n5bo$2bob3obo$3bo3bo$bobo3bobo$bobobobobo$4b3o$2bob3obo$2bob3obo$3bobob\no$3o5b3o$2bo5bo$2b2o3b2o$3b5o$2bo5bo$bo7bo$2b7o$4bobo3$5bo!\n",
+    "rule": "b3-k4cikntz5-js1c2ek3eiknq4cijknrz5acejq6ei7e",
+    "rle": "x = 14, y = 21, rule = b3-k4cikntz5-js1c2ek3eiknq4cijknrz5acejq6ei7e\n6b2o$4b2o2b2o$4b2o2b2o$2b3ob2ob3o$2b2o2b2o2b2o$b2ob6ob2o$2b3o4b3o$3b3o\n2b3o$2bobo4bobo$3bo6bo$2b2o6b2o$2bo8bo$bo10bo$obo8bobo2$obo8bobo$b3o6b\n3o$2bo8bo$2bob2o2b2obo$2bob2o2b2obo$bo10bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 36,
-    "table": "08c62ecbced7c7f08ba6ef73e6757309c6f787f1f671f1306e75731855112802c611291250081a8429029ca31a86a74830180286088686611286276984614812"
+    "table": "088686e98467e9f686cd29d66db7962186edecb2e3d6b7706d17d661d751211042b44bc2b70fca546ab2fd634e31a74095ad1736aacc31dd46936321d0fc40d4"
   },
   "p4-37": {
     "name": "p4-37",
@@ -343,125 +343,125 @@
   },
   "p4-38": {
     "name": "p4-38",
-    "rule": "b3-qys1e2-cn3jy4knrt5ciqy6eik7c",
-    "rle": "x = 13, y = 24, rule = b3-qys1e2-cn3jy4knrt5ciqy6eik7c\n4bo3bo$2bobobobobo$2o4bo4b2o$6bo$bob2obob2obo$o11bo$2bobobobobo$b2ob2o\nb2ob2o$b2ob2ob2ob2o$2bobo3bobo$b2ob2ob2ob2o2$2bo2bobo2bo$2bo2bobo2bo$4\nb2ob2o$b2obobobob2o$b2o3bo3b2o$2ob2obob2ob2o$4bobobo$bo2bobobo2bo$o3bo\nbobo3bo$bo4bo4bo$3o7b3o$6bo!\n",
+    "rule": "b2-a6ens1e2-cn4qrw5ciky6eik",
+    "rle": "x = 16, y = 25, rule = b2-a6ens1e2-cn4qrw5ciky6eik\nbo3bo4bo3bo$obobobo2bobobobo$o5bo2bo5bo$obobobo2bobobobo$obobob4obobob\no$obobo6bobobo$obobo6bobobo$obob2o4b2obobo$ob2o8b2obo$o14bo$o14bo$o3bo\n6bo3bo$o2bobo4bobo2bo$o2bobo4bobo2bo$ob5o2b5obo$o14bo$ob2o8b2obo$3o10b\n3o$obo10bobo$2bo10bo$2bobobo2bobobo$2bobobo2bobobo$2bobo6bobo$b2obobo2\nbobob2o$3b2o6b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 38,
-    "table": "0886866102412110862161102110100086402100601010006100100010000000a7237d1a21261960f9d418d3382aa7892384d40283080b961a0276ad41962c42"
+    "table": "0260610061100000611010000000080041101000100800040000000200800040a721791a2900140079101883908a638121021001000a0e861a2026d400862440"
   },
   "p4-39": {
     "name": "p4-39",
-    "rule": "b2cn3-ceir5-ejqys1e2ae3cekr4-ert5i6-a7c",
-    "rle": "x = 16, y = 30, rule = b2cn3-ceir5-ejqys1e2ae3cekr4-ert5i6-a7c\n3bo2bo2bo2bo$b2ob2ob2ob2ob2o$2bo2bo4bo2bo$o4bo4bo4bo$o2b2o6b2o2bo$b3o8\nb3o2$3bobo4bobo$4b2ob2ob2o$2bo10bo$b2obobo2bobob2o$2b3obo2bob3o$2bo2bo\nb2obo2bo$b2o2b2o2b2o2b2o$3ob2ob2ob2ob3o$2bob2o4b2obo$2bob2o4b2obo$b2ob\n3o2b3ob2o$bo5b2o5bo$b2o3b4o3b2o$bo3b2o2b2o3bo$bobo8bobo$b2obo2b2o2bob2\no$bob2ob4ob2obo$bo3bo4bo3bo$bo3bo4bo3bo$2bobo6bobo2$2o3b2o2b2o3b2o$o5b\no2bo5bo!\n",
+    "rule": "b3-cjr6cens1e2aei3-cj5-y",
+    "rle": "x = 16, y = 21, rule = b3-cjr6cens1e2aei3-cj5-y\nbo3bo4bo3bo$3ob3o2b3ob3o$4bo6bo$4o8b4o$3bob6obo$2o2b2ob2ob2o2b2o$3bobo\nb2obobo$2obo2b4o2bob2o$3b2o6b2o$o2b2obo2bob2o2bo$bo2b2o4b2o2bo2$b2o10b\n2o2$b2o2bo4bo2b2o$4b3o2b3o$4bo6bo$5b2o2b2o$2bo2bo4bo2bo$b3o2bo2bo2b3o$\n3bo2bo2bo2bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 39,
-    "table": "08c20449c6314186806848166094122146394990310294206814924086012110a70993bc0ac6b64136a3f5689769489b28c62761c67969969d61499e60963e42"
+    "table": "0884024186214010026061084010180284214110210810046010080210800240af85b379862978963769790659949661a4296996298694617996826196616110"
   },
   "p4-40": {
     "name": "p4-40",
-    "rule": "b2cek3cikqy4jt5-jq6-n7es1e2-a5ajny6ace",
-    "rle": "x = 15, y = 27, rule = b2cek3cikqy4jt5-jq6-n7es1e2-a5ajny6ace\nbo11bo$obo9bobo$bo11bo$b2o9b2o$2bobo5bobo$2bo2bo3bo2bo$3bobo3bobo$3b3o\nbob3o$4b3ob3o$7bo$4bo5bo$2bobo5bobo$3bobo3bobo$3b4ob4o$b2ob3ob3ob2o$o3\nb2o3b2o3bo$3bo7bo$3bo3bo3bo$2bo3bobo3bo$bo2b2o3b2o2bo$2bo9bo$b2ob2obob\n2ob2o$3bo7bo2$5bo3bo$7bo$7bo!\n",
+    "rule": "b2-an4-ik6k7es1e2-e3q6-in",
+    "rle": "x = 16, y = 25, rule = b2-an4-ik6k7es1e2-e3q6-in\n3bo8bo$bo2bo6bo2bo$bo2b2o4b2o2bo$2bo3bo2bo3bo$3b4o2b4o$7b2o$bobo2bo2bo\n2bobo$bo12bo2$obo10bobo$obo10bobo$obo10bobo$obo10bobo$obo10bobo$obo10b\nobo$obo10bobo$obo10bobo$obo10bobo$obo10bobo$obo10bobo$obo10bobo$obo10b\nobo$obo10bobo$obo10bobo$bo12bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 40,
-    "table": "02644108a77042be607edcae428e02a7c169db98519e8eee081c8fc49fcfa7f5236071006118000e7118108c000200664118180c1808020500888c008aa0c371"
+    "table": "02686906299486616916962186486190498692619461481a82612194611a1484a5617010e5105008511000085008008661311018100808061018088408828661"
   },
   "p4-41": {
     "name": "p4-41",
-    "rule": "b3-ery6-ek7cs1e2-ak3cqy4-ez5-ijy6n7e",
-    "rle": "x = 14, y = 23, rule = b3-ery6-ek7cs1e2-ak3cqy4-ez5-ijy6n7e\n2b2o6b2o$b4o4b4o$2b2o6b2o2$2o2b2o2b2o2b2o$o2bo6bo2bo$6b2o$3b2ob2ob2o$3\nb3o2b3o$4bo4bo$4b6o2$3b2o4b2o$2b2obo2bob2o$4bo4bo$3bo2b2o2bo$2bob6obo$\n3bo2b2o2bo2$3b2o4b2o$3bo6bo$3bo6bo$4bo4bo!\n",
+    "rule": "b2-n5-ks4ar7c",
+    "rle": "x = 14, y = 23, rule = b2-n5-ks4ar7c\n3bo6bo$bo3bo2bo3bo2$2b3o4b3o2$3bo6bo$3bo6bo$3bo6bo$2bobo4bobo$2bobo4bo\nbo$bo3bo2bo3bo$5bo2bo$4bo4bo$2bo2bo2bo2bo$2b2o6b2o$o5b2o5bo$4bo4bo$2bo\n8bo$4bo4bo$3bo6bo$bobob4obobo$2bobo4bobo$4bo4bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 41,
-    "table": "0886044186414118802040186010180e86610118601010806018180a18048a2323483986ccf64ee739ce9c67cae5ef3048ffced3d7f7e5788676e373e7591194"
+    "table": "86616118211818866118188618068661610818861884826118868621866161100008080600000001080000010000211808000000000000008200200820001802"
   },
   "p4-42": {
     "name": "p4-42",
-    "rule": "b2-ai3inqry4-knwys1c2aik3ij4-cjqrt5ck6e",
-    "rle": "x = 16, y = 22, rule = b2-ai3inqry4-knwys1c2aik3ij4-cjqrt5ck6e\n7b2o$6bo2bo$4b8o$3bobob2obobo2$5bo4bo$4b8o$4bob4obo$3bobo4bobo$5bo4bo$\n2bo10bo$b2o10b2o$bobo8bobo$o14bo$4b2o4b2o$4bob4obo$4bo6bo$4bob4obo$b4o\n6b4o$obo10bobo$3b2o6b2o$2bo10bo!\n",
+    "rule": "b2-eis5ekny7c",
+    "rle": "x = 14, y = 21, rule = b2-eis5ekny7c\n2bobo4bobo$2bobo4bobo$o4bo2bo4bo$3bobo2bobo$bo10bo$4b2o2b2o$2bo2b4o2bo\n$bo3b4o3bo$2bo2bo2bo2bo3$3o3b2o3b3o$3bo2b2o2bo$bo4b2o4bo$3bo2b2o2bo2$4\nbob2obo2$4bo4bo2$2bobo4bobo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 42,
-    "table": "02ecc9e6ed31e2316c57962147116110cd31f23131403000c731210031001000c43f649431869551c1900a52b4e10210bb861460862b65149441525070901040"
+    "table": "84614010611010004010000010000000611010001000000010000000000000000000000000000002000800840082002800000800008606400000844802400902"
   },
   "p4-43": {
     "name": "p4-43",
-    "rule": "b2-ns3aeq4-ayz7c",
-    "rle": "x = 15, y = 26, rule = b2-ns3aeq4-ayz7c\n7bo$5bo3bo2$5b2ob2o$4b2obob2o$6bobo$5bo3bo3$6bobo$6bobo$3bo2bobo2bo$3b\no7bo$2bo2bo3bo2bo2$5b2ob2o$4b2o3b2o$bo2bo5bo2bo$2bo4bo4bo$o3bo5bo3bo$4\nbo5bo2$2bo9bo2$5bo3bo$6bobo!\n",
+    "rule": "b2-ai3inqry4-knwys1c2aik3ij4-cjqrt5ck6e",
+    "rle": "x = 16, y = 21, rule = b2-ai3inqry4-knwys1c2aik3ij4-cjqrt5ck6e\n6b4o$5b2o2b2o$3bo8bo$3b3ob2ob3o2$5b6o$4bo6bo$4bo6bo$3b2o2b2o2b2o$2b3o6\nb3o$2bo10bo$b2o10b2o$2b2o8b2o$5o6b5o$3obobo2bobob3o$2b2ob6ob2o$2b2o8b2\no2$o2b2o6b2o2bo$2o12b2o$2b2o8b2o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 43,
-    "table": "866161102110100061101000100000006100100010000000100000000000000008000a838c0646600a86a761c221710800a78611824021102630611841100802"
+    "table": "02ecc9e6ed31e2316c57962147116110cd31f23131403000c731210031001000c43f649431869551c1900a52b4e10210bb861460862b65149441525070901040"
   },
   "p4-44": {
     "name": "p4-44",
-    "rule": "b2-ek3n4ceikn5akn6cn7cs2c3-y5-eknq",
-    "rle": "x = 15, y = 23, rule = b2-ek3n4ceikn5akn6cn7cs2c3-y5-eknq\nbo5bo5bo$bo5bo5bo$bo5bo5bo$obo3bobo3bobo$bo5bo5bo2$3bobo3bobo$4bo2bo2b\no$obo9bobo2$7bo$3o4bo4b3o$bo5bo5bo$2bobobobobobo2$bo2bo5bo2bo$bo11bo$b\no11bo$obo3bobo3bobo$bo11bo$5bo3bo$3bobo3bobo$4bo2bo2bo!\n",
+    "rule": "b1e2cen5eiq6-cn7cs1e2a5-aky",
+    "rle": "x = 16, y = 23, rule = b1e2cen5eiq6-cn7cs1e2a5-aky\n3o10b3o$o3bo6bo3bo$2bobo6bobo$6b4o$obo10bobo$obo10bobo2$2bo2bo4bo2bo$4\nbo6bo$2bob2o4b2obo$2bo4b2o4bo6$4bobo2bobo$2bo3bo2bo3bo$2bo3bo2bo3bo$2b\no3bo2bo3bo$2bobo6bobo$2bobo6bobo$2b3o6b3o!\n",
     "period": "4",
     "rarity": "common",
     "edition": 44,
-    "table": "84c120d0401710460188024c10b1082a649c0c00b24235105400c84ac2100b1208c68669865961948621699261161241c6692194781092216994160094216010"
+    "table": "2340110840100808300010000808848d4010000a108c08c6080a00ad08c6ac63a501101800081882100808061804866120000886088480611886822106616100"
   },
   "p4-45": {
     "name": "p4-45",
-    "rule": "b3-ks1c2e3-k4rw5ckny6-ae",
-    "rle": "x = 16, y = 28, rule = b3-ks1c2e3-k4rw5ckny6-ae\n5bo4bo$4b2ob2ob2o$7b2o$6bo2bo$6bo2bo$4b3o2b3o$3b3o4b3o$4b2o4b2o$5bo4bo\n$5bo4bo$3bob6obo$3b2o6b2o$2bo10bo$bo2bo6bo2bo$b2obob4obob2o$o5b4o5bo$b\no2b2o4b2o2bo$4bo6bo$3b2o6b2o$5bo4bo3$2b4o4b4o$3bo3b2o3bo$2bobo6bobo$5b\n2o2b2o$4bobo2bobo$4bo6bo!\n",
+    "rule": "b2ce3j4-erw5a6-cks1e2cn3c4-actw5-ae6aek7c",
+    "rle": "x = 16, y = 23, rule = b2ce3j4-erw5a6-cks1e2cn3c4-actw5-ae6aek7c\n6bo2bo$4b2o4b2o$4bob4obo$4b8o$4b8o$6b4o$5b2o2b2o$6bo2bo$7b2o$7b2o$3bo8\nbo$7b2o$7b2o$5bob2obo$5b6o$6bo2bo$4bobo2bobo$5bo4bo$2b3o6b3o$bo3b2o2b2\no3bo$3b2obo2bob2o$2o12b2o$3bo8bo!\n",
     "period": "4",
     "rarity": "common",
     "edition": 45,
-    "table": "08868661846161108641211061101000866160106110100061101000100000004a968f6394616512ae49399fe19a3ba29663681061121e826310bed612060700"
+    "table": "024a05840896836da0869470266148144a8c86699669619484695102e99490712140188a48de8aca188a8ee70eefe7ed40d40eefde3bef370eefe7ed4eb3ed63"
   },
   "p5-01": {
     "name": "p5-01",
-    "rule": "b2ek3-cj4ejntwyz5-nqs1c2aei3-ajky4q5einqy6c",
-    "rle": "x = 15, y = 25, rule = b2ek3-cj4ejntwyz5-nqs1c2aei3-ajky4q5einqy6c\n5bo3bo$5b2ob2o$7bo$3bo2bobo2bo$3bob5obo$3bob2ob2obo$2bob2obob2obo$2b3o\nbobob3o$3bo2bobo2bo$b2obob3obob2o$b4ob3ob4o$2b2o2b3o2b2o$4b2o3b2o$5b2o\nb2o$5bo3bo$4bob3obo$6bobo$3bob2ob2obo$4bo5bo$2b3o5b3o2$2b2ob2ob2ob2o$o\n4b2ob2o4bo$ob2o7b2obo$bo11bo!\n",
+    "rule": "b2ei3-n4-ctw7es1c2k3enry4-e5ay7c",
+    "rle": "x = 16, y = 25, rule = b2ei3-n4-ctw7es1c2k3enry4-e5ay7c\n6b4o$6bo2bo$5b6o$3b2obo2bob2o$3b2obo2bob2o$6bo2bo$5b2o2b2o$5bob2obo$3b\no2bo2bo2bo$5bo4bo$3b3o4b3o$5bob2obo$4bobo2bobo$3b3ob2ob3o$4bo2b2o2bo$b\nob4o2b4obo$bob2o6b2obo$4obo4bob4o$2bo10bo$b2o10b2o2$3bo8bo$2bobo6bobo$\n3bo8bo$2bobo6bobo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 46,
-    "table": "0aa4c369a7ade6f46677ffa2c7d6124185aff3f4ada7d67169d50750d5716010c695a3789c4178122709318c5912c423b46128136094124059328c2112402300"
+    "table": "0a0eafa78ee6e351afe3f771676171108ae56771c7316118a77171007018108440b8cae639a7a6654ed7a5e1877361181d8ef661a7617310c7616518e1101812"
   },
   "p5-02": {
     "name": "p5-02",
-    "rule": "b3-r5-ai6cs2acn3-ac4wz5-y6acn7c",
-    "rle": "x = 11, y = 17, rule = b3-r5-ai6cs2acn3-ac4wz5-y6acn7c\n2bo5bo$3o5b3o$o2bobobo2bo$bo2b3o2bo$ob2obob2obo$2bo5bo$3bo3bo2$b2o5b2o\n$2bobobobo$bobo3bobo$bo3bo3bo$2bobobobo$2b2o3b2o$b2obobob2o$2bo5bo$2bo\n5bo!\n",
+    "rule": "b3-jy4-jty5-j7es3-a4jn5acjy7c",
+    "rle": "x = 12, y = 23, rule = b3-jy4-jty5-j7es3-a4jn5acjy7c\n4b4o$4bo2bo$3bo4bo$3b2o2b2o$3bob2obo$bo3b2o3bo$b4o2b4o$bo2b4o2bo$2b2o4\nb2o$2b2o4b2o$2b8o2$4o4b4o$o3bo2bo3bo$obobo2bobobo$o2b2o2b2o2bo$3b2o2b2\no$2b2o4b2o$3bob2obo2$2b3o2b3o$b2ob4ob2o$3bo4bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 47,
-    "table": "08860641866949928268699e68969662866149966996966160969e611661430084c78678c639fd9e8669691efd948e6fe63b69be39869461599f9a7b9e61eb33"
+    "table": "088c8aef8e47ecd70ea96bc7cdb7f7318cef2db3e2d6b778ef37e671f659319400868660866d63548663edb26312024886ed6314e910121141901708d0304812"
   },
   "p5-03": {
     "name": "p5-03",
-    "rule": "b3-cs1c2-cn3ijr4r5-en6ck7e",
-    "rle": "x = 15, y = 20, rule = b3-cs1c2-cn3ijr4r5-en6ck7e\nbo11bo$bobo7bobo$bo2b2o3b2o2bo$2o11b2o$2b5ob5o$5bo3bo$2bo2b2ob2o2bo$3b\n2obobob2o$bo2bobobobo2bo$b2obobobobob2o$bo4bobo4bo$b2obobobobob2o$6bob\no$5b2ob2o$5b2ob2o$5b2ob2o$5b2ob2o$3bo2bobo2bo$6bobo$6bobo!\n",
+    "rule": "b2-cks2ce3-cny4-ijnrw6ein7c",
+    "rle": "x = 16, y = 25, rule = b2-cks2ce3-cny4-ijnrw6ein7c\n4bobo2bobo2$4bo6bo2$6b4o$5bo4bo2$b2o10b2o$5b2o2b2o2$5b2o2b2o$2o12b2o$5\nb2o2b2o$2o12b2o$2bo10bo$o14bo$6bo2bo2$2b2o8b2o3$bobobo4bobobo$o5bo2bo5\nbo2$o5bo2bo5bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 48,
-    "table": "0886866186216110866161106110100086216110210010006110100010000000c637ed3a31083994ed11189b398ea7c3b308308608028e2b1b863ee5942b6694"
+    "table": "86012110400010002100100010000000201000000000000010000000000000000a4e87258e92e131a6a5735065605818ca21a57116694184a171500a31841842"
   },
   "p5-04": {
     "name": "p5-04",
-    "rule": "b3-e4-qzs1c2-n3ey4-nry5-qr7c",
-    "rle": "x = 15, y = 22, rule = b3-e4-qzs1c2-n3ey4-nry5-qr7c\n7bo$5b5o$4b2o3b2o$3bo7bo$4b2obob2o$3b4ob4o$6b3o$7bo$2bob3ob3obo$2bo2b5\no2bo$4b3ob3o$4bobobobo$3b2o2bo2b2o$2bobo5bobo$bo2b7o2bo$bo2b2obob2o2bo\n$3b3obob3o$2b5ob5o$6obob6o$3b9o$b2ob2o3b2ob2o$2b2obo3bob2o!\n",
+    "rule": "b2ei3-c4-jn5-in6ais1e6ikn7c",
+    "rle": "x = 12, y = 23, rule = b2ei3-c4-jn5-in6ais1e6ikn7c\n5b2o$bobo4bobo$2b2o4b2o$bobo4bobo$2b2o4b2o$bobo4bobo$bobob2obobo$2bo6b\no$bobo4bobo$2bob4obo$bob6obo$bo2b4o2bo$2b3o2b3o$bo8bo$3bo4bo$bob6obo$2\nbobo2bobo$5b2o$2bo6bo$o3bo2bo3bo$2bo6bo$obobo2bobobo$bobo4bobo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 49,
-    "table": "088e8ce786e767718ce7c671e37131108ee7e750e7717110e750711071101000c679639c393a962763debfe696a34279790ade251bc627419ca1c758a3607912"
+    "table": "0a8eafe78eabedbdafe57bd3edf7f7548e2be5ff2fe7f7e1e7ff7671bd65d0312100100000000000100000000008088800000000000008820000008e00060c02"
   },
   "p5-05": {
     "name": "p5-05",
-    "rule": "b3-y4y5k6-ae7es1c3-ejy4acknqwz5-cejy7e",
-    "rle": "x = 15, y = 24, rule = b3-y4y5k6-ae7es1c3-ejy4acknqwz5-cejy7e\n7bo2$3b2o2bo2b2o$3b2obobob2o$2bo2b5o2bo$5b2ob2o$3b9o$3bo2bobo2bo$2b2o7\nb2o$2b2o7b2o2$bo11bo$bobo7bobo$b3o7b3o$3bo7bo$3bo7bo$b3o7b3o$b2o9b2o$2\nobo7bob2o$2bo9bo$o2bo7bo2bo$obo9bobo$3bobo3bobo$4bo5bo!\n",
+    "rule": "b3-e4-aenw5-ae7cs3-r5ijn",
+    "rle": "x = 14, y = 25, rule = b3-e4-aenw5-ae7cs3-r5ijn\n6b2o$4bo4bo$5bo2bo$2b3o4b3o$2b3o4b3o$bo10bo$2b3o4b3o$3o3b2o3b3o$2bo8bo\n$ob4o2b4obo$2bo8bo$b2o2bo2bo2b2o$5bo2bo$bobobo2bobobo$5bo2bo$3o2b4o2b3\no$2bob2o2b2obo$3obo4bob3o$2bobo4bobo$o12bo$3obo4bob3o$b2o8b2o$obo8bobo\n2$bo10bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 50,
-    "table": "0886866186c161108621611861d818828661215064335c8a615018c6100e0684489c806d9e47ecd704a94044cdb4d4319cef2db3e2529538e937c071f6193194"
+    "table": "08868ceb8eebebb28cefccf76ff7f7698661eff76f73f7216ff7f769172169020886064986694112826861146010106186614914691010016890900012206100"
   },
   "p5-06": {
     "name": "p5-06",
     "rule": "b2-ac3-ek4aeijknr5cejny6i7es1c2n3cejk6-in",
-    "rle": "x = 16, y = 24, rule = b2-ac3-ek4aeijknr5cejny6i7es1c2n3cejk6-in\n7b2o$5bo4bo$7b2o$6bo2bo$5bob2obo2$6b4o$2b3o2b2o2b3o2$bo2bo2b2o2bo2bo$6\nbo2bo$2o12b2o$3bo8bo$3bob6obo$b2o2bo4bo2b2o$3b2o2b2o2b2o$4bo6bo$5bob2o\nbo$2b3o6b3o$2b3o6b3o2$2bo2bo4bo2bo$4bo6bo$4bo6bo!\n",
+    "rle": "x = 16, y = 23, rule = b2-ac3-ek4aeijknr5cejny6i7es1c2n3cejk6-in\n6bo2bo$6b4o$5bo4bo$5b6o$5bo4bo$5bo4bo$3bobo4bobo$5b2o2b2o$b4o2b2o2b4o$\n5b2o2b2o$2o3b6o3b2o$2bo10bo$2bobob4obobo2$3bo2bo2bo2bo$2bob3o2b3obo$3b\nob6obo$3b2obo2bob2o$5bo4bo2$2b4o4b4o$3b3o4b3o$3bobo4bobo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 51,
@@ -469,93 +469,93 @@
   },
   "p5-07": {
     "name": "p5-07",
-    "rule": "b2cei4-nz5ik7es1c2-i3n4-knty5-ey6e7c",
-    "rle": "x = 14, y = 20, rule = b2cei4-nz5ik7es1c2-i3n4-knty5-ey6e7c\n5bo2bo$4bob2obo$bo10bo$b3o6b3o$3bo6bo$2o10b2o$3o8b3o$2o10b2o$2o10b2o$3\nb3o2b3o$2bobob2obobo$2bob6obo$b2o8b2o$o12bo$o2bo6bo2bo$bo2bo4bo2bo$3bo\n6bo$5bo2bo$4bo4bo$4b2o2b2o!\n",
+    "rule": "b2ekn3eijk4int5cjq6ns1e2-ck6-i7c",
+    "rle": "x = 16, y = 21, rule = b2ekn3eijk4int5cjq6ns1e2-ck6-i7c\n7b2o$5b6o$5bob2obo$5bo4bo$6bo2bo$3bo8bo$2bobobo2bobobo$3bobo4bobo2$4bo\n6bo$3b3o4b3o$3bo8bo$bo2bobo2bobo2bo$b2o10b2o$o14bo$2bo10bo$4b2o4b2o$3b\no3b2o3bo$b3o2bo2bo2b3o$bob2o6b2obo$6bo2bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 52,
-    "table": "0248298e089206212986966182e1611148028641166365088e60615021083084c6f949de79199e87681a9e279e95e7797d1a1aa7384ab425dea7a379a6a17952"
+    "table": "02264780630c0970e234791228018e4083949106880020110482122351304000a701311040001008310010081008088e20100008000808061008088e08828e63"
   },
   "p5-08": {
     "name": "p5-08",
-    "rule": "b2-an4-knz5acknq7es1e2c3j5-cinr6-an7c",
-    "rle": "x = 13, y = 18, rule = b2-an4-knz5acknq7es1e2c3j5-cinr6-an7c\n2bo7bo$2bo3bo3bo$b3obobob3o$4b2ob2o$3bo5bo2$3b2o3b2o$3bob3obo$3bo5bo2$\n3bo5bo$6bo$4bobobo$5b3o2$b2obobobob2o$ob3o3b3obo$2bo7bo!\n",
+    "rule": "b3aciqr4-aeit6-ik7cs1c2-a3-ac4aenrw5-c6-k7e",
+    "rle": "x = 16, y = 23, rule = b3aciqr4-aeit6-ik7cs1c2-a3-ac4aenrw5-c6-k7e\n3bo8bo$2b3o6b3o$2b2o8b2o$b3obo4bob3o$2bo2b2o2b2o2bo$2bo10bo$4bobo2bobo\n$2b4o4b4o$bo2b3o2b3o2bo$5obo2bob5o$2b5o2b5o$7b2o$3bo3b2o3bo$2b3o6b3o$b\n3ob6ob3o$b3ob2o2b2ob3o$o3bo6bo3bo$ob3o6b3obo$4bo6bo$bob3o4b3obo$2bo2b2\no2b2o2bo$2b3o6b3o$3b2o6b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 53,
-    "table": "0268698629900e27691e9e278ac1e730490a9a43146364088662a371a3081194214214000018090490000098288a84ca42080006188e0ec700821ced80e64e52"
+    "table": "080488238cc6e6580c838469c760790e80e72679c67941142379691a58908a6342feef6ef73d6ddfef79739de996ad77dfbf799eb98e96fdcb9ebc73fefdf3f5"
   },
   "p5-09": {
     "name": "p5-09",
-    "rule": "b2cn3-c4cint5-aeny6-ks1e2k3-ajr4-jnrz6n7c",
-    "rle": "x = 16, y = 27, rule = b2cn3-c4cint5-aeny6-ks1e2k3-ajr4-jnrz6n7c\n7b2o3$5b2o2b2o$3b3ob2ob3o$3b3ob2ob3o$b2o3b4o3b2o$2b2obo4bob2o$o2b2o6b2\no2bo$bobo8bobo$2bo3bo2bo3bo$bo4bo2bo4bo$bo3b6o3bo$4bob4obo$4bo6bo$5bob\n2obo$4b2o4b2o3$5b6o$6b4o$6b4o$5bo4bo$4b8o$6bo2bo$5b2o2b2o$6bo2bo!\n",
+    "rule": "b2ekn3-cn4z5-qs2a4eijktyz7c",
+    "rle": "x = 14, y = 19, rule = b2ekn3-cn4z5-qs2a4eijktyz7c\n2b4o2b4o$3bo6bo$4bo4bo$bo3b4o3bo$5bo2bo$2b2obo2bob2o$2b3o4b3o$bo10bo2$\nbobo6bobo$2bo8bo$2b2o6b2o$o12bo$3bo6bo$o2bo6bo2bo$3bobo2bobo$o2b2o4b2o\n2bo$bobobo2bobobo$2o10b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 54,
-    "table": "08c686e9c63d69f88665691a69959e47c6b5e19eb94ab4b56d9e1a635db5e26121ac52c4afe3443152f46340c07148188d63d55167717100c470401a31001802"
+    "table": "0a26c729e728e196e679799665861261833979b40986866129959640966161108401009000829220008686601661000820008660062161001441410801000802"
   },
   "p5-10": {
     "name": "p5-10",
-    "rule": "b2k3-ejy4ez5-en6aci7es1e2ai4-en7e",
-    "rle": "x = 15, y = 20, rule = b2k3-ejy4ez5-en6aci7es1e2ai4-en7e\n5bo3bo$4b2o3b2o$3bo7bo$6bobo$b2obobobobob2o$bobo7bobo$3bo7bo$bo11bo$3b\no7bo$3b2o5b2o$5bo3bo$3bo7bo$3b2o5b2o2$2b3o5b3o$o2b2o5b2o2bo$2bobo5bobo\n$2bo9bo$5bo3bo$6bobo!\n",
+    "rule": "b1e2-a3-ainy4ce6-is1e2akn3cin4jnqtz5qr6ei7c",
+    "rle": "x = 14, y = 25, rule = b1e2-a3-ainy4ce6-is1e2akn3cin4jnqtz5qr6ei7c\n2b2o6b2o$2bo8bo3$2bo8bo$2bo2bo2bo2bo$bo3bo2bo3bo$bo3bo2bo3bo$5bo2bo3$o\n4bo2bo4bo$o4bo2bo4bo$4bo4bo$4bo4bo3$bo10bo$bobo6bobo$3bo6bo2$3b2o4b2o2\n$bobo6bobo$b3o6b3o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 55,
-    "table": "08a4c069a749e89c44314a8a4d969647856931be681296a9699f0e619c2de2b5a509389608829621198684619661611028028661066161089661611021081084"
+    "table": "2362f720e7506108f73173186108088643713118505808060118188608828661a5a5505069459af0501684201e14c408a5d492a3e01890b45027012955950842"
   },
   "p5-11": {
     "name": "p5-11",
-    "rule": "b2k3-q4eiknqz5-y6c7es1e2-ei4q5acejy7c",
-    "rle": "x = 13, y = 21, rule = b2k3-q4eiknqz5-y6c7es1e2-ei4q5acejy7c\n6bo2$5bobo$3bo5bo$3bobobobo$3bo5bo$2obob3obob2o$2obo5bob2o$4bo3bo$bob2\no3b2obo2$2bo3bo3bo$2bobo3bobo$2bobo3bobo$b2o3bo3b2o$4bo3bo$3b2obob2o$4\nbo3bo$4b2ob2o2$6bo!\n",
+    "rule": "b2-a5-y6-ks2-ai3-j4-ky5-ny",
+    "rle": "x = 16, y = 21, rule = b2-a5-y6-ks2-ai3-j4-ky5-ny\n3b2o6b2o$3bobo4bobo$b4o2b2o2b4o$b2o3b4o3b2o$bo2b2o4b2o2bo$4bobo2bobo$5\nb2o2b2o$3bo2bo2bo2bo$b4obo2bob4o$3b3o4b3o$4b2o4b2o$bo2b2o4b2o2bo$3bo8b\no$bo12bo$2bo10bo$4o8b4o$3o10b3o$2bob2o4b2obo$4bo2b2o2bo$5b2o2b2o$7b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 56,
-    "table": "08a6c6e92b6fa9d6c6f96b5e2db5d66387cc7da7eb96b5796da7da61d6796394a5615010691810045010088210024248611810051884024110a0060880604812"
+    "table": "026061086118088e6118180e08848e674118188e188e84e5088e8a638ee5e3710aeccbefef7deef56e77ff23cf95f751cdfff3b7f9d6b471efb72371f5717010"
   },
   "p5-12": {
     "name": "p5-12",
-    "rule": "b2cek3cejkn4cnwy5-qy7cs1e3-eijr4akyz5ejny6-k7e",
-    "rle": "x = 16, y = 27, rule = b2cek3cejkn4cnwy5-qy7cs1e3-eijr4akyz5ejny6-k7e\n5bo4bo$3bobob2obobo$2b4ob2ob4o$2b3o2b2o2b3o$3bo3b2o3bo2$6b4o$4bo2b2o2b\no$5b2o2b2o2$7b2o2$6bo2bo$6b4o$5bo4bo$5b2o2b2o$7b2o$6bo2bo$bob2o2b2o2b2\nobo$bo4bo2bo4bo$2obo3b2o3bob2o$obo2b2o2b2o2bobo$2o2bobo2bobo2b2o$b2o10\nb2o$3bo8bo$bobo8bobo$2b2o8b2o!\n",
+    "rule": "b2-ac3-q4tw5ajqry6k7cs2an3-cei5i7e",
+    "rle": "x = 14, y = 25, rule = b2-ac3-q4tw5ajqry6k7cs2an3-cei5i7e\n2bo8bo2$o2b2o4b2o2bo$3obo4bob3o$2o3bo2bo3b2o$4b2o2b2o$3bo6bo$bobo6bobo\n$2bob6obo$2b4o2b4o$3bo6bo$b4o4b4o$3b8o$4bob2obo$bo4b2o4bo$b3o6b3o$2bo2\nb4o2bo$2b2ob4ob2o$bobo6bobo$3b2o4b2o$bobo6bobo$2b2o6b2o$b2o2bo2bo2b2o$\n2bo8bo$5bo2bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 57,
-    "table": "02e2474823dd05c6e2387916a0d4026947ce19c4fcf7d47148c49258c67169122988104586ebc00b10e840cc447218760c614d7c6fbd53cde0d9cc022aecd3e5"
+    "table": "0aa6e76163692db4e7757190a91e94c8875af18669109a23618614bd95234c128c838479c6217100846140107110100126316110210010087910100000082084"
   },
   "p5-13": {
     "name": "p5-13",
-    "rule": "b3-c5ejy7cs1e2-k3ceik4-t5aejn6ack",
-    "rle": "x = 17, y = 22, rule = b3-c5ejy7cs1e2-k3ceik4-t5aejn6ack\nbo3bo5bo3bo$2o3b2o3b2o3b2o2$2bobo7bobo$2b2obo5bob2o$2bob2o5b2obo$2b2ob\nobobobob2o$5bobobobo$3bobobobobobo$2b2ob3ob3ob2o$4bob2ob2obo$5bo5bo$3b\no2bo3bo2bo$3bo2bo3bo2bo$4bobo3bobo2$7bobo$4bob2ob2obo$4bobo3bobo$4bobo\n3bobo$4b3o3b3o$6b2ob2o!\n",
+    "rule": "b3-k4-c5cijky6eins3-a4enwz5-ace6-n",
+    "rle": "x = 14, y = 23, rule = b3-k4-c5cijky6eins3-a4enwz5-ace6-n\n6b2o$4bob2obo$4bob2obo$3b8o$b2o2b4o2b2o$bob2ob2ob2obo$bo2bob2obo2bo$b2\nobo4bob2o$2ob8ob2o$2bobob2obobo$5o4b5o$o12bo$3b8o$b3ob4ob3o$4b6o$2b2o2\nb2o2b2o$2b2ob4ob2o$4bob2obo2$3b2o4b2o$3bo6bo$5bo2bo$5b4o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 58,
-    "table": "0886866186296110866161906112104886216114298412416190140810604802a74d3b964ade965f3baaf76d966961f6e8de0f6ddef5695396e9e994fa72d731"
+    "table": "088e8eef8cefe7718ec7aff3e7f37b518ee7e675ef3b7795eff1775271b4704000868668866dedda8669639ced9e84e786e769bee91a9eb7499f9cf55eb7e761"
   },
   "p5-14": {
     "name": "p5-14",
-    "rule": "b2in3-cejn5-acjq7cs1e2-ce3-kr4eiknyz5ikqr6-ik7e",
-    "rle": "x = 12, y = 16, rule = b2in3-cejn5-acjq7cs1e2-ce3-kr4eiknyz5ikqr6-ik7e\nb2o6b2o$4ob2ob4o$2bobo2bobo$3b2o2b2o$2bobo2bobo$2b2o4b2o2$o10bo$2o8b2o\n$b3o4b3o$2b3o2b3o$obobo2bobobo$ob2o4b2obo$b2obo2bob2o$o2b2o2b2o2bo$bo2\nbo2bo2bo!\n",
+    "rule": "b3-k7es1e2ae3-i4-rtyz5i",
+    "rle": "x = 12, y = 21, rule = b3-k7es1e2ae3-i4-rtyz5i\n5b2o$4b4o$2bobo2bobo$bo8bo$4b4o$2b2o4b2o$2b2ob2ob2o$bo3b2o3bo$o3b4o3bo\n$3bo4bo$2b2ob2ob2o$3bob2obo$3bob2obo3$4b4o2$2bob4obo$b3ob2ob3o$b4o2b4o\n$2bo6bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 59,
-    "table": "0804a029c6206092056940844186102980316990018686602914844816412902ada776d9e5e7d9d8d3d023587cf59c07a7f554fae73bf53c7c5f58635c99a2e5"
+    "table": "0886866184616110864121106110100086616010611010086110100010080084af8b97fd8e677741b6e3f770f33150112ee76711e3503110fd30511060103000"
   },
   "p5-15": {
     "name": "p5-15",
-    "rule": "b2-a3knqry6acs1e3-cq6ai7c",
-    "rle": "x = 16, y = 24, rule = b2-a3knqry6acs1e3-cq6ai7c\n3bo8bo$3bo8bo$3bo8bo$bo3bo4bo3bo$3ob3o2b3ob3o$2bobo6bobo2$3bo8bo$bobob\no4bobobo$4bo6bo$3bob2o2b2obo$4bobo2bobo$4bo6bo$4b2o4b2o$4bo6bo2$6bo2bo\n$4bobo2bobo$7b2o$6bo2bo2$6bo2bo$6bo2bo$6bo2bo!\n",
+    "rule": "b2-ce4-jw5-cjns5-cenr6ci",
+    "rle": "x = 16, y = 21, rule = b2-ce4-jw5-cjns5-cenr6ci\n4bo6bo$o3bo6bo3bo$6bo2bo$bo12bo$3b2o6b2o$b3o2bo2bo2b3o$7b2o$5bo4bo$3o2\nbob2obo2b3o$2bo10bo$2o5b2o5b2o$3bo8bo3$2bob3o2b3obo2$5b6o$4bobo2bobo$7\nb2o$3bo8bo$6bo2bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 60,
-    "table": "02e0e160e73160086571500841100006453171183100100041180800080082212986966102212118966161102110100c86006108210010806108100818048823"
+    "table": "8429689e698698e5499402c11ce7e511299c94e386e7e7709e676461e551301000000008000808040000008808828443000800060802068108820c6180246210"
   },
   "p5-16": {
     "name": "p5-16",
-    "rule": "b2kn3-ekn5kr6-iks1c2-ai3aey4ejr5aceqy6ace7c",
-    "rle": "x = 17, y = 28, rule = b2kn3-ekn5kr6-iks1c2-ai3aey4ejr5aceqy6ace7c\n5bo5bo$4bobo3bobo$2bo4bobo4bo$bob2o2bobo2b2obo$3bo3bobo3bo$2bobo7bobo$\n2o13b2o$2b2o9b2o$2b2o9b2o$4b2o5b2o$bo2b2o5b2o2bo$bo5bobo5bo$2b2ob2o3b2\nob2o$3bo2bo3bo2bo$3b3o5b3o$2bo11bo$3b3o5b3o$2bo4bobo4bo$3b2obo3bob2o$3\nb2o7b2o$6b2ob2o$3b4o3b4o$3b2ob2ob2ob2o2$2b2obo5bob2o$bo2bo7bo2bo$2b2o9\nb2o$b2o11b2o!\n",
+    "rule": "b2cek4-ckqts1c2-ei3-cj4ekn5kq6-i7c",
+    "rle": "x = 16, y = 23, rule = b2cek4-ckqts1c2-ei3-cj4ekn5kq6-i7c\n5b2o2b2o$4bo2b2o2bo$3b4o2b4o$3b3o4b3o$2bo2bob2obo2bo$6bo2bo$2bobo6bobo\n$b3obo4bob3o$o4b2o2b2o4bo$bobo2bo2bo2bobo$bo2b3o2b3o2bo$bo2bob4obo2bo$\n3b2o2b2o2b2o$3b2o2b2o2b2o$2bobo6bobo$4bo6bo$3bobo4bobo$4bobo2bobo$5bo4\nbo$3b3o4b3o$2bo10bo$2bo10bo$2b2o8b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 61,
-    "table": "0826c421e5606198c45100186184180683717098411a8424211c18421c8182614a704b0371300a0c6a52bfab0a02b70e5118520a118c0244220a2f2988c08a73"
+    "table": "0268498621948641681296218641211049861260942160108641211060101000ccf5c271f737785846f1634859b89c8ef5b5751ab30a1d16711a48ef58928e63"
   },
   "p5-17": {
     "name": "p5-17",
@@ -568,111 +568,111 @@
   },
   "p5-18": {
     "name": "p5-18",
-    "rule": "b3-jnqr4-ewy5-c6kns1e2-ak3-eq4n5-aeny6-i7e",
-    "rle": "x = 12, y = 18, rule = b3-jnqr4-ewy5-c6kns1e2-ak3-eq4n5-aeny6-i7e\n3bo4bo$2bobo2bobo$3bo4bo$2b3o2b3o$3o2b2o2b3o$ob2o4b2obo$2bobo2bobo$bo2\nbo2bo2bo$4bo2bo2$2b8o$b2o2b2o2b2o$3ob4ob3o$2bo6bo$5b2o$3b6o$bob2o2b2ob\no$5b2o!\n",
+    "rule": "b2i3-c4-ek5ijny6-as2cen3ckqry5-y6-k",
+    "rle": "x = 12, y = 23, rule = b2i3-c4-ek5ijny6-as2cen3ckqry5-y6-k\n5b2o$3bob2obo$2bo2b2o2bo$b2o2b2o2b2o$5b2o$b3ob2ob3o$4b4o$4b4o$2b3o2b3o\n$3b6o$3b2o2b2o$3b2o2b2o$4b4o$b3o4b3o2$b2obo2bob2o$2bo6bo$obo6bobo$3bo4\nbo$2o8b2o$bobo4bobo$3o6b3o$2bo6bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 63,
-    "table": "080c0a8f0a6e8af70aeee5e50eaffdf188cccfa7cbd6af73aea7e5e7f77375102bc6b569427d29d8b561581a299c9ec7c6d4618ef91a9c3f698e1ae75cbbe6e5"
+    "table": "088eaeef8eade7738f6fe5bde75b79f38ea7eb75ad697a97eff1bd9673b6774002408128c678688e2469580e49848e674079699e599e84e5099e8a638ee5e371"
   },
   "p5-19": {
     "name": "p5-19",
-    "rule": "b2ei3-n4-ctw7es1c2k3enry4-e5ay7c",
-    "rle": "x = 16, y = 26, rule = b2ei3-n4-ctw7es1c2k3enry4-e5ay7c\n7b2o$7b2o$5bob2obo$4b2ob2ob2o$4bobo2bobo$7b2o$4bob4obo$6bo2bo$4b2ob2ob\n2o$4b2ob2ob2o$3bo2bo2bo2bo$4b3o2b3o$5b6o$3b2obo2bob2o$5b6o$2bo4b2o4bo$\n2b2ob6ob2o$3o10b3o$b5o4b5o$3bo8bo2$2bo10bo$2bobo6bobo$3bo8bo$2b3o6b3o$\n2b3o6b3o!\n",
+    "rule": "b2e3-e4-acjr5-cijs1c5kr6-n",
+    "rle": "x = 16, y = 23, rule = b2e3-e4-acjr5-cijs1c5kr6-n\n6b4o2$4b2o4b2o2$b3o2b4o2b3o2$b3o2bo2bo2b3o$2o12b2o$6b4o$2b3o6b3o$3o2b2\no2b2o2b3o$3bo8bo$ob2o2bo2bo2b2obo$4bo6bo$b4o2b2o2b4o$bobo8bobo$3bo8bo$\n3o10b3o$2b4o4b4o$bo12bo$2b4o4b4o2$3b2o6b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 64,
-    "table": "0a0eafa78ee6e351afe3f771676171108ae56771c7316118a77171007018108440b8cae639a7a6654ed7a5e1877361181d8ef661a7617310c7616518e1101812"
+    "table": "0a8685e18ee7edf6a4ed52d4edf7d42086efedf3e7b7f7706577d471d7510110401000001000008800000008008c008610000088000a8ca6000c08c40c878661"
   },
   "p5-20": {
     "name": "p5-20",
-    "rule": "b2-e4ik5ae6i7cs2-a4jqw6cin",
-    "rle": "x = 15, y = 21, rule = b2-e4ik5ae6i7cs2-a4jqw6cin\n2bo9bo2$4bo2bo2bo$ob2obobobob2obo$bo11bo$6b3o2$5bo3bo$6bobo$4bo2bo2bo$\n2bo4bo4bo$3bo7bo$2bobo2bo2bobo$5bo3bo$3bo7bo$2b2o2bobo2b2o$5b2ob2o$b5o\nbob5o$2bo2bobobo2bo$bo2bo2bo2bo2bo$7bo!\n",
+    "rule": "b2-a5-y6-ei7cs1c2-k3aqry4-ajqtw5n6cn7c",
+    "rle": "x = 16, y = 21, rule = b2-a5-y6-ei7cs1c2-k3aqry4-ajqtw5n6cn7c\n2b3o6b3o$2b3o6b3o$2b5o2b5o$6bo2bo$6bo2bo$6bo2bo$6bo2bo$4b3o2b3o2$4bo6b\no$4bobo2bobo$2b2obob2obob2o$2bo2b2o2b2o2bo$bob2o6b2obo$2o12b2o$4bo6bo$\n3b2o6b2o$3bo8bo$b2o10b2o$bo12bo$2o12b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 65,
-    "table": "8461609061121004419000401021000861181400128421c014004008804408120260610069100600611294288200480241121201100000800020091200040200"
+    "table": "026061086118088e6118180e088c8eef4118188e18868c63088e8aef8e63ef33ce51a9b3d4b6f0422dc9124d5561392a70b56c70976161103751e80a42100b02"
   },
   "p5-21": {
     "name": "p5-21",
-    "rule": "b2ekn3-cn4z5-qs2a4eijktyz7c",
-    "rle": "x = 14, y = 20, rule = b2ekn3-cn4z5-qs2a4eijktyz7c\n3b2o4b2o$2bo8bo$2bobo4bobo$2b2ob4ob2o$4bo4bo$b2o3b2o3b2o2$bo3bo2bo3bo$\n2b2o6b2o2$2bo8bo$b2o8b2o$bobo6bobo$bobo6bobo2$2bo8bo$2bobo4bobo$bo3bo2\nbo3bo$2b2o6b2o$o12bo!\n",
+    "rule": "b2ei3-q4ckqtwz5-k7cs1e2-c5j6e",
+    "rle": "x = 16, y = 23, rule = b2ei3-q4ckqtwz5-k7cs1e2-c5j6e\n7b2o$3bobo4bobo$2bobobo2bobobo$6bo2bo$4b3o2b3o$2b3obo2bob3o$4bo2b2o2bo\n$5bo4bo$4b8o$obob8obobo$3b2obo2bob2o$obo2b2o2b2o2bobo$6bo2bo$2b2o8b2o$\n5bo4bo$bobo2bo2bo2bobo$3bobo4bobo$7b2o$3b2o6b2o$4bo6bo$4b2ob2ob2o$2b3o\n2b2o2b3o$4bo6bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 66,
-    "table": "0a26c729e728e196e679799665861261833979b40986866129959640966161108401009000829220008686601661000820008660062161001441410801000802"
+    "table": "0a86a7690a6badb6a7ed79d6ad36d669864aeda76bd4936169a7d63997616912a721711061081000711010001000004021101004080800051080000000a04040"
   },
   "p5-22": {
     "name": "p5-22",
-    "rule": "b3-cn4n5-r6c7cs1e2akn3-iny4nqrtwy5-knry6an7c",
-    "rle": "x = 13, y = 17, rule = b3-cn4n5-r6c7cs1e2akn3-iny4nqrtwy5-knry6an7c\n3bo5bo$3b2o3b2o2$3o7b3o$bo2bo3bo2bo$bob2o3b2obo$o2bo5bo2bo$4b2ob2o$3b3\nob3o$3bobobobo$b3o5b3o$4bo3bo$b5ob5o$2bo2bobo2bo$4bo3bo$3b2o3b2o$4bo3b\no!\n",
+    "rule": "b3-r4-nqrtzs1c2cik3-q4-aknry5cej6i7c",
+    "rle": "x = 14, y = 25, rule = b3-r4-nqrtzs1c2cik3-q4-aknry5cej6i7c\n3bo6bo$3bo6bo$3bo6bo$2b3o4b3o2$4bo4bo$4bo4bo$4bo4bo$3b3o2b3o2$5b4o$5b4\no$6b2o$3bo6bo$2b3o4b3o$bo2bo4bo2bo$5bo2bo$2bob2o2b2obo$2bo2bo2bo2bo$4b\n6o$6b2o$3o3b2o3b3o$3o8b3o$bo10bo$bo10bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 67,
-    "table": "08068629862c69568669699e6982966b82ad69168986065129929e69d2706b12ad23de3befcc7d6cde356913f940ff4d23ffb15fccb540513bfa323bc970e833"
+    "table": "088e06c586e3471182e2e770e27110108e63475067717100e45051103000100048f6e6e13b79a730c777ef32a7115248d742f32579d430c165a1131811644802"
   },
   "p5-23": {
     "name": "p5-23",
-    "rule": "b2-ae3ajy5k6ace7es1c2k3-i4acinqrz5jny7c",
-    "rle": "x = 15, y = 21, rule = b2-ae3ajy5k6ace7es1c2k3-i4acinqrz5jny7c\n7bo2$6bobo$5bo3bo$7bo2$6bobo$4bo5bo$2b2o7b2o2$bo4bobo4bo2$2o11b2o$ob3o\n5b3obo$o2b2o5b2o2bo$2o3bo3bo3b2o$5bobobo$3bob2ob2obo$3b2o2bo2b2o$6b3o$\n6bobo!\n",
+    "rule": "b3aijk5-cer6ikns1c2aik3-ekqr4-an5-cj6ce7c",
+    "rle": "x = 16, y = 21, rule = b3aijk5-cer6ikns1c2aik3-ekqr4-an5-cj6ce7c\n3bo8bo$2b2obo4bob2o$3b2o6b2o$2b3o6b3o$3b3o4b3o$bo12bo$b3o3b2o3b3o$obo2\nbob2obo2bobo$2b2ob6ob2o$5bo4bo$2bo2b2o2b2o2bo$ob2ob2o2b2ob2obo$b2o2bob\n2obo2b2o$b3obo4bob3o$3o4b2o4b3o2$2obo8bob2o$5o6b5o$3bo8bo$2bobo6bobo$b\n2o10b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 68,
-    "table": "0862640161300108c15000182080100643105008110a040c20081840088882e548bacee7bf6de143ce796195651371781fe57935e9503211e7b1b40862305902"
+    "table": "080604090208091680284094288a9ce18208090608020e83288294e792266510ccb76cdb39e39fb6c9de86fdbef7f52bb74adee367fff7647e67fd7997c12b52"
   },
   "p5-24": {
     "name": "p5-24",
-    "rule": "b2-an3eky4-ceqry6en7cs1e2n3kry4-ackty5-ceqr6ae7e",
-    "rle": "x = 15, y = 28, rule = b2-an3eky4-ceqry6en7cs1e2n3kry4-ackty5-ceqr6ae7e\nbo11bo$bo11bo$obo4bo4bobo$bobo2bobo2bobo$bob9obo2$4b2o3b2o2$7bo$4bob3o\nbo$5bobobo$3b2ob3ob2o$5b5o2$6b3o$4bo5bo$3b2o2bo2b2o$3bo7bo$4bo2bo2bo$3\nbo2b3o2bo$3b2o5b2o$3bobo3bobo$3b2o5b2o$3bo3bo3bo$b3obobobob3o$6bobo$7b\no$7bo!\n",
+    "rule": "b2ci3-ejky4-ainw5-es1c4aejnwyz",
+    "rle": "x = 16, y = 21, rule = b2ci3-ejky4-ainw5-es1c4aejnwyz\n6b4o$o14bo$bobo2bo2bo2bobo$4bo6bo$6bo2bo$6b4o2$7b2o$6b4o2$4b2o4b2o2$5b\n6o2$6b4o2$4bo6bo2$4b2ob2ob2o$6bo2bo$2bob3o2b3obo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 69,
-    "table": "026863842336866163f6f560862108184986d720930821148401411a61901842210098aa4a2ca64e1c6bc6a587836165009e6b2d890a261d0fa9a550cab8e1f5"
+    "table": "08c4a86b8cdbeab60d8f8ee74ff6f761c469aef77e73d7216bf7e761972161104018000410848641000286208640001018860260842140108041011060101000"
   },
   "p5-25": {
     "name": "p5-25",
-    "rule": "b2ei3-nq4-iw5-nr6cin7es1e4-aikw5-acqy7c",
-    "rle": "x = 14, y = 23, rule = b2ei3-nq4-iw5-nr6cin7es1e4-aikw5-acqy7c\n6b2o$4bo4bo$3b8o$4bo4bo$3bo6bo$bobobo2bobobo$2bo2b4o2bo$2bo2bo2bo2bo$4\nbob2obo$5b4o$4bo4bo$2bo3b2o3bo$bob2ob2ob2obo$2b3o4b3o$2b2obo2bob2o$bob\no6bobo$ob3o4b3obo$3bo6bo$b4o4b4o$5o4b5o$b3o6b3o$o2b2o4b2o2bo$2b2o6b2o!\n",
+    "rule": "b2k3-jq4jkrz5-eiq6a7cs1e2ek3-eir4aijtw5ikq6akn7e",
+    "rle": "x = 16, y = 21, rule = b2k3-jq4jkrz5-eiq6a7cs1e2ek3-eir4aijtw5ikq6akn7e\n7b2o$3bob2o2b2obo$2bobo6bobo$2b3o6b3o$3b2obo2bob2o$3b2obo2bob2o$4bob4o\nbo$3b2o2b2o2b2o$bob10obo$bo2b2o4b2o2bo$2bob2o4b2obo$ob4o4b4obo$bo4bo2b\no4bo$b6o2b6o$5b6o$3b4o2b4o$3b2o6b2o3$3b3o4b3o$4b2o4b2o!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 70,
-    "table": "0a0eaf2f0aeeab75afe7fffb2fe2ff538acce767cff747d9abe37f63f17c72942100180a088c82e2180e862506c4616900848ae58ce7c4710ae5a14847716902"
+    "table": "08a4ca63236ba29e4efbede707b6336c85487fac6b129721638de7489e21c9332baa55cda7614f29f076d430ea999c950f63d31a61123c0aec1a11f7290ab4a5"
   },
   "p5-26": {
     "name": "p5-26",
-    "rule": "b3-k7es1e2ae3-i4-rtyz5i",
-    "rle": "x = 12, y = 22, rule = b3-k7es1e2ae3-i4-rtyz5i\n5b2o$3b6o$3bo4bo$2b8o$4bo2bo$2bo6bo$3bo4bo$3bob2obo$b3ob2ob3o2$2b2ob2o\nb2o$3bob2obo$2bo2b2o2bo$3bob2obo$4bo2bo2$5b2o$4bo2bo$b2o6b2o$obobo2bob\nobo$obobo2bobobo$bo3b2o3bo!\n",
+    "rule": "b2-ak3-iy5-ceik6-kn7cs2-n4ijknry5-qr6-ei7e",
+    "rle": "x = 14, y = 19, rule = b2-ak3-iy5-ceik6-kn7cs2-n4ijknry5-qr6-ei7e\nbo10bo$2o10b2o$2bo8bo$b5o2b5o$bo3bo2bo3bo$bo3b4o3bo$bo3bo2bo3bo$4b2o2b\n2o$2bobo4bobo$2b2o6b2o$3b2o4b2o$2b3o4b3o$2bo8bo$3b3o2b3o$3bo6bo$2bo2bo\n2bo2bo$2bo8bo$2b2o2b2o2b2o$3bo6bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 71,
-    "table": "0886866184616110864121106110100086616010611010086110100010080084af8b97fd8e677741b6e3f770f33150112ee76711e3503110fd30511060103000"
+    "table": "0ac2a761c659698ea729719c6916946e4679299e781892a5619e9c298ea5cb738661699a219e124e699a9cef12eb2be7618c1e4c9ea76f5b1ec8efc6ca7ae7b5"
   },
   "p5-27": {
     "name": "p5-27",
-    "rule": "b2eik3-k4a5-iq7es1c3cejk4-jnz5-ejny6cen",
-    "rle": "x = 12, y = 16, rule = b2eik3-k4a5-iq7es1c3cejk4-jnz5-ejny6cen\n2bo6bo$5o2b5o$bobo4bobo$b3o4b3o$2bo6bo$2b2ob2ob2o2$2bo6bo$o2bo4bo2bo$b\no2b4o2bo$2b2o4b2o$bobo4bobo$2b2o4b2o$b2o6b2o2$b3o4b3o!\n",
+    "rule": "b2aek4-q5-jkr6ci7es4-n",
+    "rle": "x = 16, y = 25, rule = b2aek4-q5-jkr6ci7es4-n\nbobo8bobo$o3bo6bo3bo$b3obo4bob3o$bo2bo6bo2bo$bo12bo$obob3o2b3obobo$b5o\n4b5o$2obo8bob2o$4bobo2bobo$2o5b2o5b2o$7b2o$b2o4b2o4b2o$6bo2bo$b2o4b2o4\nb2o2$b2o10b2o2$4b2ob2ob2o$3bobob2obobo$4bo6bo$2bo3bo2bo3bo$2b2obo4bob2\no$2bo2b2o2b2o2bo$2bo2bo4bo2bo$2bo10bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 72,
-    "table": "0aaee765a5696197e7593996619612708f69789469969669e1949640b6695194401a0e8e1ac20da58aa46b5ba8e5ef131a4a85c3467be5248e667a73a5813250"
+    "table": "8629499e21869e67689e9eef9e63a733298e9e6286e563d89e43ef31e35c33940008088608828621088686618661611008028661066161008661611021001000"
   },
   "p5-28": {
     "name": "p5-28",
-    "rule": "b2-ai3aei4-aq7cs1e3jr5nq",
-    "rle": "x = 14, y = 18, rule = b2-ai3aei4-aq7cs1e3jr5nq\n5bo2bo$4bob2obo$5bo2bo2$5bo2bo$3bobo2bobo$bo10bo$ob2o6b2obo2$4bo4bo$bo\nbob4obobo$2bobo4bobo$bobob4obobo$2b3o4b3o$5bo2bo$3bobo2bobo2$3bo6bo!\n",
+    "rule": "b3-jq7es1e2en3-iknr4aejr5-cenr6-e7c",
+    "rle": "x = 16, y = 21, rule = b3-jq7es1e2en3-iknr4aejr5-cenr6-e7c\n7b2o$3bo3b2o3bo$3b3ob2ob3o$3b3ob2ob3o$4b2ob2ob2o$b2ob2ob2ob2ob2o$3ob2o\nb2ob2ob3o$b2ob2ob2ob2ob2o$4b2ob2ob2o$b2ob2ob2ob2ob2o$3ob2ob2ob2ob3o$b2\nob2ob2ob2ob2o$b2ob2ob2ob2ob2o$4b2ob2ob2o$7b2o$7b2o$b2o3b4o3b2o$3obob4o\nbob3o$b5ob2ob5o$4b2o4b2o$5bo4bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 73,
-    "table": "0a644b83619686706a96b76186613108c19696609661611026416118511008022102942000002902940900142900842002002802000000000102902102000100"
+    "table": "08848261026120100661610001101000844061006110100861000000100800842b0a1f0fc4684b0dba42b7b96a8abddf0a79421e49120e83aa9a3defa826fe33"
   },
   "p5-29": {
     "name": "p5-29",
-    "rule": "b2cek3ejkr4-jyz5aeknq6ce7cs1c2n3-acj4-twz5aikr6ce7c",
-    "rle": "x = 13, y = 16, rule = b2cek3ejkr4-jyz5aeknq6ce7cs1c2n3-acj4-twz5aikr6ce7c\n6bo$bo2bobobo2bo$4o2bo2b4o$2ob2obob2ob2o$2bo3bo3bo$6bo2$6bo$6bo$3b7o$3\nb7o$b3o2bo2b3o$3bo2bo2bo$bob3ob3obo2$2bo7bo!\n",
+    "rule": "b2cen3-eijq4wy5k6e7cs1e2-in3nqry4-einy5-aiy6n7c",
+    "rle": "x = 14, y = 23, rule = b2cen3-eijq4wy5k6e7cs1e2-in3nqry4-einy5-aiy6n7c\n2bobo4bobo$2b2o6b2o$3b2o4b2o$3b8o$2bo8bo$2b3ob2ob3o$4b2o2b2o$3o2bo2bo2\nb3o$3bo6bo$2bobo4bobo$2bo3b2o3bo$3b3o2b3o$4bob2obo$5bo2bo$5bo2bo$2b2o2\nb2o2b2o$3obo4bob3o$bo2b6o2bo$b2obo4bob2o$b3o2b2o2b3o$bo3bo2bo3bo$obo8b\nobo$o12bo!\n",
     "period": "5",
     "rarity": "uncommon",
     "edition": 74,
-    "table": "026acfa62b162d67eebd735da9a1e53a4b8ebd0392ce25548722f879e3d01b52409c8aeedea762d50ee3e76943f5611b9cbd67d1a76bf534cf746948f4913a52"
+    "table": "0ac0816142f124002461500081d0100844526140753b54046140005800800842a7e9d976ad3bfea37cdf9c67dfb4ef786d23feb73bc69561d3b7e37b27615902"
   },
   "p5-30": {
     "name": "p5-30",
@@ -685,98 +685,98 @@
   },
   "p6-01": {
     "name": "p6-01",
-    "rule": "b2-an3-aejq4i5aeqys1e2a3r5eq",
-    "rle": "x = 13, y = 22, rule = b2-an3-aejq4i5aeqys1e2a3r5eq\n2bo7bo$obo7bobo$b4o3b4o$3b3ob3o$4bo3bo$2bob5obo$b2o7b2o$4bo3bo$o5bo5bo\n$5bobo$3bo5bo$bobo5bobo$2b3obob3o$4b2ob2o2$5b3o2$2b2ob3ob2o$6bo3$6bo!\n",
+    "rule": "b2-ak3ejnry5-cy6-cn7cs1e3e6-in7c",
+    "rle": "x = 16, y = 25, rule = b2-ak3ejnry5-cy6-cn7cs1e3e6-in7c\n4bo6bo$4bo6bo$bobobo4bobobo$o2bo8bo2bo$4bo6bo2$bo3bo4bo3bo$2bobo6bobo$\n2b3o6b3o$3bo8bo$3bo8bo$4bo6bo2$bo3bo4bo3bo$2bobo6bobo$2b3o6b3o$3bo8bo$\n3bo8bo$4bo6bo2$bo3bo4bo3bo$2bobo6bobo$2b3o6b3o$3bo8bo$3bo8bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 76,
-    "table": "02e4e1e0237128146571508009138400c5487102719432404502042190400010a501903000003800140100001900840020002002008400401102002100400000"
+    "table": "02c2a7684039298ea7493114299c84ed4618688e398e9ce7498e90ed8ee7ed732100120000000008120021080008008e00000008000808060008088c08828e63"
   },
   "p6-02": {
     "name": "p6-02",
-    "rule": "b2-i3ackn5-n7cs3acery",
-    "rle": "x = 16, y = 27, rule = b2-i3ackn5-n7cs3acery\n6bo2bo2$5b2o2b2o2$2b12o$bo12bo$6b4o2$3b3o4b3o2$b4obo2bob4o$2bobo6bobo$\n2bobo6bobo$2bobo6bobo$bo3bo4bo3bo2$bo3bo4bo3bo$3bo8bo2$2bobo6bobo$bo3b\no4bo3bo$2bobo6bobo4$b5o4b5o$o5bo2bo5bo!\n",
+    "rule": "b3-c5acjkrs1c3-jk5-c7c",
+    "rle": "x = 16, y = 25, rule = b3-c5acjkrs1c3-jk5-c7c\n7b2o$5b6o$4bob4obo$3bobo4bobo$2bo4b2o4bo$3bo8bo$2bobob4obobo$4bo6bo$bo\nb2obo2bob2obo$2bobo6bobo$3bob2o2b2obo2$5bo4bo$3b2obo2bob2o$3b3ob2ob3o$\n5b2o2b2o$6b4o$2bob2ob2ob2obo$2o2bo6bo2b2o$2bobo2b2o2bobo$b2obo6bob2o$5\nbo4bo$bo12bo$2ob2obo2bob2ob2o$2b2o8b2o!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 77,
-    "table": "8ee14159635918846030588218969649655811867896966178860669846168120800822100602000064121000100100000406000411000002100000000000000"
+    "table": "08868661862961948661691261941240862961942902942161941240942140104894826994696896064921844996946994696896699696616996846996616912"
   },
   "p6-03": {
     "name": "p6-03",
-    "rule": "b3-k4aeyz6-is1e2-ak3-q6e",
-    "rle": "x = 17, y = 26, rule = b3-k4aeyz6-is1e2-ak3-q6e\n4b2o5b2o$3b2o2bobo2b2o$3bo3bobo3bo$5b2o3b2o$4b3o3b3o$3bo9bo$2bo4bobo4b\no$obo4bobo4bobo$3bo9bo$2o2bo7bo2b2o$2bo11bo$2o3b3ob3o3b2o$4bo2bobo2bo$\n3bo9bo$3b3o5b3o$3b2o7b2o$3bobo5bobo$4bo7bo$2bo3bo3bo3bo$2bo3bo3bo3bo$b\n3ob3ob3ob3o$2b5o3b5o$bo5bobo5bo2$2bo3bo3bo3bo$4bo7bo!\n",
+    "rule": "b2-i3ackn5-n7cs3acery",
+    "rle": "x = 16, y = 25, rule = b2-i3ackn5-n7cs3acery\n5bob2obo2$2bo2b2o2b2o2bo$bo12bo$6bo2bo2$3bo8bo2$bob2obo2bob2obo$2bo10b\no$4bo6bo3$2b3o6b3o$obobobo2bobobobo$2bobo6bobo$2bobo6bobo$2bobo6bobo$b\no3bo4bo3bo2$bo3bo4bo3bo$3bo8bo2$bo3bo4bo3bo$o5bo2bo5bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 78,
-    "table": "088e866584e1e11986412318655818968e61607865395806e1591886388296612bc6b76142712110b761711021101000c6506100711810046100100010800040"
+    "table": "8ee14159635918846030588218969649655811867896966178860669846168120800822100602000064121000100100000406000411000002100000000000000"
   },
   "p6-04": {
     "name": "p6-04",
-    "rule": "b2-a3-ry4-cjntz5aiy6-e7es3aeij4iryz5e6ei7c",
-    "rle": "x = 16, y = 27, rule = b2-a3-ry4-cjntz5aiy6-e7es3aeij4iryz5e6ei7c\n7b2o$5bo4bo$3bo2b4o2bo$4bo6bo$4bo6bo2$4b3o2b3o$5bo4bo$3ob2o4b2ob3o$2bo\n10bo$2bobobo2bobobo$6bo2bo$6b4o$4b3o2b3o$7b2o$5bo4bo$5bob2obo$3obo6bob\n3o$5b6o$2b3o6b3o$6b4o$4bo6bo$4b3o2b3o2$4bo2b2o2bo2$5b6o!\n",
+    "rule": "b3-cky4-eijqz5-cq6ei7es1e2ac4-kr5cqr6-kn",
+    "rle": "x = 14, y = 23, rule = b3-cky4-eijqz5-cq6ei7es1e2ac4-kr5cqr6-kn\n2b2o6b2o$b4o4b4o2$o3bob2obo3bo$3o8b3o$2b2o6b2o$b3o6b3o$b2o8b2o$3bobo2b\nobo$2b2o6b2o$6b2o$b2ob2o2b2ob2o$3bob4obo$b3o6b3o$2b10o$bo10bo$3b2ob2ob\n2o$2bo8bo$2bob6obo$4bo4bo$2b10o$2bo2bo2bo2bo$3bo6bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 79,
-    "table": "0aee6fcfefd3451debb073d9e07b7997cf7b155976317b8aee787c96b80eb6b508060e83008081108a002111244131088200006004ad60c42641300810c40842"
+    "table": "088e8e6f848f65f78e8d21d5e1f631718eafacd4aeefd7fdebd4f450f7fd71d4a549109408949ee910068e2a9e45c616688682eb9469e0b4946f0b316d959261"
   },
   "p6-05": {
     "name": "p6-05",
-    "rule": "b2i3-e5-r6-aks2-a4-yz7e",
-    "rle": "x = 11, y = 15, rule = b2i3-e5-r6-aks2-a4-yz7e\n2b2o3b2o$2ob2ob2ob2o$o2bo3bo2bo$3obobob3o$obob3obobo$bobo3bobo$bob2ob2\nobo$ob7obo$2bobobobo$2o2bobo2b2o2$bo7bo$bobo3bobo2$2bo5bo!\n",
+    "rule": "b2-c3q7es1e2ik3ajn",
+    "rle": "x = 16, y = 23, rule = b2-c3q7es1e2ik3ajn\n6bo2bo$3bo2bo2bo2bo$2bo2bo4bo2bo$bobo8bobo$3bobob2obobo$bobobob2obobob\no$3bobob2obobo$bobobob2obobobo$3bobob2obobo$bobobob2obobobo$3bobo4bobo\n$bobobo4bobobo$3bobo4bobo$bobobo4bobobo$3o2bob2obo2b3o$7b2o$o2bo8bo2bo\n2$obobo6bobobo$bobobo4bobobo$3b3o4b3o$4b2o4b2o$4bo6bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 80,
-    "table": "0886a469866969168569489e69929e6386696916699e16c569929e6392e463500268698669160661699696618221611049969601924021188620611061181084"
+    "table": "86216110e500500061101000500000002131101000000008101000000008008429a2744121010100d11000102010100007001000200010006000100000000000"
   },
   "p6-06": {
     "name": "p6-06",
-    "rule": "b2k3-jknr4-aejws1c2-ik3cjy4ajnrtyz5-c7e",
-    "rle": "x = 12, y = 18, rule = b2k3-jknr4-aejws1c2-ik3cjy4ajnrtyz5-c7e\n2bo6bo$2bo6bo$bobo4bobo$obobo2bobobo$bobo4bobo$2bo6bo2$obobo2bobobo$bo\nbo4bobo2$o3bo2bo3bo$o10bo$b4o2b4o$obobo2bobobo$4o4b4o$ob2o4b2obo$3bo4b\no$2bo6bo!\n",
+    "rule": "b2-cn3knqr4ainqtys2ek3-ejn4-aeky6ckn7c",
+    "rle": "x = 16, y = 25, rule = b2-cn3knqr4ainqtys2ek3-ejn4-aeky6ckn7c\n6bo2bo$5bob2obo$3bobo4bobo$2b2o2bo2bo2b2o$4bo6bo$5bob2obo2$bo2bob4obo2\nbo$obobo6bobobo$5bo4bo$bo12bo2$2obo8bob2o$bo12bo$b3o8b3o$o14bo$5bo4bo$\n2obo8bob2o$2bo2bo4bo2bo$b2o10b2o$2bo10bo$2bo10bo$2ob2o6b2ob2o$bobo8bob\no$o3bo6bo3bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 81,
-    "table": "08244a83ade6c0704ad421414461710081e5d471c77161102671600051100000c65b0d1e50fc9be7a84e94b53ec6a5717adccae6ddb7c6799ac7b561e7797194"
+    "table": "86a9e1f4af85706165355000515140102da5b151a4217010d5700000611010000a24c9a3af64e6706c77d429c709798a81e7f331c15028122731299e51120e02"
   },
   "p6-07": {
     "name": "p6-07",
-    "rule": "b3-jqr5-crs1e2aik3-aiq5cijr",
-    "rle": "x = 15, y = 25, rule = b3-jqr5-crs1e2aik3-aiq5cijr\n5bo3bo$4b3ob3o2$4bo5bo$3b3o3b3o2$3bo7bo$2b3o5b3o2$2bo9bo$b3o7b3o2$bo11\nbo$3o9b3o2$2bobobobobobo$b2ob3ob3ob2o2$3bobo3bobo$3b4ob4o$3b3o3b3o$6bo\nbo$4b3ob3o$5bo3bo$5bo3bo!\n",
+    "rule": "b2-a3-ry4-cjntz5aiy6-e7es3aeij4iryz5e6ei7c",
+    "rle": "x = 14, y = 25, rule = b2-a3-ry4-cjntz5aiy6-e7es3aeij4iryz5e6ei7c\n3b8o$3b2o4b2o$bo2bo4bo2bo$3bo6bo$o4b4o4bo2$o2b8o2bo2$4b2o2b2o$4bo4bo$6\nb2o$2bo2bo2bo2bo$6b2o$2bo2bo2bo2bo$5b4o$ob2o6b2obo$4bob2obo$2bo8bo$6b2\no2$5b4o2$3b2o4b2o2$5b4o!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 82,
-    "table": "0884024902690816026861840892946184484906699616416882846192606110a5a3f67823693180d77169123114024127407184691090215984120004216000"
+    "table": "0aee6fcfefd3451debb073d9e07b7997cf7b155976317b8aee787c96b80eb6b508060e83008081108a002111244131088200006004ad60c42641300810c40842"
   },
   "p6-08": {
     "name": "p6-08",
-    "rule": "b3-e6aei7es1c2-ci3acn4arw5-ir6ak7c",
-    "rle": "x = 16, y = 27, rule = b3-e6aei7es1c2-ci3acn4arw5-ir6ak7c\n3b2o6b2o$2bo2bo4bo2bo$bo4bo2bo4bo$2b4o4b4o$2bo2bo4bo2bo$o6b2o6bo$3b2o6\nb2o$2b4o4b4o$3bobo4bobo$2bobo2b2o2bobo$4b2ob2ob2o$b3ob6ob3o$o2bobo4bob\no2bo$5b6o$o5bo2bo5bo$b3o3b2o3b3o$7b2o$6b4o2$6b4o$3b3o4b3o$4b2ob2ob2o$4\nbo2b2o2bo$5b6o$6b4o2$5b2o2b2o!\n",
+    "rule": "b2-c3cenr5-eknrs2-an4aijw5-ai7c",
+    "rle": "x = 16, y = 21, rule = b2-c3cenr5-eknrs2-an4aijw5-ai7c\nbo3bo4bo3bo$obobobo2bobobobo$2bobo6bobo$o5bo2bo5bo$2b2o8b2o$ob2o3b2o3b\n2obo$bob3o4b3obo2$bob3o4b3obo2$2bo3bo2bo3bo$5bo4bo$2bob2o4b2obo$3bo3b2\no3bo$2bobobo2bobobo$b4ob4ob4o$2bo3bo2bo3bo$2bo4b2o4bo$bobo2bo2bo2bobo$\n6b4o$6bo2bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 83,
-    "table": "08868461866161188461401061101004866161186118108c61181000188c80e5ceb9495771491c0f68181887989ab7fc3d5a180e68961e43f28aa6fdaa62dd33"
+    "table": "86a1e378614938046711398219128641255830066810120159820621802060100268618421180e83611a9ca68a87867849021a861886a6618486877926615902"
   },
   "p6-09": {
     "name": "p6-09",
-    "rule": "b3-ky4-cerwz6-e7es1e2cn3eijq4cikwy5ijq6in7e",
-    "rle": "x = 13, y = 21, rule = b3-ky4-cerwz6-e7es1e2cn3eijq4cikwy5ijq6in7e\n6bo$5bobo$4b5o$2bobo3bobo$4bo3bo$bo2bo3bo2bo$b2obobobob2o$5bobo$4b2ob2\no$4b2ob2o$6bo$2bob2ob2obo$bobo2bo2bobo$3b7o$o3bo3bo3bo$3obo3bob3o$b3o2\nbo2b3o$3bo5bo$4b5o$6bo$6bo!\n",
+    "rule": "b2c3-r4-ny5-ary6-e7cs1c3-iny7e",
+    "rle": "x = 16, y = 25, rule = b2c3-r4-ny5-ary6-e7cs1c3-iny7e\n2bo10bo$3bo8bo$2b4o4b4o$4b2o4b2o$bob4o2b4obo$6bo2bo$2ob3o4b3ob2o$6bo2b\no$2b3ob4ob3o$6b4o$6b4o$6b4o$2bo10bo$b2obo6bob2o$5bo4bo$3b2obo2bob2o$6b\no2bo$ob4o4b4obo$6b4o$bo3b6o3bo$5bo4bo$3bo8bo$5bo4bo$6bo2bo$7b2o!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 84,
-    "table": "088e86e58cc763798687a578637958968ee5a659e631799ae5785986791e96a521461688c49a4d1092802150e8618c41c23304561e6161890cd25033102c6084"
+    "table": "08ce0ecf8e7bcf3b8aeeef7feeb9ffffce63cf3f7bd63dc3eebbfbff3b66ff234812862196406100862161106100100012612110401000082110100000080084"
   },
   "p6-10": {
     "name": "p6-10",
-    "rule": "b2-ik4-irz5j6-cn7cs2i",
-    "rle": "x = 15, y = 27, rule = b2-ik4-irz5j6-cn7cs2i\n3bo7bo$bo3bo3bo3bo$2b3o5b3o2$3bo7bo$4bo5bo$2bo9bo$3b2o5b2o$o13bo2$4bo5\nbo$2bobo5bobo$4bo5bo$6b3o$3b3obob3o$4bob3obo$3b2o5b2o2$4bo5bo$6b3o$3b3\nobob3o$4bo5bo$3bobo3bobo2$5b2ob2o2$3bo7bo!\n",
+    "rule": "b3-jkn4-zs2-k3j4aeijn5aeiqr6i",
+    "rle": "x = 12, y = 23, rule = b3-jkn4-zs2-k3j4aeijn5aeiqr6i\n2bo6bo$b4o2b4o$bo2b4o2bo$2b2ob2ob2o$2b2o4b2o$2b2ob2ob2o$3o6b3o$5b2o$3o\n2b2o2b3o$bo8bo$bo3b2o3bo$3ob4ob3o$b3o4b3o$3bo4bo$3bo4bo$2b2o4b2o$bob2o\n2b2obo$2obob2obob2o$obobo2bobobo2$o10bo$3o6b3o$o10bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 85,
-    "table": "86490114489e166920869660926840dc6896864d9e69499790e8419c69b6dc630000200000000000010000000000000000000000000000000000000000000000"
+    "table": "080c8aa78ce666710ec7a761c361711088e7e651c7716110a770611071101000864b259c40141bc5a10296303a0584116a9c02829084a0f09c061121e4553010"
   },
   "p6-11": {
     "name": "p6-11",
     "rule": "b2-e5-a6cei7es1e2e3c4acjkyz5ceiy6ak7e",
-    "rle": "x = 16, y = 27, rule = b2-e5-a6cei7es1e2e3c4acjkyz5ceiy6ak7e\n4bo6bo2$4bo6bo$2bo3bo2bo3bo2$3b2o6b2o$4b2ob2ob2o$7b2o$7b2o$3bo8bo2$4b3\no2b3o3$b3o2bo2bo2b3o$bobo3b2o3bobo$bobo3b2o3bobo$ob2o3b2o3b2obo$4bo6bo\n$5bob2obo$bob2o6b2obo$3b2o6b2o$3b2ob4ob2o$2bo10bo$3bo8bo2$5bo4bo!\n",
+    "rle": "x = 16, y = 25, rule = b2-e5-a6cei7es1e2e3c4acjkyz5ceiy6ak7e\n3bobo4bobo$2b2ob2o2b2ob2o$4bo6bo3$3b2o6b2o$4bo2b2o2bo$4bo6bo$4bob4obo$\n5bo4bo2$5bo4bo$2bo3b4o3bo2$2bo10bo$o3bo2b2o2bo3bo2$b2o10b2o$2b2obo4bob\n2o$3bobob2obobo$2bobo2b2o2bobo$3b2o6b2o$3bobo4bobo$6b4o$4bobo2bobo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 86,
@@ -793,71 +793,71 @@
   },
   "p6-13": {
     "name": "p6-13",
-    "rule": "b2eik3-kqy4w5ciry6kns1e2ak4r6a7e",
-    "rle": "x = 13, y = 24, rule = b2eik3-kqy4w5ciry6kns1e2ak4r6a7e\n3bo5bo$bobo2bo2bobo$2bobo3bobo$bo2b2ob2o2bo$6bo$bobo5bobo$obo7bobo$3b3\nob3o$ob3o3b3obo$3b2o3b2o$ob2o5b2obo$4b2ob2o$2ob2obob2ob2o$o4bobo4bo2$3\nb2o3b2o$3bob3obo$2bobo3bobo$bobo2bo2bobo2$5bobo$2bobo3bobo$3bobobobo$4\nbobobo!\n",
+    "rule": "b2ei3ijkny5-cn6is1c3ainry4tw6ci7c",
+    "rle": "x = 14, y = 25, rule = b2ei3ijkny5-cn6is1c3ainry4tw6ci7c\n2b2o6b2o$2o2b2o2b2o2b2o$o4bo2bo4bo$b4o4b4o2$bo2bo4bo2bo$2b2o6b2o$2o2b2\no2b2o2b2o$o4bo2bo4bo2$b4o4b4o$ob2obo2bob2obo$2b2o6b2o2$2b2o6b2o$2o2b2o\n2b2o2b2o$o4bo2bo4bo$b4o4b4o2$bo2bo4bo2bo$2b2o6b2o$2o2b2o2b2o2b2o$o4bo2\nbo4bo$2b2o2b2o2b2o$6b2o!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 88,
-    "table": "0aa6e76921412590e7113992a11e1a818742308060109a226904169614032400a5215812210010085810000110002104210010080000000812082000080880a5"
+    "table": "0286254802290994a16050902896844186084186298696e148861461946560104894806110212430044500088110100a9402e000210010806100081811040a02"
   },
   "p6-14": {
     "name": "p6-14",
-    "rule": "b3-n4-aknz6-cs1c2-ak3aekry4-krwy5-j6kn7c",
-    "rle": "x = 13, y = 24, rule = b3-n4-aknz6-cs1c2-ak3aekry4-krwy5-j6kn7c\n2bo7bo$obobo3bobobo$bobo5bobo$bo2bo3bo2bo$3b7o$4bobobo$4bobobo$4bo3bo$\n3bo5bo$bobobobobobo$5o3b5o2$bobo5bobo$5bobo$5obob5o$o2b2obob2o2bo2$2bo\n7bo$bo9bo$o11bo$4bo3bo$b3o5b3o$5o3b5o$bobo5bobo!\n",
+    "rule": "b3-jns1e2-kn3-ik4aejntwy5-ceik6-an7c",
+    "rle": "x = 14, y = 23, rule = b3-jns1e2-kn3-ik4aejntwy5-ceik6-an7c\n2bo8bo$b3o6b3o$2bo8bo$2b2o2b2o2b2o$6b2o$3bo2b2o2bo$3b2o4b2o$4bo4bo$4b2\no2b2o$4b2o2b2o2$3bo6bo$3b2ob2ob2o$3b2o4b2o$4b2o2b2o2$2bo8bo$5o4b5o$3b8\no$obob6obobo$2b3o4b3o$2ob2o4b2ob2o$3b2o4b2o!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 89,
-    "table": "08068ea38ee067388e67e731e34979848263e3594579688627783196198684614a58a3ad5a34aae7276fffa60f8fdeb9589ceba391c6ae72ad2787efe7533d12"
+    "table": "0804822186606010066161004100100080616110411000002110000010000000afcbb77584fd7fe7b74fb7bcfb5e94fa6eefead6fd39dab7f1d69dbde7b75f52"
   },
   "p6-15": {
     "name": "p6-15",
-    "rule": "b3-n4ainqrtys1c2akn3y4-j6ae",
-    "rle": "x = 15, y = 29, rule = b3-n4ainqrtys1c2akn3y4-j6ae\n7bo$5b2ob2o$5bo3bo$4bo5bo$2b2obo3bob2o$5bo3bo$bobo7bobo$6b3o$2b2o7b2o$\n3b2o5b2o$b2obo5bob2o$2b2o7b2o$2b2o7b2o$3bo7bo2$4b2o3b2o$2b2ob5ob2o$4bo\nbobobo$2bo4bo4bo$2b2o3bo3b2o$4bo5bo$2bobob3obobo$2bo2bobobo2bo$2bob2ob\nob2obo$o3b2o3b2o3bo$bo11bo$bo3bo3bo3bo$4bo5bo$4bobobobo!\n",
+    "rule": "b2cei3a5-acr6in7cs1e2-c3-aejy4ktyz5-n6ac7c",
+    "rle": "x = 16, y = 25, rule = b2cei3a5-acr6in7cs1e2-c3-aejy4ktyz5-n6ac7c\n2bo10bo$b3o8b3o$6bo2bo$o2bo2bo2bo2bo2bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4bo2\nbo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4b\no2bo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo4bo2bo4bo$bo\n4bo2bo4bo$bo2bo6bo2bo$bob4o2b4obo$3bobo4bobo$2b2o8b2o$3b2o6b2o$3bo8bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 90,
-    "table": "080e8ea78ee461718e656111614171108ae5e151c5316010a770300071101000c439489679a6946948d40241946161143996d469876961149669601069909061"
+    "table": "0a402109001808022108108408829c6940000806188606c12882846b02646902a7a5f178e7cbf8bc75b558ca5df6864fa579b5fe6eb7d76159df4e699d61ea33"
   },
   "p6-16": {
     "name": "p6-16",
-    "rule": "b3-q4eys1c2-a3ikry4-acijw",
-    "rle": "x = 16, y = 28, rule = b3-q4eys1c2-a3ikry4-acijw\n3bo8bo$bo3bo4bo3bo$2bobo6bobo$2obob2o2b2obob2o$3bo8bo$bobobo4bobobo$bo\nbobo4bobobo2$2o3b2o2b2o3b2o$7o2b7o2$6bo2bo$5b2o2b2o$6bo2bo$5bo4bo$4bob\n4obo$5bo4bo$bob2o6b2obo$3bo8bo$2obo8bob2o$bo3b6o3bo$b2obob4obob2o$2bob\no6bobo$4bobo2bobo$3bo8bo$2b2o8b2o$b3o8b3o$4bo6bo!\n",
+    "rule": "b3-jq4cjknryz5kn7cs1c2an3ckqr4eijnrtz5-a6-in7e",
+    "rle": "x = 16, y = 23, rule = b3-jq4cjknryz5kn7cs1c2an3ckqr4eijnrtz5-a6-in7e\n4bo6bo$obobobo2bobobobo$b2o2b2o2b2o2b2o$b4obo2bob4o$bo4bo2bo4bo$2bo3bo\n2bo3bo$b3o8b3o$3o10b3o$2b3o6b3o$2b2o8b2o$b4o6b4o3$3bobo4bobo$4bo6bo$2b\nobo6bobo$b6o2b6o$2b2o2bo2bo2b2o$2bo3bo2bo3bo$4b2o4b2o$b2o2bo4bo2b2o$5b\no4bo$bobo8bobo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 91,
-    "table": "0886866102e121108661631021501000864061406531500061401000100000004274e9227bb6a0706df5524105606100d194f561972141100361600051100000"
+    "table": "08848a6302e7a2520eebe56507f0312884c46f60e77355106341e14852100902c41188bad64cfaea0c2fceaf5f8fa7e730f5abbec89eae7f1f9fafe54ffbe7e5"
   },
   "p6-17": {
     "name": "p6-17",
-    "rule": "b2-ck3jknr4-acqw5-nq6ck7cs2ce5-akq",
-    "rle": "x = 15, y = 27, rule = b2-ck3jknr4-acqw5-nq6ck7cs2ce5-akq\n6bobo2$2b3obobob3o$3bo7bo$bobo3bo3bobo$2b4obob4o$2o4bobo4b2o$2bobo2bo2\nbobo$2o2bo5bo2b2o$7bo$3o2bo3bo2b3o$4bo5bo$4obo3bob4o2$4obo3bob4o2$ob2o\nbo3bob2obo$4bo5bo$bo2b3ob3o2bo$3b2o5b2o$b2o2b2ob2o2b2o$bob2obobob2obo$\nbo3bo3bo3bo$3obob3obob3o$b2ob2o3b2ob2o$2b2o7b2o$bobo2bobo2bobo!\n",
+    "rule": "b2akn4cejq5jry6cins1c2e3ijnr4cejnty6-ik",
+    "rle": "x = 16, y = 25, rule = b2akn4cejq5jry6cins1c2e3ijnr4cejnty6-ik\n2bo2bo4bo2bo$2b4o4b4o$bo4bo2bo4bo$ob4o4b4obo$2bo2bo4bo2bo$3b2o6b2o$4bo\n6bo$2b2o2bo2bo2b2o6$2b2o8b2o4$2b2o8b2o2$2b2o8b2o$3b2o6b2o$3o10b3o$bo12\nbo2$o2bo8bo2bo!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 92,
-    "table": "8683adfa428fb3e4ada7defb37ff23cb269ca7e4aea7ff735fc57fccc5736e120240010800180082200818860006026140000884188482610884860006616100"
+    "table": "8421401069081280401286a81206484221101285084082a110a40d02042542004296856010852378a4079638235008069684a248a46950144148190259908261"
   },
   "p6-18": {
     "name": "p6-18",
-    "rule": "b2cn3-ejy4-cjknq5-i6c7cs1e2-e4n5-eiq6-k7c",
-    "rle": "x = 16, y = 30, rule = b2cn3-ejy4-cjknq5-i6c7cs1e2-e4n5-eiq6-k7c\nbo12bo$2o12b2o$5o6b5o$2b3o6b3o$b5o4b5o$3b2o2b2o2b2o$3b2o6b2o$4b2o4b2o$\n2bobob4obobo$4b3o2b3o$3bo8bo$3b10o$4b2ob2ob2o$4bo6bo$2b3ob4ob3o$3b10o$\n5bo4bo$4bo2b2o2bo$4b3o2b3o$5bo4bo$2bo4b2o4bo$4b3o2b3o$2bobo6bobo2$3b3o\n4b3o$3bobo4bobo$3bobo4bobo3$4bo6bo!\n",
+    "rule": "b3-ejqy4-r5aiqy6ik7cs3-acry4-einrt5i6-a7e",
+    "rle": "x = 12, y = 21, rule = b3-ejqy4-r5aiqy6ik7cs3-acry4-einrt5i6-a7e\n3b6o$2bobo2bobo$b2o6b2o$3b2o2b2o$2ob6ob2o$3bo4bo$3b6o2$4b4o2$3b6o$4b4o\n$2b2ob2ob2o$4b4o$b2o6b2o$3bob2obo$bo2b4o2bo$3b2o2b2o$2bobo2bobo$5b2o$4\nb4o!\n",
     "period": "6",
     "rarity": "rare",
     "edition": 93,
-    "table": "08cc88e7c6d9ecb70c2d4a8fcdd7b77acc7ba9f67cb7f661e7d7ae79b7615b12a5617010611c10ce5118088e10860a6e619c188c980a86b5108c8e4aceb5cb73"
+    "table": "088c80ed0ac7ae7504a7c6e08f7bd4998ccea763e6717b92ed6345bdf1163c12008e064c8e83c71182a2e578e67848938e2307712669598ec8715996308e36c4"
   },
   "p7-01": {
     "name": "p7-01",
-    "rule": "b2ek3-nq4-crwy5acir6-ens1e3i5-ain6-en7e",
-    "rle": "x = 11, y = 15, rule = b2ek3-nq4-crwy5acir6-ens1e3i5-ain6-en7e\n3bo3bo$bo3bo3bo$ob3ob3obo$b3obob3o$o3bobo3bo$b3obob3o$obobobobobo$2bo2\nbo2bo$3bo3bo$4b3o$2bo5bo$3b2ob2o$2bobobobo$3bobobo$4b3o!\n",
+    "rule": "b2eik3-c7cs1c2ekn3ciqr4ae5ei6-in",
+    "rle": "x = 14, y = 21, rule = b2eik3-c7cs1c2ekn3ciqr4ae5ei6-in\n6b2o$4bo4bo2$3b3o2b3o$4bob2obo3$6b2o$2bob2o2b2obo2$bob3o2b3obo$bob2o4b\n2obo$4bo4bo$2o2bob2obo2b2o$3b2o4b2o$6o2b6o$bo10bo$b2o3b2o3b2o$2bo8bo$3\nbo6bo$4bo4bo!\n",
     "period": "7",
     "rarity": "legendary",
     "edition": 94,
-    "table": "0a2ec7ad2b66a3fde6f7ff7a272d52978bccf7a9c310a9b2ad2d5b84fd17b63121041000000808981000088a088e86c68000008e08868eeb008e0ee51c6fc6a5"
+    "table": "0aa6e761a7216110e77171106110100887217110210010006110100810000802423cc12cf5406019641112084108009799713018409c08468918088438c2b661"
   },
   "p7-02": {
     "name": "p7-02",
     "rule": "b2ce4-kt6acks1c2-a3-i4-iq5-n6ek7c",
-    "rle": "x = 12, y = 22, rule = b2ce4-kt6acks1c2-a3-i4-iq5-n6ek7c\n3bo4bo$3bo4bo$obobo2bobobo$3obo2bob3o$b2obo2bob2o$b2obo2bob2o$b2obo2bo\nb2o$b2obo2bob2o$b2obo2bob2o$3b2o2b2o$4bo2bo$3b2o2b2o$bob2o2b2obo$3bo4b\no$2b8o$3bo4bo$3bo4bo$3b2o2b2o$2b2o4b2o$3b2o2b2o$2b8o$3b6o!\n",
+    "rle": "x = 12, y = 21, rule = b2ce4-kt6acks1c2-a3-i4-iq5-n6ek7c\n2bobo2bobo$obobo2bobobo$b2obo2bob2o$2bobo2bobo$2bobo2bobo$b2obo2bob2o$\nb2obo2bob2o$b2obo2bob2o$4bo2bo$4bo2bo$2b3o2b3o$3bo4bo$2b2o4b2o$3b6o$3b\no4bo$3bob2obo$o2bo4bo2bo$3bo4bo$2b2o4b2o$3b2o2b2o$3b6o!\n",
     "period": "7",
     "rarity": "legendary",
     "edition": 95,
@@ -866,7 +866,7 @@
   "p7-03": {
     "name": "p7-03",
     "rule": "b2-an3acejr4ijqy5-j6aik7cs2cik3aciry4eknqrw5cijr6-n7e",
-    "rle": "x = 12, y = 19, rule = b2-an3acejr4ijqy5-j6aik7cs2cik3aciry4eknqrw5cijr6-n7e\n3bo4bo2$2b3o2b3o$bo3b2o3bo$o3b4o3bo$3bob2obo$4bo2bo$2b3o2b3o$4bo2bo$4b\n4o$3b6o$3bob2obo2$3b6o$4b4o$3bob2obo$2o2b4o2b2o$bob2o2b2obo$2b3o2b3o!\n",
+    "rle": "x = 12, y = 17, rule = b2-an3acejr4ijqy5-j6aik7cs2cik3aciry4eknqrw5cijr6-n7e\nb10o$obob4obobo$bob6obo$3b6o$3bo4bo2$3bob2obo$5b2o$4bo2bo$4bo2bo$2b8o$\n4b4o$2bobo2bobo$2b2ob2ob2o$2bo6bo$obo2b2o2bobo$bob2o2b2obo!\n",
     "period": "7",
     "rarity": "legendary",
     "edition": 96,
@@ -883,20 +883,20 @@
   },
   "p7-05": {
     "name": "p7-05",
-    "rule": "b2-a4-js1e2e3-ei7c",
-    "rle": "x = 13, y = 23, rule = b2-a4-js1e2e3-ei7c\n6bo2$5bobo$2bob2ob2obo$4bo3bo$bob2o3b2obo$bobo5bobo$bo9bo2$5bobo$4bo3b\no$4bo3bo$2bobo3bobo$bo9bo$o2bo5bo2bo$bo9bo$bo9bo$5bobo$5b3o$2b2o5b2o$4\nb2ob2o$3bo2bo2bo$ob2o5b2obo!\n",
+    "rule": "b2-an4-ce5-cenq6e7cs1c2akn3eiknq4-jny5-qry6-i7c",
+    "rle": "x = 10, y = 13, rule = b2-an4-ce5-cenq6e7cs1c2akn3eiknq4-jny5-qry6-i7c\n3bo2bo$ob2o2b2obo$b8o$b2ob2ob2o$bobo2bobo$bob4obo$bo6bo$ob6obo$2ob4ob2\no$b8o$4b2o$3bo2bo$3bo2bo!\n",
     "period": "7",
     "rarity": "legendary",
     "edition": 98,
-    "table": "02686986699684616994124184616110499694619661611086616010611010002b82956186616100b46150106110100806616110611010006110100800000802"
+    "table": "0268698e299e86e5699694e186e76159498e96e59e2be7358ee56558e5b17852c4bd4adeff0bd43f4abc6b4fd4b96bffbd3b9d3d2ace3d47deb9eadebbe2ff73"
   },
   "p7-06": {
     "name": "p7-06",
-    "rule": "b2-a3cjqry4ceijqtz7es1c2-e3-enq",
-    "rle": "x = 11, y = 19, rule = b2-a3cjqry4ceijqtz7es1c2-e3-enq\n5bo$3b2ob2o$3b5o$5bo$obobobobobo$bo7bo$4obob4o$b3obob3o$b2ob3ob2o$2bo2\nbo2bo$2bo5bo2$3bobobo$2b7o$2b2obob2o$b2o5b2o$bo7bo$bo7bo$2bo5bo!\n",
+    "rule": "b2-a4-nr7es1e2-e3-ck4ejqrz5jn6-ci",
+    "rle": "x = 14, y = 21, rule = b2-a4-nr7es1e2-e3-ck4ejqrz5jn6-ci\n2bobo4bobo$bo2bo4bo2bo$2ob2o4b2ob2o$2o2bo4bo2b2o$bobobo2bobobo$3b3o2b3\no$3bo6bo$b4o4b4o$o2bo6bo2bo$bo4b2o4bo$b2obo4bob2o$6b2o$2bobo4bobo$2bob\n2o2b2obo$4bo4bo$4bo4bo$4bo4bo$3bobo2bobo$3b2ob2ob2o$5b4o$6b2o!\n",
     "period": "7",
     "rarity": "legendary",
     "edition": 99,
-    "table": "0262e5a0ed70e320e5579630670140004371f231515020080531110001080084cc77e43173703110c571401031001000f3507100511000003100100010000000"
+    "table": "0268618469928621619696608661401049129661166161088461411021081084ade7fe73ed39f31adf5ba735771879e4e7317a3d3908180773b9b1861aa2c561"
   }
 }

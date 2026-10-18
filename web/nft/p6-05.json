@@ -1,0 +1,38 @@
+{
+  "name": "Spaceship #80",
+  "symbol": "SHIPS",
+  "description": "An isotropic cellular-automaton spaceship discovered by search. Scan the card, fly the ship, own the rule.",
+  "image": "https://john-winston.com/spaceships/nft/p6-05.gif",
+  "external_url": "https://john-winston.com/spaceships/#v=1&a=p6-05",
+  "attributes": [
+    {
+      "trait_type": "ship",
+      "value": "p6-05"
+    },
+    {
+      "trait_type": "edition",
+      "value": "80 of 99"
+    },
+    {
+      "trait_type": "period",
+      "value": "6"
+    },
+    {
+      "trait_type": "rarity",
+      "value": "rare"
+    },
+    {
+      "trait_type": "rule",
+      "value": "b2-c3q7es1e2ik3ajn"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://john-winston.com/spaceships/nft/p6-05.gif",
+        "type": "image/gif"
+      }
+    ],
+    "category": "image"
+  }
+}

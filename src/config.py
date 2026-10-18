@@ -37,7 +37,7 @@ NTZFIND_BIN = os.environ.get(
 # project pages, so this — not johnwinston.github.io — is the canonical URL.
 SITE_BASE_URL = os.environ.get(
     "AUTOMONS_SITE_URL",
-    "https://john-winston.com/automons/",
+    "https://john-winston.com/spaceships/",
 )
 
 # Catagolue object pages remain useful as a reference link in metadata.

@@ -120,9 +120,7 @@
   #claimcode, #claimwallet { font-family: monospace; }
   #claimcode { text-transform: uppercase; }
   #claimwallet { font-size: 0.75rem; letter-spacing: 0; }
-  .wallethelp { font-size: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; }
-  .wallethelp a, .wallethelp button, #claimnft a { color: var(--ink); }
-  .wallethelp button { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; }
+  #claimnft a { color: var(--ink); }
   #claimnft { font-size: 0.85rem; }
   #claimbtn {
     background: var(--gold);
@@ -189,9 +187,6 @@
                  pattern="[1-9A-HJ-NP-Za-km-z]{32,44}" title="a Solana wallet address"
                  spellcheck="false" autocapitalize="off" autocomplete="off">
         </label>
-        <p class="wallethelp" id="wallethelp">
-          <button type="button" id="phantombtn" hidden>use my Phantom wallet</button>
-        </p>
         <label>your name, shown on the collection
           <input id="claimname" type="text" placeholder="optional" maxlength="40">
         </label>

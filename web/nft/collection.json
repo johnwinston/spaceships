@@ -2,12 +2,12 @@
   "name": "Spaceships",
   "symbol": "SHIPS",
   "description": "Isotropic cellular-automaton spaceships, pen-plotted as cards. Each NFT belongs to whoever holds its card.",
-  "image": "https://john-winston.com/automons/nft/collection.gif",
-  "external_url": "https://john-winston.com/automons/",
+  "image": "https://john-winston.com/spaceships/nft/collection.gif",
+  "external_url": "https://john-winston.com/spaceships/",
   "properties": {
     "files": [
       {
-        "uri": "https://john-winston.com/automons/nft/collection.gif",
+        "uri": "https://john-winston.com/spaceships/nft/collection.gif",
         "type": "image/gif"
       }
     ],

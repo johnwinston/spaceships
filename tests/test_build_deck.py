@@ -37,7 +37,7 @@ def test_ship_id_and_apgcode_are_mutually_exclusive():
 def test_sticker_carries_code_band_only_when_given():
     import qrcode
     from src import build_deck
-    qr = qrcode.make("https://john-winston.com/automons/#v=1&a=p4-01")
+    qr = qrcode.make("https://john-winston.com/spaceships/#v=1&a=p4-01")
     plain = build_deck.sticker_image(qr)
     coded = build_deck.sticker_image(qr, "GQE2-Q3K7")
     assert plain.size == (build_deck.QR_PX, build_deck.QR_PX)

@@ -5,7 +5,7 @@ import pytest
 from src import config, plot_svg, rle, ruletable
 
 GLIDER = "x = 3, y = 3, rule = B3/S23\nbob$2bo$3o!"
-PLAYER_URL = "https://john-winston.com/automons/#v=1&a=xq4_153&r=b3s23"
+PLAYER_URL = "https://john-winston.com/spaceships/#v=1&a=xq4_153&r=b3s23"
 
 
 def test_front_svg_contains_ship_squares():

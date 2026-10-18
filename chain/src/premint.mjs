@@ -29,7 +29,7 @@ const { values: args } = parseArgs({
     cluster: { type: "string", default: "devnet" },
     keypair: { type: "string" },
     rpc: { type: "string" },
-    site: { type: "string", default: "https://john-winston.com/automons/" },
+    site: { type: "string", default: "https://john-winston.com/spaceships/" },
     catalog: { type: "string", default: join(REPO, "web", "catalog.json") },
     only: { type: "string" },             // comma-separated ship ids, for a trial run
     airdrop: { type: "boolean", default: false },

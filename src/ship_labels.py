@@ -2,8 +2,8 @@
 
 Same links as ship_sheet.py (the ship's page, no claim code), laid out on
 Avery 5160 / 8160 / 18160 address labels: 1" x 2-5/8", 30 per US Letter
-sheet.  Each label has the QR on the left; on the right, the ship's art (turned
-lengthwise, top aligned with the QR's top) with its id centred beneath, kept 0.06" inside the label edge for printer
+sheet.  Each label has the QR on the left; beside it the ship's art (turned
+lengthwise), centred on the QR's middle, with its id centred beneath, kept 0.06" inside the label edge for printer
 drift.  Labels run in edition order; 99 ships fill 4 sheets.
 
     python -m src.ship_labels            -> data/ship_labels_5160.html
@@ -20,7 +20,6 @@ import json
 import os
 
 from . import rle as rle_codec
-from . import plot_svg
 from .claim_sheet import _qr_svg
 from .ship_sheet import tiles
 
@@ -38,8 +37,10 @@ COLS, ROWS = 3, 10
 PER_SHEET = COLS * ROWS
 INSET = 0.06     # keep ink this far inside each label
 QR_SIZE = LABEL_H - 2 * INSET  # 0.88": the QR svg already includes its quiet zone
-ART_H = 0.5     # ship art height; its top lines up with the top of the QR
-QUIET = 2       # quiet-zone modules on each side of claim_sheet._qr_svg
+ART_H = 0.5     # max ship art height; the art is centred on the QR's middle
+GAP = 0.08      # between the QR and the art column
+ART_W = LABEL_W - 2 * INSET - QR_SIZE - GAP  # width of the art column
+ID_GAP = 0.04   # between the art and the id beneath it
 
 
 def label_origin(index):
@@ -49,7 +50,8 @@ def label_origin(index):
 
 
 def _ship_svg_wide(rle_text):
-    """The ship's cells as an SVG, turned 90 degrees if it's taller than wide."""
+    """(svg, height in inches): the ship's cells, turned 90 degrees if it's
+    taller than wide, sized to fit ART_W x ART_H."""
     cells, _ = rle_codec.parse(rle_text)
     w = max(x for x, _ in cells) + 1
     h = max(y for _, y in cells) + 1
@@ -57,24 +59,22 @@ def _ship_svg_wide(rle_text):
         cells = [(h - 1 - y, x) for x, y in cells]
         w, h = h, w
     d = "".join("M%d %dh1v1h-1z" % (x, y) for x, y in cells)
-    return ('<svg class="ship" viewBox="0 0 %d %d" preserveAspectRatio="xMidYMin meet">'
-            '<path d="%s"/></svg>' % (w, h, d))
-
-
-def qr_top(url):
-    """Inches from the top of the QR box to its first dark row (the quiet zone)."""
-    n = len(plot_svg.qr_matrix(url))
-    return QR_SIZE * QUIET / (n + 2 * QUIET)
+    height = min(ART_H, ART_W * h / w)
+    return ('<svg class="ship" viewBox="0 0 %d %d" style="height:%.4fin">'
+            '<path d="%s"/></svg>' % (w, h, height, d)), height
 
 
 def _label(ship_id, edition, url, entry, outline):
+    art, height = _ship_svg_wide(entry["rle"])
+    top = (QR_SIZE - height) / 2  # the ship's middle on the QR's middle
     return (
         '<div class="label%s">'
         '<div class="qr-box">%s</div>'
-        '<div class="text" style="padding-top:%.4fin">'
-        '<div class="art">%s</div><span>%s</span></div>'
-        '</div>' % (" outline" if outline else "", _qr_svg(url), qr_top(url),
-                    _ship_svg_wide(entry["rle"]), html.escape(ship_id))
+        '<div class="text">'
+        '<div class="art" style="top:%.4fin">%s</div>'
+        '<span style="top:%.4fin">%s</span></div>'
+        '</div>' % (" outline" if outline else "", _qr_svg(url),
+                    top, art, top + height + ID_GAP, html.escape(ship_id))
     )
 
 
@@ -92,7 +92,7 @@ def render(rows, test=False):
         sheets.append('<section class="sheet">%s</section>' % "".join(cells))
     return PAGE_TEMPLATE % {
         "title": "Spaceships labels (alignment test)" if test else "Spaceships labels",
-        "w": LABEL_W, "h": LABEL_H, "inset": INSET, "qr": QR_SIZE, "art": ART_H,
+        "w": LABEL_W, "h": LABEL_H, "inset": INSET, "qr": QR_SIZE, "artw": ART_W, "gap": GAP,
         "sheets": "".join(sheets),
     }
 
@@ -109,16 +109,15 @@ PAGE_TEMPLATE = """<!doctype html>
   .sheet:last-child { page-break-after: auto; break-after: auto; }
   .slot { position: absolute; width: %(w)sin; height: %(h)sin; }
   .label { box-sizing: border-box; width: 100%%; height: 100%%; padding: %(inset)sin;
-           display: flex; gap: 0.08in; align-items: flex-start; }
+           display: flex; gap: %(gap)sin; align-items: flex-start; }
   .outline { border: 0.5pt solid #bbb; border-radius: 0.08in; }
   .qr-box { flex: none; width: %(qr)sin; height: %(qr)sin; }
   .qr-box svg { width: 100%%; height: 100%%; display: block; }
   .qr path { fill: #000; }
-  .text { box-sizing: border-box; flex: 1; min-width: 0; height: 100%%; display: flex;
-          flex-direction: column; align-items: center; gap: 0.05in; }
+  .text { position: relative; flex: none; width: %(artw)sin; height: %(qr)sin; }
+  .art, .text span { position: absolute; left: 0; right: 0; }
+  .art svg { display: block; margin: 0 auto; max-width: 100%%; }
   .text span { font: 8pt/1 ui-monospace, monospace; color: #444; text-align: center; }
-  .art { width: 100%%; height: %(art)sin; flex: none; }
-  .art svg { width: 100%%; height: 100%%; display: block; }
   .ship path { fill: #111; }
 </style></head><body>
 %(sheets)s

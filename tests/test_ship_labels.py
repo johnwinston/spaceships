@@ -29,5 +29,6 @@ def test_alignment_page_is_one_sheet_of_outlines():
 
 
 def test_tall_ships_are_turned_lengthwise():
-    svg = ship_labels._ship_svg_wide("o$o$o!")   # 1 wide, 3 tall
+    svg, height = ship_labels._ship_svg_wide("o$o$o!")   # 1 wide, 3 tall
     assert 'viewBox="0 0 3 1"' in svg
+    assert height <= ship_labels.ART_H

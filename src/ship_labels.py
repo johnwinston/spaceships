@@ -3,7 +3,7 @@
 Same links as ship_sheet.py (the ship's page, no claim code), laid out on
 Avery 5160 / 8160 / 18160 address labels: 1" x 2-5/8", 30 per US Letter
 sheet.  Each label has the QR on the left; beside it the ship's art (turned
-lengthwise), centred on the QR's middle, with its id centred beneath, kept 0.06" inside the label edge for printer
+lengthwise), centred on the QR's middle, with its id centred beneath, kept 0.12" inside the label edge for printer
 drift.  Labels run in edition order; 99 ships fill 4 sheets.
 
     python -m src.ship_labels            -> data/ship_labels_5160.html
@@ -35,11 +35,11 @@ PITCH_X = 2.75   # 0.125" gutter between columns
 PITCH_Y = 1.0    # rows touch
 COLS, ROWS = 3, 10
 PER_SHEET = COLS * ROWS
-INSET = 0.06     # keep ink this far inside each label
-QR_SIZE = LABEL_H - 2 * INSET  # 0.88": the QR svg already includes its quiet zone
-ART_H = 0.5     # max ship art height; the art is centred on the QR's middle
+INSET = 0.12     # keep ink this far inside each label (forgiving of printer scaling)
+QR_SIZE = LABEL_H - 2 * INSET  # 0.76"; the QR svg adds its own quiet zone inside this
+ART_H = 0.42    # max ship art height; the art is centred on the QR's middle
 GAP = 0.08      # between the QR and the art column
-ART_W = LABEL_W - 2 * INSET - QR_SIZE - GAP  # width of the art column
+ART_W = 1.1     # width of the art column; QR + art are centred in the label
 ID_GAP = 0.04   # between the art and the id beneath it
 
 
@@ -109,7 +109,7 @@ PAGE_TEMPLATE = """<!doctype html>
   .sheet:last-child { page-break-after: auto; break-after: auto; }
   .slot { position: absolute; width: %(w)sin; height: %(h)sin; }
   .label { box-sizing: border-box; width: 100%%; height: 100%%; padding: %(inset)sin;
-           display: flex; gap: %(gap)sin; align-items: flex-start; }
+           display: flex; gap: %(gap)sin; align-items: flex-start; justify-content: center; }
   .outline { border: 0.5pt solid #bbb; border-radius: 0.08in; }
   .qr-box { flex: none; width: %(qr)sin; height: %(qr)sin; }
   .qr-box svg { width: 100%%; height: 100%%; display: block; }

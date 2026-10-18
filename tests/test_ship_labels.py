@@ -32,3 +32,10 @@ def test_tall_ships_are_turned_lengthwise():
     svg, height = ship_labels._ship_svg_wide("o$o$o!")   # 1 wide, 3 tall
     assert 'viewBox="0 0 3 1"' in svg
     assert height <= ship_labels.ART_H
+
+
+def test_everything_stays_well_inside_the_label():
+    assert ship_labels.INSET >= 0.12
+    # art centred on the QR, then the gap and an ~8pt id, all within the QR's height
+    art_bottom = (ship_labels.QR_SIZE + ship_labels.ART_H) / 2
+    assert art_bottom + ship_labels.ID_GAP + 8 / 72 <= ship_labels.QR_SIZE

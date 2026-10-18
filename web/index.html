@@ -31,7 +31,12 @@
     font-family: "Futura", "Century Gothic", system-ui, sans-serif;
     padding: 24px 16px 64px;
   }
-  header { max-width: 960px; margin: 0 auto 8px; }
+  header { max-width: 960px; margin: 0 auto 8px; display: flex; justify-content: space-between; align-items: baseline; }
+  header a.about {
+    color: var(--dim); text-decoration: none; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; border: 1px solid #333; border-radius: 999px; padding: 6px 14px;
+  }
+  header a.about:hover { color: var(--ink); border-color: var(--ink); }
   h1 { font-size: 26px; letter-spacing: 2px; margin: 0; }
   h1 span { color: var(--gold); }
   header p { color: var(--dim); margin: 4px 0 0; }
@@ -69,6 +74,7 @@
 <body>
 <header>
   <h1>space<span>ships</span></h1>
+  <a class="about" href="about.html">About</a>
 </header>
 <main id="tiers"></main>
 <p id="status">loading catalog…</p>

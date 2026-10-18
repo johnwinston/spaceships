@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Spaceships</title>
+<meta name="description" content="What Conway's Game of Life is, what a spaceship is, and how new ones are found.">
+<style>
+  :root {
+    --bg: #000000;
+    --panel: #0b0b0b;
+    --line: #262626;
+    --ink: #ffffff;
+    --dim: #8a8a8a;
+    --hi: #f5d76e;
+    --display: "Futura", "Jost", "Century Gothic", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--display); line-height: 1.6;
+    padding: 0 16px 80px;
+  }
+  header {
+    max-width: 760px; margin: 0 auto; padding: 24px 0 10px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  header h1 { font-size: 22px; letter-spacing: 2px; margin: 0; }
+  header h1 a { color: inherit; text-decoration: none; }
+  header nav a { color: var(--dim); text-decoration: none; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+  header nav a:hover { color: var(--ink); }
+  main { max-width: 760px; margin: 0 auto; }
+  .lede { font-size: 20px; margin: 36px 0 8px; }
+  .lede + p { color: var(--dim); margin-top: 0; }
+  ol.toc {
+    list-style: none; padding: 0; margin: 28px 0 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 18px;
+    counter-reset: ch;
+  }
+  ol.toc li { counter-increment: ch; font-size: 14px; }
+  ol.toc li::before { content: counter(ch, decimal-leading-zero) "  "; color: var(--dim); font-family: var(--mono); font-size: 12px; }
+  ol.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  ol.toc a:hover { border-color: var(--ink); }
+  section { padding-top: 56px; }
+  h2 {
+    font-size: 14px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500;
+    color: var(--dim); margin: 0 0 6px;
+  }
+  h3 { font-size: 26px; line-height: 1.25; margin: 0 0 14px; font-weight: 500; }
+  p { margin: 0 0 14px; }
+  a { color: var(--ink); }
+  figure { margin: 22px 0; }
+  figure video, figure img, figure iframe, figure canvas {
+    display: block; width: 100%; border: 1px solid var(--line); border-radius: 8px; background: #000;
+  }
+  figure iframe { aspect-ratio: 16 / 9; height: auto; }
+  figcaption { color: var(--dim); font-size: 13px; margin-top: 8px; }
+  code, .rule { font-family: var(--mono); font-size: 0.86em; }
+  .rule { word-break: break-all; color: var(--hi); }
+  pre {
+    font-family: var(--mono); font-size: 13px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; padding: 12px 14px; overflow-x: auto; margin: 0 0 14px;
+  }
+  .facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin: 18px 0; }
+  .facts div { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+  .facts b { display: block; font-size: 20px; font-weight: 500; }
+  .facts span { color: var(--dim); font-size: 12px; }
+  ul.links { padding-left: 18px; }
+  ul.links li { margin-bottom: 6px; }
+  ul.crit { padding-left: 18px; }
+  ul.crit li { margin-bottom: 4px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin: 18px 0; }
+  .cards a { display: block; }
+  .cards img { width: 100%; aspect-ratio: 1 / 1.41; object-fit: cover; border-radius: 6px; background: #1a1a1a; display: block; }
+  .cta {
+    display: inline-block; margin-top: 8px; padding: 10px 20px; border: 1px solid var(--ink); border-radius: 999px;
+    text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-size: 13px;
+  }
+  .cta:hover { background: var(--ink); color: var(--bg); }
+
+  /* try-it board */
+  .tryit { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+  .tryit canvas { border: 0; border-radius: 4px; touch-action: none; cursor: crosshair; }
+  .tryit .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+  .tryit button {
+    background: transparent; color: var(--ink); border: 1px solid #3a3a3a; border-radius: 999px;
+    padding: 6px 14px; font: 13px var(--display); letter-spacing: 1px; cursor: pointer;
+  }
+  .tryit button:hover { border-color: var(--ink); }
+  .tryit button.on { background: var(--ink); color: var(--bg); }
+  .tryit .gen { margin-left: auto; color: var(--dim); font: 12px var(--mono); }
+  footer { max-width: 760px; margin: 64px auto 0; color: var(--dim); font-size: 12px; border-top: 1px solid var(--line); padding-top: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="index.html">spaceships</a></h1>
+  <nav><a href="index.html">All ships</a></nav>
+</header>
+
+<main>
+  <p class="lede">Every card in this collection holds a spaceship: a little pattern of squares that flies across a grid forever, following four simple rules.</p>
+  <p>This page walks through where they come from, from John Conway's Game of Life in 1970 to the search programs that still turn up new ones today.</p>
+
+  <ol class="toc">
+    <li><a href="#life">The Game of Life</a></li>
+    <li><a href="#rules">The rules</a></li>
+    <li><a href="#try">Try it</a></li>
+    <li><a href="#glider">The first glider</a></li>
+    <li><a href="#spaceships">Spaceships</a></li>
+    <li><a href="#other-rules">Different rules</a></li>
+    <li><a href="#doodah">Doo-dah</a></li>
+    <li><a href="#search">No formula: searching</a></li>
+    <li><a href="#ikpx2">ikpx2 and Sir Robin</a></li>
+    <li><a href="#catagolue">Catagolue</a></li>
+    <li><a href="#notable">What makes a pattern notable</a></li>
+    <li><a href="#collection">This collection</a></li>
+  </ol>
+
+  <section id="life">
+    <h2>01 · The Game of Life</h2>
+    <h3>A game with no players</h3>
+    <p>In 1970 the mathematician John Conway invented a "game" played on an endless grid of squares. Each square is either alive or dead. You set up a starting pattern, then step back: every generation, each square looks at its eight neighbours and decides whether to live or die. Nobody makes moves after that. The pattern just runs.</p>
+    <p>Martin Gardner described it in his Mathematical Games column in Scientific American in October 1970, and people around the world started running it by hand on graph paper and Go boards, then on the first computers they could get time on. They have been finding new things in it ever since.</p>
+    <figure>
+      <iframe src="https://www.youtube-nocookie.com/embed/R9Plq-D1gEk" title="Inventing Game of Life (John Conway), Numberphile" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <figcaption>John Conway explains how he invented the Game of Life. Numberphile, 2014.</figcaption>
+    </figure>
+  </section>
+
+  <section id="rules">
+    <h2>02 · The rules</h2>
+    <h3>Three outcomes, decided by counting</h3>
+    <p>Every cell counts how many of its eight neighbours are alive, and all cells update at the same moment.</p>
+    <figure>
+      <video src="about/rules.mp4" poster="about/rules.jpg" muted loop playsinline preload="none"></video>
+    </figure>
+    <p><b>Birth:</b> an empty cell with exactly three live neighbours comes alive.<br>
+       <b>Survival:</b> a live cell with two or three live neighbours stays alive.<br>
+       <b>Death:</b> any other live cell dies, of loneliness (0 or 1) or overcrowding (4 or more).</p>
+    <p>That's the whole game. People write it as <span class="rule">B3/S23</span>: born with 3, survives with 2 or 3.</p>
+  </section>
+
+  <section id="try">
+    <h2>03 · Try it</h2>
+    <h3>Draw some cells and press play</h3>
+    <div class="tryit">
+      <canvas id="board" aria-label="Game of Life board. Click or drag to draw cells."></canvas>
+      <div class="bar">
+        <button id="play">Play</button>
+        <button id="step">Step</button>
+        <button id="clear">Clear</button>
+        <button data-p="rpent">R-pentomino</button>
+        <button data-p="glider">Glider</button>
+        <button data-p="lwss">Spaceship</button>
+        <span class="gen" id="gen">generation 0</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="glider">
+    <h2>04 · The first glider</h2>
+    <h3>Five cells that wouldn't settle down</h3>
+    <p>Conway's group tried every small pattern they could. One five-cell shape, the <b>R-pentomino</b>, refused to settle. It churns for 1,103 generations before it calms down into 116 still and blinking cells.</p>
+    <p>In 1970, watching it run, Richard Guy noticed something new at generation 69: a small piece broke off and walked away across the board. It was the first <b>glider</b> anyone had seen, and nobody designed it. It just appeared.</p>
+    <figure>
+      <video src="about/rpentomino.mp4" poster="about/rpentomino.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>The R-pentomino, generations 0 to 160. The box follows the glider from the moment it breaks free.</figcaption>
+    </figure>
+    <figure>
+      <video src="about/glider.mp4" poster="about/glider.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>The glider takes four generations to return to its own shape, one square further along the diagonal.</figcaption>
+    </figure>
+  </section>
+
+  <section id="spaceships">
+    <h2>05 · Spaceships</h2>
+    <h3>Patterns that move</h3>
+    <p>A <b>spaceship</b> is any pattern that returns to its original shape, shifted over, after some number of generations. It then repeats forever, travelling across the grid. The glider is the smallest. Conway found three more in 1970: the lightweight, middleweight and heavyweight spaceships.</p>
+    <figure>
+      <video src="about/spaceships.mp4" poster="about/spaceships.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>Conway's spaceships side by side. The three "weights" cover two squares every four generations; the glider covers one diagonal step in four.</figcaption>
+    </figure>
+    <p>Speeds are written using <b>c</b>, "the speed of light": one square per generation, the fastest anything can travel. The glider moves at c/4. The weights move at c/2. Doo-dah, further down, moves at 2c/7. Every spaceship also has a <b>period</b>, the number of generations it takes to repeat.</p>
+  </section>
+
+  <section id="other-rules">
+    <h2>06 · Different rules</h2>
+    <h3>Change the counting, change the universe</h3>
+    <p>B3/S23 is one rule out of an enormous number. Change which counts cause a birth or a survival and you get a different universe, with different creatures. Some rules freeze everything, some explode, and a few, like Conway's, sit on the edge between.</p>
+    <figure>
+      <video src="about/rule-swap.mp4" poster="about/rule-swap.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>The same R-pentomino under three rules: Conway's, the rule of ship p4-01 (it freezes in a few generations), and the rule of ship p4-24 (it grows a snowflake).</figcaption>
+    </figure>
+    <p>The ships in this collection come from rules that go one step further. Instead of only counting neighbours, they also look at <i>where</i> the neighbours are: three neighbours in a row can behave differently from three in an L. These are called <b>isotropic non-totalistic</b> rules, and a ship's rule is written with letters for those shapes, like this one for ship p4-01:</p>
+    <pre class="rule">b3-n5eiy7es1e2ace3aenry4-acr5-nq6kn7c</pre>
+    <p>Read it as: born with 3 neighbours (except the "n" shape), 5 (only shapes e, i, y), or 7 (shape e); survives with 1 (shape e), 2 (shapes a, c, e), and so on. Each of the 100 ships here lives in its own rule.</p>
+    <figure>
+      <video src="about/collection-rules.mp4" poster="about/collection-rules.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>Ships p4-01, p6-01 and p7-05 from this collection, each flying under its own rule.</figcaption>
+    </figure>
+  </section>
+
+  <section id="doodah">
+    <h2>07 · Doo-dah</h2>
+    <h3>A new spaceship in Conway's own rule</h3>
+    <p>New spaceships in plain B3/S23 are rare: fifty years of people searching have found most of the easy ones. On December 6, 2020, John Winston Garth, who made this collection, found one: <b>Doo-dah</b>, named after a nickname for his grandfather.</p>
+    <div class="facts">
+      <div><b>2c/7</b><span>speed</span></div>
+      <div><b>21</b><span>period (generations)</span></div>
+      <div><b>74</b><span>cells, at its smallest</span></div>
+      <div><b>2020</b><span>found December 6</span></div>
+    </div>
+    <figure>
+      <video src="about/doo-dah.mp4" poster="about/doo-dah.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>Doo-dah: a "weekender" spaceship towing a tagalong that only works with period 21.</figcaption>
+    </figure>
+    <p>It was found by combining two programs, ikpx2 and apgsearch (see below): partial ships from ikpx2 were fed into apgsearch to look for higher-period ships. Within a day other people in the Life community used it to build new puffers, patterns that move and leave a trail behind them.</p>
+    <p>Doo-dah has its own page on LifeWiki, the encyclopedia of Life patterns. The New York Times named it as a contender for pattern of the year in "The Lasting Lessons of John Conway's Game of Life" (Siobhan Roberts, December 28, 2020). It is also <b>NFT #1</b> in <b>Life Patterns</b>, Catagolue's collection of patterns minted by the people who discovered them.</p>
+    <ul class="links">
+      <li><a href="https://conwaylife.com/wiki/Doo-dah">Doo-dah on LifeWiki</a></li>
+      <li><a href="https://www.nytimes.com/2020/12/28/science/math-conway-game-of-life.html">The Lasting Lessons of John Conway's Game of Life</a>, The New York Times</li>
+      <li><a href="https://catagolue.hatsya.com/nfts/1">Life Patterns NFT #1: Doo-dah</a>, and <a href="https://opensea.io/collection/life-pattern">the whole Life Patterns collection</a></li>
+    </ul>
+  </section>
+
+  <section id="search">
+    <h2>08 · No formula</h2>
+    <h3>Every spaceship has to be searched for</h3>
+    <p>There is no equation that spits out spaceships. The only way to know what a pattern does is to run it, and the number of possible patterns grows so fast that a box just 20 squares wide has more arrangements than there are atoms in the universe. Finding a ship is a search problem that is, in general, intractable: no shortcut is known, and there probably isn't one.</p>
+    <p>So searchers are clever about where they look. Rather than trying whole patterns, a search program builds a ship one row at a time from the front, and at each row asks: could anything behind this still work? Rows that can't are thrown away immediately, which prunes the search from impossible down to merely very hard.</p>
+    <figure>
+      <video src="about/search-grows.mp4" poster="about/search-grows.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>An illustration of a row-by-row search. Red rows are candidates that were tried and rejected. The finished ship is Sir Robin.</figcaption>
+    </figure>
+  </section>
+
+  <section id="ikpx2">
+    <h2>09 · ikpx2 and Sir Robin</h2>
+    <h3>Mining for ships, one partial at a time</h3>
+    <p>For decades nobody could find a spaceship in Conway's Life that moves like a chess knight: two squares one way, one square the other. In March 2018 Adam P. Goucher found one with his program ikpx, by extending a half-finished ship that Tomas Rokicki had found. He named it <b>Sir Robin</b>. It has 282 cells and moves at (2,1)c/6.</p>
+    <p>A half-finished ship is called a <b>partial</b>. The front works perfectly, but the back hasn't been solved yet, so after a while it falls apart. Search programs spend most of their time growing partials and trying to close off the back.</p>
+    <figure>
+      <video src="about/sir-robin-partials.mp4" poster="about/sir-robin-partials.jpg" muted loop playsinline preload="none"></video>
+      <figcaption>Sir Robin cut off after 20, 38 and 56 rows, next to the complete ship. The longer the partial, the longer the front survives, but only the complete ship flies forever.</figcaption>
+    </figure>
+    <p><b>ikpx2</b> is the successor to ikpx. It extends partials using SAT solvers (programs that solve huge true-or-false puzzles), works in any isotropic rule, and writes the partials it finds out as RLE, the text format Life patterns are shared in. You can also hand it a partial, such as the head of Sir Robin, and it will try to grow it from there. That is the kind of seeded search that found Doo-dah.</p>
+<pre>./recompile.sh
+./ikpx2 --velocity 'c/3'                  # search for c/3 ships
+./ikpx2 --velocity '(2,1)c/6' head.rle    # grow a partial you already have</pre>
+    <ul class="links">
+      <li><a href="https://gitlab.com/apgoucher/ikpx2">ikpx2 source code</a> and <a href="https://conwaylife.com/wiki/Tutorials/ikpx2">the ikpx2 tutorial</a></li>
+      <li><a href="https://conwaylife.com/wiki/Sir_Robin">Sir Robin on LifeWiki</a></li>
+    </ul>
+  </section>
+
+  <section id="catagolue">
+    <h2>10 · Catagolue</h2>
+    <h3>A census anyone can join</h3>
+    <p><b>Catagolue</b> is a shared census of everything that turns up when you start Life from random noise. Volunteers run a program called apgsearch on their own computers. It throws down random 16 by 16 "soups", runs them until they settle, and reports every object it sees. Since 2015 it has run hundreds of trillions of soups and catalogued over half a million different objects, including spaceships nobody had built by hand.</p>
+    <p>Contributing is just running the program:</p>
+<pre>git clone https://gitlab.com/apgoucher/apgmera.git
+cd apgmera && ./recompile.sh
+./apgluxe -n 10000000 -k YOUR_KEY</pre>
+    <p>The key is optional; it puts your name on what you find. Each batch you upload is called a <b>haul</b>, and it is checked before joining the census.</p>
+    <ul class="links">
+      <li><a href="https://catagolue.hatsya.com/home">Catagolue</a></li>
+      <li><a href="https://conwaylife.com/wiki/Tutorials/Contributing_to_Catagolue">How to contribute to Catagolue</a></li>
+    </ul>
+  </section>
+
+  <section id="notable">
+    <h2>11 · Notability</h2>
+    <h3>What it takes to get a LifeWiki page</h3>
+    <p>Most patterns never get their own article. LifeWiki gives one to a pattern that meets at least one of these:</p>
+    <ul class="crit">
+      <li>it is historically important, like the R-pentomino;</li>
+      <li>it is fundamental or extremely well known, like the glider;</li>
+      <li>its discovery answered an open question, like the first glider gun;</li>
+      <li>it holds or held a record;</li>
+      <li>it did something no earlier pattern had done;</li>
+      <li>it got significant coverage from an outside source, like Doo-dah in The New York Times.</li>
+    </ul>
+    <p><a href="https://conwaylife.com/wiki/LifeWiki:Notability">LifeWiki's notability guideline</a></p>
+  </section>
+
+  <section id="collection">
+    <h2>12 · This collection</h2>
+    <h3>100 ships, 100 rules, pen-plotted</h3>
+    <p>The ships here were found by a search that invents random isotropic rules and looks for spaceships in each one. A rule that produced a good ship was kept, and the ship was pen-plotted onto a card with its trail behind it. Rarity follows the period: 45 common period-4 ships, 30 uncommon period-5, 18 rare period-6, 6 legendary period-7, and one golden glider in Conway's own rule.</p>
+    <div class="cards" id="cards">
+      <a href="ship.html#v=1&amp;a=p7-05"><img src="img/t/p7-05.jpg" alt="Card for ship p7-05" loading="lazy"></a>
+      <a href="ship.html#v=1&amp;a=p6-01"><img src="img/t/p6-01.jpg" alt="Card for ship p6-01" loading="lazy"></a>
+      <a href="ship.html#v=1&amp;a=p5-12"><img src="img/t/p5-12.jpg" alt="Card for ship p5-12" loading="lazy"></a>
+      <a href="ship.html#v=1&amp;a=p4-01"><img src="img/t/p4-01.jpg" alt="Card for ship p4-01" loading="lazy"></a>
+      <a href="ship.html#v=1&amp;a=p4-24"><img src="img/t/p4-24.jpg" alt="Card for ship p4-24" loading="lazy"></a>
+      <a href="ship.html#v=1&amp;a=p5-29"><img src="img/t/p5-29.jpg" alt="Card for ship p5-29" loading="lazy"></a>
+    </div>
+    <p>Every card links to its ship's page, where you can fly it, draw on it, and see its rule.</p>
+    <a class="cta" href="index.html">See all the ships</a>
+  </section>
+</main>
+
+<footer>Animations rendered with Manim from the same Life engine the ship pages use. Pattern facts from LifeWiki.</footer>
+
+<script src="js/engine.js"></script>
+<script src="js/rle.js"></script>
+<script>
+(function () {
+  "use strict";
+  // Videos: play only while on screen, and not at all for reduced-motion visitors.
+  var vids = document.querySelectorAll("video");
+  var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (still || !("IntersectionObserver" in window)) {
+    vids.forEach(function (v) { v.controls = true; });
+  } else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { e.target.play().catch(function () { e.target.controls = true; }); }
+        else e.target.pause();
+      });
+    }, { threshold: 0.35 });
+    vids.forEach(function (v) { io.observe(v); });
+  }
+
+  // Try-it board: Conway's rule on a small wrap-around grid.
+  var E = window.Spaceships.engine, R = window.Spaceships.rle;
+  var W = 64, H = 36;
+  var world = new E.World(W, H, E.totalisticTable("b3s23"));
+  var canvas = document.getElementById("board"), ctx = canvas.getContext("2d");
+  var px = 1, timer = null;
+  var PRESETS = {
+    rpent: "x=3,y=3\nb2o$2o$bo!",
+    glider: "x=3,y=3\nbo$2bo$3o!",
+    lwss: "x=5,y=4\no2bo$4bo$o3bo$b4o!",
+  };
+
+  function size() {
+    var w = canvas.parentNode.clientWidth - 24;
+    px = Math.max(4, Math.floor(w / W));
+    var dpr = window.devicePixelRatio || 1;
+    canvas.style.width = W * px + "px";
+    canvas.style.height = H * px + "px";
+    canvas.width = W * px * dpr;
+    canvas.height = H * px * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+  function draw() {
+    ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W * px, H * px);
+    ctx.strokeStyle = "#1c1c1c"; ctx.lineWidth = 1; ctx.beginPath();
+    for (var i = 0; i <= W; i++) { ctx.moveTo(i * px + 0.5, 0); ctx.lineTo(i * px + 0.5, H * px); }
+    for (var j = 0; j <= H; j++) { ctx.moveTo(0, j * px + 0.5); ctx.lineTo(W * px, j * px + 0.5); }
+    ctx.stroke();
+    ctx.fillStyle = "#fff";
+    for (var y = 0; y < H; y++) for (var x = 0; x < W; x++)
+      if (world.get(x, y)) ctx.fillRect(x * px + 1, y * px + 1, px - 1, px - 1);
+    document.getElementById("gen").textContent = "generation " + world.generation;
+  }
+  function stop() { clearInterval(timer); timer = null; playBtn.textContent = "Play"; playBtn.classList.remove("on"); }
+  function load(name) {
+    stop(); world.clear();
+    var cells = R.parse(PRESETS[name]).cells;
+    var ox = name === "rpent" ? 32 : name === "glider" ? 6 : 6;
+    var oy = name === "rpent" ? 16 : name === "glider" ? 4 : 16;
+    world.placeCells(cells, ox, oy); draw();
+  }
+  var playBtn = document.getElementById("play");
+  playBtn.onclick = function () {
+    if (timer) return stop();
+    timer = setInterval(function () { world.step(); draw(); }, 90);
+    playBtn.textContent = "Pause"; playBtn.classList.add("on");
+  };
+  document.getElementById("step").onclick = function () { stop(); world.step(); draw(); };
+  document.getElementById("clear").onclick = function () { stop(); world.clear(); draw(); };
+  document.querySelectorAll("[data-p]").forEach(function (b) { b.onclick = function () { load(b.dataset.p); }; });
+
+  var painting = null;
+  function cellAt(ev) {
+    var r = canvas.getBoundingClientRect();
+    return [Math.floor((ev.clientX - r.left) / px), Math.floor((ev.clientY - r.top) / px)];
+  }
+  canvas.addEventListener("pointerdown", function (ev) {
+    var c = cellAt(ev); if (c[0] < 0 || c[0] >= W || c[1] < 0 || c[1] >= H) return;
+    painting = world.get(c[0], c[1]) ? 0 : 1;
+    world.set(c[0], c[1], painting); draw();
+    canvas.setPointerCapture(ev.pointerId);
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (painting === null) return;
+    var c = cellAt(ev); if (c[0] < 0 || c[0] >= W || c[1] < 0 || c[1] >= H) return;
+    world.set(c[0], c[1], painting); draw();
+  });
+  canvas.addEventListener("pointerup", function () { painting = null; });
+  window.addEventListener("resize", size);
+  load("rpent");
+  size();
+})();
+</script>
+</body>
+</html>

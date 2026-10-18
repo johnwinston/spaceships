@@ -61,6 +61,11 @@
     touch-action: none;
     cursor: crosshair;
   }
+  .stage { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+  #art { margin: 0; width: min(94vw, 460px); }
+  #art img { display: block; width: 100%; aspect-ratio: 63.5 / 88.9; border-radius: 4px; }
+  .views { display: flex; gap: 0.5rem; }
+  .views button[aria-pressed=true] { background: var(--ink); color: #000000; border-color: var(--ink); }
   .panel {
     background: var(--panel);
     border: 1px solid #2a2a2a;
@@ -153,9 +158,16 @@
     <p id="shipmeta"></p>
   </header>
   <main>
-    <canvas id="board"></canvas>
+    <div class="stage">
+      <figure id="art" hidden><img id="artimg" alt="The plotted card"></figure>
+      <canvas id="board"></canvas>
+      <div class="views" id="views" hidden>
+        <button id="viewart" aria-pressed="true">Artwork</button>
+        <button id="flyit" aria-pressed="false">Fly it</button>
+      </div>
+    </div>
     <div class="side">
-    <div class="panel">
+    <div class="panel" id="runpanel">
       <div class="counters">
         <span>gen <b id="generation">0</b></span>
         <span>pop <b id="population">0</b></span>

@@ -189,6 +189,30 @@
     wireDrawing();
   }
 
+  /* Deck ships open on their plotted card (art/<id>.svg, src/card_art.py);
+   * "Fly it" swaps in the live board and starts it. */
+  function setView(live) {
+    $("art").hidden = live;
+    $("board").hidden = !live;
+    $("runpanel").hidden = !live;
+    $("viewart").setAttribute("aria-pressed", String(!live));
+    $("flyit").setAttribute("aria-pressed", String(live));
+    $("status").hidden = !live;
+    setRunning(live);
+  }
+
+  function showArtwork(ship) {
+    if (!ship.id || !Number(ship.edition)) return; // demo ships have no card
+    var img = $("artimg");
+    img.onload = function () {
+      $("views").hidden = false;
+      $("viewart").onclick = function () { setView(false); };
+      $("flyit").onclick = function () { setView(true); };
+      setView(false);
+    };
+    img.src = "art/" + encodeURIComponent(ship.id) + ".svg";
+  }
+
   function deckSize(catalog) {
     // Deck ships carry an edition number; demo entries (edition 0) don't.
     return Object.keys(catalog).filter(function (k) {
@@ -250,6 +274,7 @@
     wireControls();
     resetWorld();
     setRunning(false); // frozen on generation 0 until the visitor presses Play
+    showArtwork(ship);
     status("Drag on the grid to draw or erase. This ship is yours to fly.");
     // A `c=` in the link (a QR that carries the code) pre-fills the form.
     window.Spaceships.claimUI.init(ship, payload.claim);

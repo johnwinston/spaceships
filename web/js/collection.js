@@ -2,12 +2,6 @@
 (function () {
   "use strict";
   var TIER_ORDER = ["legendary", "rare", "uncommon", "common"];
-  var TIER_BLURB = {
-    legendary: "period 7 — rarest of the search",
-    rare: "period 6",
-    uncommon: "period 5",
-    common: "period 4",
-  };
 
   function drawShip(canvas, rleText) {
     var parsed = window.Spaceships.rle.parse(rleText);
@@ -85,13 +79,8 @@
       ids.sort(function (a, b) {
         return Number(catalog[a].edition) - Number(catalog[b].edition);
       });
-      var claimed = ids.filter(function (id) { return claims[id]; }).length;
       var h2 = document.createElement("h2");
-      h2.textContent = tier + " ";
-      var small = document.createElement("small");
-      small.textContent = "· " + ids.length + " · " + (TIER_BLURB[tier] || "") +
-        (window.Spaceships.claims.available() ? " · " + claimed + " claimed" : "");
-      h2.appendChild(small);
+      h2.textContent = tier;
       main.appendChild(h2);
       var grid = document.createElement("div");
       grid.className = "grid";
@@ -101,16 +90,6 @@
       main.appendChild(grid);
     });
     return deck.length;
-  }
-
-  function tally(deckSize, claims) {
-    var n = Object.keys(claims).length;
-    var el = document.getElementById("tally");
-    if (!window.Spaceships.claims.available()) {
-      el.textContent = deckSize + " ships. Claims open soon.";
-    } else {
-      el.textContent = n + " of " + deckSize + " claimed.";
-    }
   }
 
   async function init() {
@@ -124,16 +103,14 @@
       return;
     }
     var claims = {};
-    var deckSize = render(catalog, claims);
+    render(catalog, claims);
     status.textContent = "";
-    document.getElementById("count").textContent = deckSize;
     try {
       claims = await window.Spaceships.claims.list();
       render(catalog, claims);
     } catch (err) {
       status.textContent = "claims are unavailable right now";
     }
-    tally(deckSize, claims);
   }
 
   document.addEventListener("DOMContentLoaded", init);

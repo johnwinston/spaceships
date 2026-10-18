@@ -21,7 +21,8 @@
     color-scheme: light;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: clip; }
+  img, video, iframe, canvas { max-width: 100%; }
   body {
     margin: 0; color: var(--ink); font: 400 18px/1.6 var(--display);
     background-color: var(--paper);
@@ -29,12 +30,13 @@
       linear-gradient(var(--grid) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 24px 24px;
+    overflow-x: clip; -webkit-tap-highlight-color: transparent;
   }
   a { color: var(--mark); text-underline-offset: 3px; }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
 
   header { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1.5px solid var(--ink); }
-  header .in { max-width: 1060px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  header .in { max-width: 1060px; margin: 0 auto; padding: 10px max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left)); display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
   header h1 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: .02em; }
   header h1 a { color: var(--ink); text-decoration: none; }
   header nav { display: flex; gap: 18px; font-size: 15px; }
@@ -43,7 +45,7 @@
   @media (max-width: 720px) { header nav .ch { display: none; } }
   #progress { position: fixed; left: 0; top: 0; height: 3px; width: 0; background: var(--ink); z-index: 6; }
 
-  main { max-width: 1060px; margin: 0 auto; padding: 0 16px 72px; }
+  main { max-width: 1060px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right)) calc(72px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
   .chapter {
     display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: center;
     padding: 48px 0;
@@ -84,7 +86,7 @@
   .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
   @media (max-width: 780px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .cards a { display: block; background: var(--paper); border: 1.5px solid var(--ink); padding: 6px; transition: transform .2s; }
-  .cards a:hover { transform: rotate(-1.5deg); }
+  @media (hover: hover) { .cards a:hover { transform: rotate(-1.5deg); } }
   .cards img { display: block; width: 100%; aspect-ratio: 1 / 1.41; object-fit: cover; }
   .end { padding-top: 24px; }
 
@@ -95,7 +97,18 @@
     background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink); padding: 5px 12px;
     font: 500 15px var(--display); cursor: pointer;
   }
-  .tryit button:hover, .tryit button.on { background: var(--ink); color: var(--paper); }
+  @media (pointer: coarse) {
+    .tryit .bar { gap: 8px; }
+    .tryit button { min-height: 44px; padding: 8px 14px; font-size: 16px; flex: 1 1 auto; }
+    header nav a, .links a { display: inline-block; padding: 10px 0; }
+  }
+  @media (max-width: 480px) {
+    body { font-size: 17px; }
+    .chapter { padding: 28px 0; }
+    .plate, .tryit { padding: 6px; }
+  }
+  .tryit button.on, .tryit button:active { background: var(--ink); color: var(--paper); }
+  @media (hover: hover) { .tryit button:hover { background: var(--ink); color: var(--paper); } }
 
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .cards a { transition: none; } }
 </style>

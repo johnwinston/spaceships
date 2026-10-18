@@ -152,8 +152,8 @@
     <div class="words">
       <h2>Count the neighbours</h2>
       <p>Each square on the grid is alive or empty. Every generation, it counts its eight neighbours.</p>
-      <p>With 3, an empty square is born. With 2 or 3, a live one stays. Otherwise it's gone.</p>
-      <p class="aside">That's the whole game. People write it as B3/S23.</p>
+      <p>An empty square with exactly 3 live neighbours is born. A live square with 2 or 3 survives. With fewer than 2 it dies of loneliness, and with more than 3 it dies of overcrowding.</p>
+      <p class="aside">In the animation, gold squares are born and red ones die. That's the whole game. People write it as B3/S23.</p>
     </div>
     <div class="plate"><video src="about/rules.mp4" poster="about/rules.jpg" muted loop playsinline preload="none"></video></div>
   </section>
@@ -171,15 +171,15 @@
         <button id="clear">Clear</button>
         <button data-p="rpent">R-pentomino</button>
         <button data-p="glider">Glider</button>
-        <button data-p="lwss">Spaceship</button>
+        <button data-p="lwss">Bigger ship</button>
       </div>
     </div>
   </section>
 
   <section class="chapter">
     <div class="words">
-      <h2>The first natural glider</h2>
-      <p>Five squares that refuse to settle down. At generation 69, Richard Guy spotted a small piece break off and walk away. It was the first glider anyone had seen, and nobody designed it.</p>
+      <h2>The first spaceship</h2>
+      <p>Five squares that refuse to settle down. At generation 69, Richard Guy spotted a small piece break off and walk away. It was a glider, the first spaceship anyone had seen, and nobody designed it.</p>
     </div>
     <div class="plate"><video src="about/rpentomino.mp4" poster="about/rpentomino.jpg" muted loop playsinline preload="none"></video></div>
   </section>
@@ -187,7 +187,7 @@
   <section class="chapter" id="spaceships">
     <div class="words">
       <h2>Patterns that fly</h2>
-      <p>A spaceship comes back to its own shape one step over, and keeps going forever. Conway found these three in 1970. The glider is the smallest of all.</p>
+      <p>A spaceship comes back to its own shape one step over, and keeps going forever. The glider is the smallest one. Conway found these three bigger ones in 1970 too.</p>
     </div>
     <div class="plate"><video src="about/spaceships.mp4" poster="about/spaceships.jpg" muted loop playsinline preload="none"></video></div>
   </section>
@@ -195,7 +195,7 @@
   <section class="chapter">
     <div class="words">
       <h2>Same squares, new rules</h2>
-      <p>Change the counting and everything changes. These are the same five squares under Conway's rule, then under two rules from my collection. One freezes, one grows a snowflake.</p>
+      <p>Change the counting and everything changes. These are the same five squares under Conway's rule, then under two rules from my collection. One settles, and one grows a never-ending snowflake.</p>
     </div>
     <div class="plate"><video src="about/rule-swap.mp4" poster="about/rule-swap.jpg" muted loop playsinline preload="none"></video></div>
   </section>

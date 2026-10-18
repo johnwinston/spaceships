@@ -5,90 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About · Spaceships</title>
 <meta name="description" content="Conway's Game of Life, spaceships, and how new ones are found.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap">
 <style>
-  /* One friendly column of chapters: each a short card of words beside its animation, alternating sides. */
+  /* The page is the card stock: plotter ink on graph paper. Words sit on the left of each chapter, the
+     animation beside them, inverted so the Life grid prints in ink like the cards do. */
   :root {
-    --bg: #0a0a0b; --panel: #141416; --line: #26262a; --ink: #f4f3ef; --soft: #c9c8c3; --dim: #8c8b87; --gold: #f5c842;
+    --paper: #f2f1ee;   /* the cards' paper */
+    --grid: #dcdad3;    /* graph-paper rule */
+    --ink: #161616;     /* plotter pen */
+    --pencil: #5f5c56;  /* secondary text */
+    --mark: #2f5bd3;    /* blue fineliner, links only */
     --display: "Futura", "Jost", "Century Gothic", system-ui, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-    color-scheme: dark;
+    color-scheme: light;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--display); line-height: 1.6; }
-  #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--gold); z-index: 10; }
-  header {
-    position: sticky; top: 0; z-index: 5; background: rgba(10,10,11,.85); backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
+  body {
+    margin: 0; color: var(--ink); font: 400 18px/1.6 var(--display);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
-  header .in { max-width: 1040px; margin: 0 auto; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  header h1 { font-size: 16px; letter-spacing: 3px; margin: 0; text-transform: uppercase; font-weight: 500; }
-  header a { color: inherit; text-decoration: none; }
-  header nav { display: flex; gap: 6px; overflow-x: auto; }
-  header nav a { color: var(--dim); font-size: 13px; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
-  header nav a:hover { color: var(--ink); background: var(--panel); }
-  @media (max-width: 720px) { header nav a.ch { display: none; } }
+  a { color: var(--mark); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
 
-  main { max-width: 1040px; margin: 0 auto; padding: 0 16px 80px; }
-  .row {
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 32px; align-items: center;
-    padding: 56px 0; border-bottom: 1px solid var(--line);
+  header { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1.5px solid var(--ink); }
+  header .in { max-width: 1060px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  header h1 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: .02em; }
+  header h1 a { color: var(--ink); text-decoration: none; }
+  header nav { display: flex; gap: 18px; font-size: 15px; }
+  header nav a { color: var(--pencil); text-decoration: none; }
+  header nav a:hover { color: var(--ink); }
+  @media (max-width: 720px) { header nav .ch { display: none; } }
+  #progress { position: fixed; left: 0; top: 0; height: 3px; width: 0; background: var(--ink); z-index: 6; }
+
+  main { max-width: 1060px; margin: 0 auto; padding: 0 16px 72px; }
+  .chapter {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: center;
+    padding: 48px 0;
   }
-  .row.flip > .words { order: 2; }
-  .row.stack { grid-template-columns: minmax(0, 1fr); }
-  @media (max-width: 760px) { .row, .row.flip { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 40px 0; } .row.flip > .words { order: 0; } }
-  .k { color: var(--gold); font: 12px var(--mono); letter-spacing: 2px; text-transform: uppercase; margin: 0 0 8px; }
-  h2 { font-size: clamp(26px, 3.4vw, 38px); line-height: 1.12; margin: 0 0 12px; font-weight: 500; text-wrap: balance; }
-  .words p { margin: 0 0 12px; color: var(--soft); font-size: 17px; max-width: 46ch; }
-  .words p b { color: var(--ink); font-weight: 500; }
-  .media { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #000; }
-  .media video, .media img, .media iframe { display: block; width: 100%; }
-  .media iframe { aspect-ratio: 16 / 9; height: auto; border: 0; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .chapter.wide { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  @media (max-width: 780px) { .chapter { grid-template-columns: minmax(0, 1fr); gap: 18px; padding: 36px 0; } }
+  h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.1; font-weight: 600; margin: 0 0 12px; letter-spacing: -.01em; text-wrap: balance; }
+  .words { background: var(--paper); }
+  .words p { margin: 0 0 12px; max-width: 42ch; color: #2b2a28; }
+  .words p.aside { color: var(--pencil); font-size: 16px; }
 
-  .intro { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 32px; align-items: center; padding: 48px 0 56px; border-bottom: 1px solid var(--line); }
-  @media (max-width: 760px) { .intro { grid-template-columns: minmax(0, 1fr); padding-top: 28px; } }
-  .intro img { width: 100%; display: block; border-radius: 14px; filter: grayscale(1); }
-  .intro h2 { font-size: clamp(34px, 5vw, 56px); line-height: 1.02; }
-  .credit { color: #5c5b58; font-size: 11px; margin-top: 6px; }
-  .credit a { color: inherit; }
+  /* Life footage: rendered as light cells on black, printed here as ink on paper. */
+  .plate { background: var(--paper); border: 1.5px solid var(--ink); padding: 8px; }
+  .plate video { display: block; width: 100%; filter: invert(1) hue-rotate(180deg); }
+  .plate iframe { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; }
 
-  .stats { display: flex; flex-wrap: wrap; gap: 28px; margin: 4px 0 14px; }
-  .stats b { display: block; font-size: 30px; font-weight: 500; line-height: 1.1; }
-  .stats span { color: var(--dim); font: 11px var(--mono); letter-spacing: 1.5px; text-transform: uppercase; }
-  .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-  .btn {
-    display: inline-block; padding: 8px 16px; border: 1px solid #3a3a3e; border-radius: 999px;
-    color: var(--ink); text-decoration: none; font-size: 14px;
+  .hero { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 40px; align-items: end; padding: 56px 0 40px; border-bottom: 1.5px solid var(--ink); }
+  @media (max-width: 780px) { .hero { grid-template-columns: minmax(0, 1fr); padding-top: 28px; } }
+  .hero figure { margin: 0; background: var(--paper); border: 1.5px solid var(--ink); padding: 8px; }
+  .hero figure img { display: block; width: 100%; filter: grayscale(1) contrast(1.1); }
+  .hero figcaption { font-size: 13px; color: var(--pencil); padding-top: 6px; }
+  .hero figcaption a { color: inherit; }
+  .hero h2 { font-size: clamp(40px, 6.4vw, 76px); line-height: 1; letter-spacing: -.02em; margin-bottom: 18px; }
+  .hero .words p { font-size: 20px; max-width: 34ch; }
+
+  .facts { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 6px 0 14px; padding: 0; list-style: none; }
+  .facts li { font-size: 16px; color: var(--pencil); }
+  .facts b { color: var(--ink); font-size: 26px; font-weight: 600; margin-right: 6px; }
+  .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 16px; }
+  .ink-btn {
+    display: inline-block; background: var(--ink); color: var(--paper); text-decoration: none;
+    padding: 10px 20px; font-weight: 500; font-size: 16px;
   }
-  .btn:hover { border-color: var(--ink); }
-  .btn.solid { background: var(--gold); color: #111; border-color: var(--gold); }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 14px; }
-  .chips span { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; color: var(--soft); }
-  .rule { font-family: var(--mono); color: var(--gold); font-size: 0.9em; }
+  .ink-btn:hover { background: #000; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 4px 0 14px; list-style: none; }
+  .tags li { border: 1.5px solid var(--ink); background: var(--paper); padding: 4px 12px; font-size: 16px; }
 
-  .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-  @media (max-width: 760px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .cards img { width: 100%; aspect-ratio: 1 / 1.41; object-fit: cover; display: block; border-radius: 10px; background: #111; }
+  .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 780px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .cards a { display: block; background: var(--paper); border: 1.5px solid var(--ink); padding: 6px; transition: transform .2s; }
+  .cards a:hover { transform: rotate(-1.5deg); }
+  .cards img { display: block; width: 100%; aspect-ratio: 1 / 1.41; object-fit: cover; }
+  .end { padding-top: 24px; }
 
-  .tryit { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #000; }
+  .tryit { background: var(--paper); border: 1.5px solid var(--ink); padding: 8px; }
   .tryit canvas { display: block; width: 100%; touch-action: none; cursor: crosshair; }
-  .tryit .bar { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px; background: var(--panel); }
+  .tryit .bar { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 8px; }
   .tryit button {
-    background: transparent; color: var(--ink); border: 1px solid #3a3a3e; border-radius: 999px;
-    padding: 6px 14px; font: 14px var(--display); cursor: pointer;
+    background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink); padding: 5px 12px;
+    font: 500 15px var(--display); cursor: pointer;
   }
-  .tryit button:hover { border-color: var(--ink); }
-  .tryit button.on { background: var(--gold); color: #111; border-color: var(--gold); }
-  footer { text-align: center; padding: 48px 0 0; }
+  .tryit button:hover, .tryit button.on { background: var(--ink); color: var(--paper); }
 
-  /* Gentle rise as each chapter scrolls in, where the browser supports scroll-driven animation. */
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .row > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
-      @keyframes rise { from { opacity: .25; transform: translateY(28px); } to { opacity: 1; transform: none; } }
-    }
-  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .cards a { transition: none; } }
 </style>
 </head>
 <body>
@@ -99,51 +108,47 @@
     <a class="ch" href="#rules">Rules</a>
     <a class="ch" href="#spaceships">Spaceships</a>
     <a class="ch" href="#doodah">Doo-dah</a>
-    <a class="ch" href="#search">Search</a>
+    <a class="ch" href="#search">Searching</a>
     <a href="index.html">All ships</a>
   </nav>
 </div></header>
 
 <main>
-  <section class="intro">
-    <div>
+  <section class="hero">
+    <figure>
       <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/John_H_Conway_2005_%28cropped%29.jpg"
            alt="John Horton Conway"
-           onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/John_H_Conway_2005_(cropped).jpg'}else{this.parentNode.hidden=true}">
-      <p class="credit">John Horton Conway, 1937–2020. Photo: Thane Plambeck, via <a href="https://commons.wikimedia.org/wiki/File:John_H_Conway_2005_(cropped).jpg">Wikimedia Commons</a></p>
-    </div>
+           onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/John_H_Conway_2005_(cropped).jpg'}else{this.closest('figure').hidden=true}">
+      <figcaption>John Horton Conway, 1937–2020. Photo by Thane Plambeck, <a href="https://commons.wikimedia.org/wiki/File:John_H_Conway_2005_(cropped).jpg">Wikimedia Commons</a></figcaption>
+    </figure>
     <div class="words">
-      <p class="k">Welcome aboard</p>
       <h2>Every card holds a tiny spaceship</h2>
-      <p>Each one lives in <b>Conway's Game of Life</b>, a "game" with no players that John Conway invented in 1970. You set up a few live cells on a grid, then watch: every generation, each cell lives or dies by counting its neighbours.</p>
-      <p>Scroll on for how it works, where spaceships come from, and how people still find new ones today.</p>
+      <p>Each one lives in Conway's Game of Life, a game with no players that John Conway invented in 1970. Scroll down to see how it works and where the ships come from.</p>
     </div>
   </section>
 
-  <section class="row flip">
+  <section class="chapter">
     <div class="words">
-      <p class="k">Meet Conway</p>
-      <h2>How he invented it</h2>
+      <h2>How Conway invented it</h2>
       <p>Conway tells the story himself. Martin Gardner published the game in Scientific American in October 1970, and people have been finding new things in it ever since.</p>
     </div>
-    <div class="media"><iframe src="https://www.youtube-nocookie.com/embed/R9Plq-D1gEk" title="Inventing Game of Life (John Conway), Numberphile" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+    <div class="plate"><iframe src="https://www.youtube-nocookie.com/embed/R9Plq-D1gEk" title="Inventing Game of Life (John Conway), Numberphile" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
   </section>
 
-  <section class="row" id="rules">
+  <section class="chapter" id="rules">
     <div class="words">
-      <p class="k">The rules</p>
       <h2>Count the neighbours</h2>
-      <p><b>3</b> neighbours: a cell is born. <b>2 or 3</b>: it stays. Anything else: it's gone.</p>
-      <p>Every cell updates at the same moment. That's the whole game, written <span class="rule">B3/S23</span>.</p>
+      <p>Each square on the grid is alive or empty. Every generation, it counts its eight neighbours.</p>
+      <p>With 3, an empty square is born. With 2 or 3, a live one stays. Otherwise it's gone.</p>
+      <p class="aside">That's the whole game. People write it as B3/S23.</p>
     </div>
-    <div class="media"><video src="about/rules.mp4" poster="about/rules.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/rules.mp4" poster="about/rules.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row flip">
+  <section class="chapter">
     <div class="words">
-      <p class="k">Your turn</p>
       <h2>Draw something and press play</h2>
-      <p>Tap cells to draw, or load a pattern. Most shapes fizzle out. A few keep going.</p>
+      <p>Tap squares to draw, or load a pattern. Most shapes fizzle out. A few keep going.</p>
     </div>
     <div class="tryit">
       <canvas id="board" aria-label="Game of Life board. Click or drag to draw cells."></canvas>
@@ -158,122 +163,110 @@
     </div>
   </section>
 
-  <section class="row">
+  <section class="chapter">
     <div class="words">
-      <p class="k">R-pentomino</p>
       <h2>The first natural glider</h2>
-      <p>Five cells that refuse to settle down. At generation <b>69</b>, Richard Guy spotted a little piece break off and walk away: the first glider anyone had seen. Nobody designed it.</p>
+      <p>Five squares that refuse to settle down. At generation 69, Richard Guy spotted a small piece break off and walk away. It was the first glider anyone had seen, and nobody designed it.</p>
     </div>
-    <div class="media"><video src="about/rpentomino.mp4" poster="about/rpentomino.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/rpentomino.mp4" poster="about/rpentomino.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row flip" id="spaceships">
+  <section class="chapter" id="spaceships">
     <div class="words">
-      <p class="k">Spaceships</p>
       <h2>Patterns that fly</h2>
-      <p>A spaceship comes back to its own shape, one step over, and keeps going forever. Conway found these three in 1970. The glider is the smallest of all.</p>
+      <p>A spaceship comes back to its own shape one step over, and keeps going forever. Conway found these three in 1970. The glider is the smallest of all.</p>
     </div>
-    <div class="media"><video src="about/spaceships.mp4" poster="about/spaceships.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/spaceships.mp4" poster="about/spaceships.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row">
+  <section class="chapter">
     <div class="words">
-      <p class="k">Different rules</p>
-      <h2>Same cells, new universe</h2>
-      <p>Change the counting and everything changes. Here the same five cells run under Conway's rule, then two rules from this collection: one freezes, one grows a snowflake.</p>
+      <h2>Same squares, new rules</h2>
+      <p>Change the counting and everything changes. These are the same five squares under Conway's rule, then under two rules from this collection. One freezes, one grows a snowflake.</p>
     </div>
-    <div class="media"><video src="about/rule-swap.mp4" poster="about/rule-swap.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/rule-swap.mp4" poster="about/rule-swap.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row flip">
+  <section class="chapter">
     <div class="words">
-      <p class="k">This collection</p>
       <h2>100 ships, 100 rules</h2>
-      <p>A search invented random rules and looked for spaceships in each one. Every ship on these cards lives in its own universe.</p>
+      <p>A search invented random rules and looked for spaceships in each one. Every ship on these cards lives in a universe of its own.</p>
     </div>
-    <div class="media"><video src="about/collection-rules.mp4" poster="about/collection-rules.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/collection-rules.mp4" poster="about/collection-rules.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row" id="doodah">
+  <section class="chapter" id="doodah">
     <div class="words">
-      <p class="k">2020 · John Winston Garth</p>
       <h2>Doo-dah</h2>
-      <p>A brand-new spaceship in Conway's own rule, found in December 2020. It has its own LifeWiki page, made The New York Times, and is NFT #1 in the Life Patterns collection.</p>
-      <div class="stats">
-        <div><b>2c/7</b><span>speed</span></div>
-        <div><b>21</b><span>period</span></div>
-        <div><b>#1</b><span>Life Patterns</span></div>
-      </div>
-      <div class="btns">
-        <a class="btn" href="https://conwaylife.com/wiki/Doo-dah">LifeWiki</a>
-        <a class="btn" href="https://www.nytimes.com/2020/12/28/science/math-conway-game-of-life.html">New York Times</a>
-        <a class="btn" href="https://catagolue.hatsya.com/nfts/1">Life Patterns #1</a>
-        <a class="btn" href="https://opensea.io/collection/life-pattern">Life Pattern collection</a>
+      <p>A new spaceship in Conway's own rule, found by John Winston Garth in December 2020. It has its own LifeWiki page, made The New York Times, and is the first NFT in the Life Patterns collection.</p>
+      <ul class="facts">
+        <li><b>2c/7</b>speed</li>
+        <li><b>21</b>generations to repeat</li>
+      </ul>
+      <div class="links">
+        <a href="https://conwaylife.com/wiki/Doo-dah">LifeWiki page</a>
+        <a href="https://www.nytimes.com/2020/12/28/science/math-conway-game-of-life.html">New York Times</a>
+        <a href="https://catagolue.hatsya.com/nfts/1">Life Patterns NFT #1</a>
+        <a href="https://opensea.io/collection/life-pattern">Life Pattern collection</a>
       </div>
     </div>
-    <div class="media"><video src="about/doo-dah.mp4" poster="about/doo-dah.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/doo-dah.mp4" poster="about/doo-dah.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row flip" id="search">
+  <section class="chapter" id="search">
     <div class="words">
-      <p class="k">No formula</p>
       <h2>Every ship is searched for</h2>
-      <p>No equation spits out spaceships. The only way to know what a pattern does is to run it, and there are far too many to try. So searches build a ship one row at a time and throw away rows that can't work.</p>
+      <p>No formula produces spaceships. The only way to know what a pattern does is to run it, and there are far too many to try. So searches build a ship one row at a time and throw away rows that can't work.</p>
     </div>
-    <div class="media"><video src="about/search-grows.mp4" poster="about/search-grows.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/search-grows.mp4" poster="about/search-grows.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row">
+  <section class="chapter">
     <div class="words">
-      <p class="k">ikpx2 · Sir Robin</p>
       <h2>Half a ship</h2>
-      <p>A <b>partial</b> is a ship whose front works but whose back isn't finished, so it falls apart. Here's Sir Robin, the first knight-move ship, cut short next to the whole thing. <b>ikpx2</b> grows partials until one closes up.</p>
-      <div class="btns">
-        <a class="btn" href="https://gitlab.com/apgoucher/ikpx2">ikpx2</a>
-        <a class="btn" href="https://conwaylife.com/wiki/Sir_Robin">Sir Robin</a>
+      <p>A partial is a ship whose front works but whose back isn't finished yet, so it falls apart. Here is Sir Robin, the first ship that moves like a chess knight, cut short beside the whole thing.</p>
+      <p>The program ikpx2 grows partials until one closes up. You can hand it the head of a partial and it keeps searching from there.</p>
+      <div class="links">
+        <a href="https://gitlab.com/apgoucher/ikpx2">ikpx2</a>
+        <a href="https://conwaylife.com/wiki/Sir_Robin">Sir Robin</a>
       </div>
     </div>
-    <div class="media"><video src="about/sir-robin-partials.mp4" poster="about/sir-robin-partials.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/sir-robin-partials.mp4" poster="about/sir-robin-partials.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row flip">
+  <section class="chapter">
     <div class="words">
-      <p class="k">Catagolue</p>
       <h2>Join the search</h2>
-      <p>Volunteers run random "soups" like this one on their own computers and report everything that turns up. Hundreds of trillions so far, and you can help.</p>
-      <div class="btns">
-        <a class="btn solid" href="https://conwaylife.com/wiki/Tutorials/Contributing_to_Catagolue">How to contribute</a>
-        <a class="btn" href="https://catagolue.hatsya.com/home">Catagolue</a>
+      <p>Catagolue collects everything that turns up when Life starts from random noise like this. Volunteers run it on their own computers, hundreds of trillions of times so far. You can too.</p>
+      <div class="links">
+        <a href="https://conwaylife.com/wiki/Tutorials/Contributing_to_Catagolue">How to contribute</a>
+        <a href="https://catagolue.hatsya.com/home">Catagolue</a>
       </div>
     </div>
-    <div class="media"><video src="about/soup.mp4" poster="about/soup.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="plate"><video src="about/soup.mp4" poster="about/soup.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="row stack">
+  <section class="chapter wide">
     <div class="words">
-      <p class="k">LifeWiki</p>
       <h2>What makes a pattern famous</h2>
-      <p>Most patterns never get their own LifeWiki page. A pattern earns one by being one of these:</p>
-      <div class="chips">
-        <span>Historic</span><span>Famous</span><span>Answered an open question</span>
-        <span>Set a record</span><span>A first</span><span>In the news</span>
-      </div>
-      <div class="btns"><a class="btn" href="https://conwaylife.com/wiki/LifeWiki:Notability">Notability guideline</a></div>
+      <p>Most patterns never get their own LifeWiki page. One earns a page by being at least one of these:</p>
+      <ul class="tags">
+        <li>Historic</li><li>Very well known</li><li>Answered an open question</li>
+        <li>Set a record</li><li>Did something first</li><li>Made the news</li>
+      </ul>
+      <div class="links"><a href="https://conwaylife.com/wiki/LifeWiki:Notability">LifeWiki's notability guideline</a></div>
     </div>
   </section>
 
-  <section class="row stack">
-    <div class="words">
-      <p class="k">The collection</p>
-      <h2>Now meet the ships</h2>
-    </div>
+  <section class="chapter wide">
+    <div class="words"><h2>Now meet the ships</h2></div>
     <div class="cards">
       <a href="ship.html#v=1&amp;a=p7-05"><img src="img/t/p7-05.jpg" alt="Card for ship p7-05" loading="lazy"></a>
       <a href="ship.html#v=1&amp;a=p6-01"><img src="img/t/p6-01.jpg" alt="Card for ship p6-01" loading="lazy"></a>
       <a href="ship.html#v=1&amp;a=p5-12"><img src="img/t/p5-12.jpg" alt="Card for ship p5-12" loading="lazy"></a>
       <a href="ship.html#v=1&amp;a=p4-01"><img src="img/t/p4-01.jpg" alt="Card for ship p4-01" loading="lazy"></a>
     </div>
-    <footer><a class="btn solid" href="index.html">See all 100 ships</a></footer>
+    <div class="end"><a class="ink-btn" href="index.html">See all 100 ships</a></div>
   </section>
 </main>
 
@@ -329,9 +322,9 @@
   }
   function draw() {
     var gap = Math.max(1, Math.round(px / 8));
-    ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#f2f1ee"; ctx.fillRect(0, 0, canvas.width, canvas.height);
     for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
-      ctx.fillStyle = world.get(x, y) ? "#fff" : "#181818";
+      ctx.fillStyle = world.get(x, y) ? "#161616" : "#e2e0d9";
       var x0 = Math.round(x * px), y0 = Math.round(y * px);
       ctx.fillRect(x0 + gap, y0 + gap, Math.round((x + 1) * px) - x0 - gap, Math.round((y + 1) * px) - y0 - gap);
     }

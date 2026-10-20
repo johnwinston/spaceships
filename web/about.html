@@ -100,8 +100,10 @@
   @media (max-width: 860px) { .people { grid-template-columns: minmax(0, 1fr); } }
   .person { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 1rem; align-items: start;
     background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.9rem; }
-  .person:not(:has(img)) { grid-template-columns: minmax(0, 1fr); }
-  .person img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; filter: grayscale(1); display: block; }
+  .person figure { margin: 0; }
+  .person img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; filter: grayscale(1); display: block; }
+  .person figcaption { font-size: 0.62rem; line-height: 1.3; margin-top: 0.35rem; }
+  .person figcaption a { color: var(--dim); text-decoration: none; }
   .person h3 { margin: 0 0 0.4rem; font-size: 1.15rem; font-weight: 500; letter-spacing: 0.02em; }
   .person h3 small { display: block; color: var(--dim); font: 0.75rem var(--mono); letter-spacing: 0.08em; margin-top: 0.15rem; }
   .person p { margin: 0; color: #d4d4d4; font-size: 0.95rem; }
@@ -140,6 +142,11 @@
   .ship dt { color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.64rem; padding-top: 0.12rem; }
   .ship dd { margin: 0; min-width: 0; }
   .ship dd.speed { font-family: var(--mono); }
+  .nfts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+  .nfts a { display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 0.35rem; text-decoration: none; color: var(--dim); }
+  .nfts a:hover { border-color: var(--ink); color: var(--ink); }
+  .nfts img { display: block; width: 100%; height: auto; border-radius: 3px; image-rendering: pixelated; }
+  .nfts span { display: block; font: 0.7rem var(--mono); letter-spacing: 0.06em; padding: 0.35rem 0.15rem 0.1rem; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
 </head>
@@ -162,14 +169,14 @@
     <h2>Where Life came from</h2>
     <div class="people">
       <article class="person">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/JohnvonNeumann-LosAlamos.gif?width=480" alt="John von Neumann" loading="eager" onerror="this.remove()">
+        <figure><img src="img/about/von-neumann.jpg" alt="John von Neumann" width="480" height="600"><figcaption><a href="https://commons.wikimedia.org/wiki/File:JohnvonNeumann-LosAlamos.gif">Photo: Los Alamos National Laboratory</a></figcaption></figure>
         <div>
           <h3>John von Neumann <small>1903–1957</small></h3>
           <p>In the 1940s he asked whether a machine could build a copy of itself. With Stanislaw Ulam he pictured a grid of cells, each one changing by looking only at its neighbours, and designed a pattern on it that could copy itself. It worked on paper, but every cell needed 29 different states.</p>
         </div>
       </article>
       <article class="person">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/John_H_Conway_2005_%28cropped%29.jpg" alt="John Horton Conway" loading="eager" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/John_H_Conway_2005_(cropped).jpg'}else{this.remove()}">
+        <figure><img src="img/about/conway.jpg" alt="John Conway" width="480" height="600"><figcaption><a href="https://commons.wikimedia.org/wiki/File:John_H_Conway_2005.jpg">Photo: Thane Plambeck, CC BY 2.0</a></figcaption></figure>
         <div>
           <h3>John Conway <small>1937–2020</small></h3>
           <p>In 1970 he asked how simple a world like that could be and still surprise you. He cut it down to two states, alive or empty, and a few rules about neighbours. He called it Life, and it turned out to hold gliders, spaceships and even machines that copy themselves.</p>
@@ -286,7 +293,7 @@
         <li>Historic</li><li>Very well known</li><li>Answered an open question</li>
         <li>Set a record</li><li>Did something first</li><li>Made the news</li>
       </ul>
-      <p>Doo-dah, the 2c/7 ship I found in December 2020, is number 1. It has its own LifeWiki page and made The New York Times.</p>
+      <p>Doo-dah, the 2c/7 ship I found in December 2020, is number 1. Sir Robin and Anura from the lineup above are numbers 2 and 3.</p>
       <div class="links">
         <a href="https://catagolue.hatsya.com/nfts/">Life Pattern collection</a>
         <a href="https://catagolue.hatsya.com/nfts/1">Doo-dah in the collection</a>
@@ -295,7 +302,7 @@
         <a href="https://conwaylife.com/wiki/LifeWiki:Notability">Notability guideline</a>
       </div>
     </div>
-    <div class="plate"><video src="about/doo-dah.mp4" poster="about/doo-dah.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="nfts"><a href="https://catagolue.hatsya.com/nfts/1"><img src="img/nfts/nft-01-doo-dah.gif" alt="Doo-dah, Life Pattern NFT number 1" width="350" height="350" loading="lazy"><span>#1 Doo-dah</span></a><a href="https://catagolue.hatsya.com/nfts/2"><img src="img/nfts/nft-02-sir-robin.gif" alt="Sir Robin, Life Pattern NFT number 2" width="350" height="350" loading="lazy"><span>#2 Sir Robin</span></a><a href="https://catagolue.hatsya.com/nfts/3"><img src="img/nfts/nft-03-anura.gif" alt="Anura, Life Pattern NFT number 3" width="350" height="350" loading="lazy"><span>#3 Anura</span></a><a href="https://catagolue.hatsya.com/nfts/4"><img src="img/nfts/nft-04-soba.gif" alt="Soba, Life Pattern NFT number 4" width="350" height="350" loading="lazy"><span>#4 Soba</span></a><a href="https://catagolue.hatsya.com/nfts/5"><img src="img/nfts/nft-05-sprayer.gif" alt="Sprayer, Life Pattern NFT number 5" width="350" height="350" loading="lazy"><span>#5 Sprayer</span></a><a href="https://catagolue.hatsya.com/nfts/9"><img src="img/nfts/nft-09-dolphin.gif" alt="Dolphin, Life Pattern NFT number 9" width="350" height="350" loading="lazy"><span>#9 Dolphin</span></a></div>
   </section>
 
   <section class="chapter wide">

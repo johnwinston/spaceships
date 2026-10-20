@@ -57,14 +57,6 @@
   .words p { margin: 0 0 0.75rem; max-width: 44ch; color: #d4d4d4; }
   .words p.aside { color: var(--dim); font-size: 0.85rem; }
 
-  .hero { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; align-items: center; padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
-  .hero h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.05; letter-spacing: 0.01em; }
-  .hero .words p { font-size: 1.1rem; }
-  .hero figure { margin: 0; order: 2; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem; }
-  .hero figure img { display: block; width: 100%; border-radius: 4px; }
-  .hero figcaption { color: var(--dim); font-size: 0.72rem; padding: 0.5rem 0.2rem 0.1rem; line-height: 1.4; }
-  .hero figcaption a { color: var(--dim); }
-  @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); padding-top: 1.5rem; } }
 
   .plate { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem; overflow: hidden; }
   .plate video { display: block; width: 100%; border-radius: 4px; background: #000; }
@@ -101,6 +93,53 @@
     header nav a, .links a { display: inline-block; padding: 10px 0; }
   }
   @media (max-width: 480px) { .plate, .tryit { padding: 0.35rem; } }
+
+  .history { padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
+  .history h2 { font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.05; letter-spacing: 0.01em; margin-bottom: 1.25rem; }
+  .people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  @media (max-width: 860px) { .people { grid-template-columns: minmax(0, 1fr); } }
+  .person { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 1rem; align-items: start;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.9rem; }
+  .person:not(:has(img)) { grid-template-columns: minmax(0, 1fr); }
+  .person img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; filter: grayscale(1); display: block; }
+  .person h3 { margin: 0 0 0.4rem; font-size: 1.15rem; font-weight: 500; letter-spacing: 0.02em; }
+  .person h3 small { display: block; color: var(--dim); font: 0.75rem var(--mono); letter-spacing: 0.08em; margin-top: 0.15rem; }
+  .person p { margin: 0; color: #d4d4d4; font-size: 0.95rem; }
+  @media (max-width: 480px) { .person { grid-template-columns: 96px minmax(0, 1fr); } }
+
+  .rulecards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+  @media (max-width: 860px) { .rulecards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .rulecards { grid-template-columns: minmax(0, 1fr); } .rc .pair { max-width: 340px; } .rc .why { min-height: 0; } }
+  .rc { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.8rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .rc h3 { margin: 0; font-size: 1.1rem; font-weight: 500; letter-spacing: 0.04em; }
+  .rc .why { margin: 0; color: var(--dim); font-size: 0.82rem; line-height: 1.4; min-height: 2.3em; }
+  .rc .pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0.4rem; align-items: center; }
+  .rc .arrow { color: var(--dim); font-size: 1.1rem; }
+  .rc figure { margin: 0; }
+  .rc figcaption { color: var(--dim); font: 0.66rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; margin-top: 0.35rem; }
+  .rc figure { min-width: 0; }
+  .mini { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; background: #000; padding: 2px; border-radius: 3px; }
+  .mini i { aspect-ratio: 1; background: #181818; border-radius: 1px; position: relative; display: grid; place-items: center;
+    font: 700 clamp(0.6rem, 1.4vw, 0.85rem) var(--mono); font-style: normal; color: var(--ink); }
+  .mini i.nb { background: #2e2e2e; }
+  .mini i.on { background: var(--ink); color: var(--bg); }
+  .mini i.born { background: #f5c842; color: var(--bg); }
+  .mini i.died { background: #962c24; }
+  .mini i.focus { outline: 2px solid #4da3ff; outline-offset: -1px; z-index: 1; }
+  .legend { margin-top: 0.9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem; }
+  .sw { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 2px; vertical-align: -0.1rem; }
+  .sw.born { background: #f5c842; } .sw.died { background: #962c24; margin-left: 0.6rem; }
+  .sw.focus { outline: 2px solid #4da3ff; outline-offset: -2px; margin-left: 0.6rem; }
+
+  .lineup { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+  @media (max-width: 560px) { .lineup { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; } .ship dl { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; } .ship dd { margin-bottom: 0.3rem; } }
+  .ship { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .ship canvas { display: block; width: 100%; aspect-ratio: 1 / 1.41; border-radius: 4px; background: #000; }
+  .ship h3 { margin: 0 0.3rem; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; }
+  .ship dl { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.8rem; margin: 0 0.3rem 0.3rem; font-size: 0.78rem; }
+  .ship dt { color: var(--dim); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.64rem; padding-top: 0.12rem; }
+  .ship dd { margin: 0; min-width: 0; }
+  .ship dd.speed { font-family: var(--mono); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
 </head>
@@ -109,44 +148,51 @@
 <header><div class="in">
   <h1><a href="index.html">Spaceships</a></h1>
   <nav>
+    <a class="ch" href="#history">History</a>
     <a class="ch" href="#rules">Rules</a>
-    <a class="ch" href="#spaceships">Spaceships</a>
-    <a class="ch" href="#doodah">Doo-dah</a>
+    <a class="ch" href="#ships">Spaceships</a>
     <a class="ch" href="#search">Searching</a>
+    <a class="ch" href="#collection">Collection</a>
     <a href="index.html">All ships</a>
   </nav>
 </div></header>
 
 <main>
-  <section class="hero">
-    <figure>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/John_H_Conway_2005_%28cropped%29.jpg"
-           alt="John Horton Conway"
-           onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/John_H_Conway_2005_(cropped).jpg'}else{this.closest('figure').hidden=true}">
-      <figcaption>John Horton Conway, 1937–2020. Photo by Thane Plambeck, <a href="https://commons.wikimedia.org/wiki/File:John_H_Conway_2005_(cropped).jpg">Wikimedia Commons</a></figcaption>
-    </figure>
-    <div class="words">
-      <h2>Every card holds a tiny spaceship</h2>
-      <p>Each one lives in its own rule, a cousin of Conway's Game of Life, the game with no players that John Conway found in 1970. Scroll down to see how Life works and where the ships come from.</p>
+  <section class="history" id="history">
+    <h2>Where Life came from</h2>
+    <div class="people">
+      <article class="person">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/JohnvonNeumann-LosAlamos.gif?width=480" alt="John von Neumann" loading="eager" onerror="this.remove()">
+        <div>
+          <h3>John von Neumann <small>1903–1957</small></h3>
+          <p>In the 1940s he asked whether a machine could build a copy of itself. With Stanislaw Ulam he pictured a grid of cells, each one changing by looking only at its neighbours, and designed a pattern on it that could copy itself. It worked on paper, but every cell needed 29 different states.</p>
+        </div>
+      </article>
+      <article class="person">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/John_H_Conway_2005_%28cropped%29.jpg" alt="John Horton Conway" loading="eager" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/John_H_Conway_2005_(cropped).jpg'}else{this.remove()}">
+        <div>
+          <h3>John Conway <small>1937–2020</small></h3>
+          <p>In 1970 he asked how simple a world like that could be and still surprise you. He cut it down to two states, alive or empty, and a few rules about neighbours. He called it Life, and it turned out to hold gliders, spaceships and even machines that copy themselves.</p>
+        </div>
+      </article>
     </div>
   </section>
 
   <section class="chapter">
     <div class="words">
       <h2>How Conway found it</h2>
-      <p>Conway tells the story himself. Martin Gardner published the game in Scientific American in October 1970, and people have been finding new things in it ever since.</p>
+      <p>Conway tells the story himself. Martin Gardner published Life in Scientific American in October 1970, and people have been finding new things in it ever since.</p>
     </div>
     <div class="plate"><iframe src="https://www.youtube-nocookie.com/embed/R9Plq-D1gEk" title="John Conway on finding the Game of Life, Numberphile" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
   </section>
 
-  <section class="chapter" id="rules">
+  <section class="chapter wide" id="rules">
     <div class="words">
       <h2>Count the neighbours</h2>
-      <p>Each square on the grid is alive or empty. Every generation, it counts its eight neighbours.</p>
-      <p>An empty square with exactly 3 live neighbours is born. A live square with 2 or 3 survives. With fewer than 2 it dies of loneliness, and with more than 3 it dies of overcrowding.</p>
-      <p class="aside">In the animation, gold squares are born and red ones die. That's the whole game. People write it as B3/S23.</p>
+      <p>Every square is alive or empty. Each generation, every square counts how many of its eight neighbours are alive, and that number decides what happens next.</p>
     </div>
-    <div class="plate"><video src="about/rules.mp4" poster="about/rules.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="rulecards" id="rulecards"></div>
+    <p class="aside legend"><span class="sw born"></span>born <span class="sw died"></span>dies <span class="sw focus"></span>the square being counted. People write the whole rule as B3/S23.</p>
   </section>
 
   <section class="chapter">
@@ -175,12 +221,12 @@
     <div class="plate"><video src="about/rpentomino.mp4" poster="about/rpentomino.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="chapter" id="spaceships">
+  <section class="chapter wide" id="ships">
     <div class="words">
-      <h2>Patterns that fly</h2>
-      <p>A spaceship comes back to its own shape one step over, and keeps going forever. The glider is the smallest one. Conway found these three bigger ones in 1970 too.</p>
+      <h2>Every spaceship is different</h2>
+      <p>A spaceship comes back to its own shape a few steps over and keeps going forever. Like pieces in a generative art collection, each one has its own traits: how fast it moves, how often it repeats, how big it is. Each card follows its ship, so the grid slides past at the ship's real speed. Watch which one moves fastest.</p>
     </div>
-    <div class="plate"><video src="about/spaceships.mp4" poster="about/spaceships.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="lineup" id="lineup"></div>
   </section>
 
   <section class="chapter">
@@ -197,24 +243,6 @@
       <p>I wrote a search that makes up random rules and looks for spaceships in each one. Every ship on these cards lives in a universe of its own.</p>
     </div>
     <div class="plate"><video src="about/collection-rules.mp4" poster="about/collection-rules.jpg" muted loop playsinline preload="none"></video></div>
-  </section>
-
-  <section class="chapter" id="doodah">
-    <div class="words">
-      <h2>Doo-dah</h2>
-      <p>A new spaceship in Conway's own rule that I found in December 2020. It has its own LifeWiki page, made The New York Times, and is in the Life Pattern collection, a separate set of famous Life patterns on Catagolue.</p>
-      <ul class="facts">
-        <li><b>2c/7</b>speed</li>
-        <li><b>21</b>generations to repeat</li>
-      </ul>
-      <div class="links">
-        <a href="https://conwaylife.com/wiki/Doo-dah">LifeWiki page</a>
-        <a href="https://www.nytimes.com/2020/12/28/science/math-conway-game-of-life.html">New York Times</a>
-        <a href="https://catagolue.hatsya.com/nfts/1">Doo-dah in the collection</a>
-        <a href="https://catagolue.hatsya.com/nfts/">Life Pattern collection</a>
-      </div>
-    </div>
-    <div class="plate"><video src="about/doo-dah.mp4" poster="about/doo-dah.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
   <section class="chapter" id="search">
@@ -250,16 +278,24 @@
     <div class="plate"><video src="about/soup.mp4" poster="about/soup.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
-  <section class="chapter wide">
+  <section class="chapter" id="collection">
     <div class="words">
-      <h2>What makes a pattern famous</h2>
-      <p>Most patterns never get their own LifeWiki page. One earns a page by being at least one of these:</p>
+      <h2>The Life Pattern collection</h2>
+      <p>Catagolue keeps a separate NFT collection of famous Life patterns, each one notable enough for its own LifeWiki page. A pattern gets in by being at least one of these:</p>
       <ul class="tags">
         <li>Historic</li><li>Very well known</li><li>Answered an open question</li>
         <li>Set a record</li><li>Did something first</li><li>Made the news</li>
       </ul>
-      <div class="links"><a href="https://conwaylife.com/wiki/LifeWiki:Notability">LifeWiki's notability guideline</a></div>
+      <p>Doo-dah, the 2c/7 ship I found in December 2020, is number 1. It has its own LifeWiki page and made The New York Times.</p>
+      <div class="links">
+        <a href="https://catagolue.hatsya.com/nfts/">Life Pattern collection</a>
+        <a href="https://catagolue.hatsya.com/nfts/1">Doo-dah in the collection</a>
+        <a href="https://conwaylife.com/wiki/Doo-dah">Doo-dah on LifeWiki</a>
+        <a href="https://www.nytimes.com/2020/12/28/science/math-conway-game-of-life.html">New York Times</a>
+        <a href="https://conwaylife.com/wiki/LifeWiki:Notability">Notability guideline</a>
+      </div>
     </div>
+    <div class="plate"><video src="about/doo-dah.mp4" poster="about/doo-dah.jpg" muted loop playsinline preload="none"></video></div>
   </section>
 
   <section class="chapter wide">
@@ -371,6 +407,95 @@
   window.addEventListener("resize", size);
   load("rpent");
   size();
+
+  // Rule cards: each case is a real step, computed here so every square's fate is right.
+  var CASES = [
+    { name: "Birth", why: "An empty square with exactly 3 live neighbours comes alive.", cells: [[1,1],[2,1],[1,2]] },
+    { name: "Survival", why: "A live square with 2 or 3 live neighbours stays alive.", cells: [[1,1],[2,1],[1,2],[2,2]] },
+    { name: "Lonely", why: "A live square with fewer than 2 live neighbours dies.", cells: [[1,2],[2,2]] },
+    { name: "Crowded", why: "A live square with more than 3 live neighbours dies.", cells: [[2,1],[1,2],[2,2],[3,2],[2,3]] },
+  ];
+  function alive(set, x, y) { return set.has(x + "," + y); }
+  function count(set, x, y) {
+    var n = 0;
+    for (var dy = -1; dy <= 1; dy++) for (var dx = -1; dx <= 1; dx++) if ((dx || dy) && alive(set, x + dx, y + dy)) n++;
+    return n;
+  }
+  function mini(cls, label) {
+    var f = document.createElement("figure"), g = document.createElement("div");
+    g.className = "mini";
+    cls.forEach(function (c) { var i = document.createElement("i"); i.className = c[0]; i.textContent = c[1] || ""; g.appendChild(i); });
+    f.appendChild(g);
+    var cap = document.createElement("figcaption"); cap.textContent = label; f.appendChild(cap);
+    return f;
+  }
+  var rc = document.getElementById("rulecards");
+  CASES.forEach(function (k) {
+    var a = new Set(k.cells.map(function (c) { return c[0] + "," + c[1]; }));
+    var g1 = [], g2 = [];
+    for (var y = 0; y < 5; y++) for (var x = 0; x < 5; x++) {
+      var on = alive(a, x, y), n = count(a, x, y), next = on ? (n === 2 || n === 3) : n === 3;
+      var focus = x === 2 && y === 2, near = Math.abs(x - 2) <= 1 && Math.abs(y - 2) <= 1 && !focus;
+      g1.push([(on ? "on" : near ? "nb" : "") + (focus ? " focus" : ""), focus ? String(n) : ""]);
+      g2.push([(on && next ? "on" : !on && next ? "born" : on ? "died" : "") + (focus ? " focus" : "")]);
+    }
+    var card = document.createElement("article"); card.className = "rc";
+    card.innerHTML = "<h3></h3><p class=why></p><div class=pair></div>";
+    card.querySelector("h3").textContent = k.name;
+    card.querySelector(".why").textContent = k.why;
+    var pair = card.querySelector(".pair");
+    pair.appendChild(mini(g1, "Gen 1"));
+    var ar = document.createElement("span"); ar.className = "arrow"; ar.textContent = "→"; ar.setAttribute("aria-hidden", "true"); pair.appendChild(ar);
+    pair.appendChild(mini(g2, "Gen 2"));
+    rc.appendChild(card);
+  });
+
+  // Ship lineup: every ship on the same scale, stepping at the same pace.
+  var SHIPS = [{"name": "Glider", "rle": "x=3,y=3\nbo$2bo$3o!", "t": "flip", "speed": "c/4, diagonal", "period": 4, "cells": 5, "size": "3 × 3", "found": "Richard Guy, 1970", "v": [-0.25, -0.25]}, {"name": "Lightweight spaceship", "rle": "x=5,y=4\nbo2bo$o4b$o3bo$4o!", "t": "transpose", "speed": "c/2, straight", "period": 4, "cells": 9, "size": "5 × 4", "found": "John Conway, 1970", "v": [0, -0.5]}, {"name": "Doo-dah", "rle": "x = 16, y = 28, rule = B3/S23\nbo12bo$bo12bo$obo10bobo$bo12bo$bo12bo$2bo3b4o3bo$6b4o$2b4o4b4o2$4bo6bo$5b2o2b2o6$3b2o6b2o$2bob2o4b2obo$2bo2bo4bo2bo$3b3o4b3o$3b2o6b2o2$o14bo$o14bo$bo12bo$b2o10b2o$o14bo$b2o10b2o!", "t": "none", "speed": "2c/7, straight", "period": 21, "cells": 74, "size": "16 × 28", "found": "Me, December 2020", "v": [0, -0.2857142857142857]}, {"name": "Anura", "rle": "x = 31, y = 54, rule = B3/S23\n9bo11bo$8b3o9b3o$10bo9bo$6bob2o11b2obo$6bo4b3o3b3o4bo$5bob3ob3o3b3ob3o\nbo2$4b3ob4obo3bob4ob3o$4b2o7bo3bo7b2o$4b3o2bob2o5b2obo2b3o2$9bo2bo5bo2\nbo$9bo11bo$7b2o2bobo3bobo2b2o$7bo3b3o3b3o3bo$5b2o4bo2bobo2bo4b2o$3bob2\nobob2o2bobo2b2obob2obo$2b2obo3bo3bo3bo3bo3bob2o$bobo3b2o13b2o3bobo$b2o\n8bo7bo8b2o$2bo7b3o5b3o7bo$10b2obo3bob2o$2o2b2o5b3o3b3o5b2o2b2o$obo3bo5\nb2o3b2o5bo3bobo$4bob2o15b2obo$8bo13bo$bo5b3o11b3o5bo$7b2o13b2o$3bo23bo\n$5b2o17b2o$5b6o9b6o$6bobo13bobo$2b3o4b2o4bo4b2o4b3o$2b2o4b3o3b3o3b3o4b\n2o$3b2obo6bo3bo6bob2o$12bobobobo$11bob2ob2obo$11bob5obo$9b2o9b2o$8b2o1\n1b2o$8bo13bo2$6bobo13bobo$9bo11bo$5bo3bo11bo3bo$5bo4bo9bo4bo$5bo4bo9bo\n4bo$6bo17bo$8b3o9b3o$8bo13bo2$8bo13bo$6bo17bo$8bo13bo!", "t": "none", "speed": "3c/7, straight", "period": 7, "cells": 313, "size": "31 × 54", "found": "Dylan Chen, December 2020", "v": [0, -0.42857142857142855]}, {"name": "Sir Robin", "rle": "x = 31, y = 78, rule = B3/S23\n3b3o$3bo2bo$3bob2ob2o$2b2o7b2o$bo5bo4bo$bo5bob2o3bo$o5bo3bobobo$o4b2o\n3bobobo$bo3bo3bo$bobobobo2bobo$8bobob2o$6b2o5bo2b2o$13b5o$10bo2bo4bo$\n10bobob2o$9b2ob2o3b2o$12bo2b2o$12b2obobo$13bo2b2obo$10b2obo5bo$11b4ob\n3o$15bo2bobo$18bobo$19b2o$11b3o5bo2bo$22bo$16b2o4bo$11bo4bo3bo$11b3o2b\nobo$14bo2b3o$11bo2bo2bo2bo$19b2o2bo$12b3o3bob3obo$12b2o6bobobo$17bo$17b\no3bo$23bob2o$20b4o$19bo3bo3bo$20b3ob4o$22bob4o$18b5ob5o$18bo2bo5bo$18b\nob2o5b2o$18bo3bo4bob2o$22bo3bo$19b3o2$20b3o$19bo3bo$20bob2o$22b3o$17b\n3o4b2o$17b2o2bob2o$19b2o3bo$21bo$18b8o$17bo5bo2bo$21bo2bobo$18bob2o2b\n3o$24b3o$28b2o$22b2o4bo$23bo2bobo$20b2o3b2ob2o$21b2o3bobo$21b3o2bobo$\n22bob2o2bo$22bobobo$26bo3bo$23b2o3bo$23b4o$26b3o$26b3o$27b2o$24b3o$24b\no$25b2o!", "t": "none", "speed": "(2,1)c/6, like a chess knight", "period": 6, "cells": 282, "size": "31 × 78", "found": "Adam Goucher and Tom Rokicki, 2018", "v": [-0.16666666666666666, -0.3333333333333333]}];
+  // Each card follows its ship, so the tile grid slides past at the ship's real speed.
+  var LW = 64, LH = 90, WW = 160, WH = 220, lineup = document.getElementById("lineup"), runs = [];
+  SHIPS.forEach(function (sp) {
+    var cells = R.parse(sp.rle).cells.map(function (c) {
+      return sp.t === "flip" ? [-c[0], -c[1]] : sp.t === "transpose" ? [c[1], c[0]] : c;
+    });
+    var mx = Math.min.apply(null, cells.map(function (c) { return c[0]; })), my = Math.min.apply(null, cells.map(function (c) { return c[1]; }));
+    cells = cells.map(function (c) { return [c[0] - mx, c[1] - my]; });
+    var w = Math.max.apply(null, cells.map(function (c) { return c[0]; })) + 1, h = Math.max.apply(null, cells.map(function (c) { return c[1]; })) + 1;
+    var wd = new E.World(WW, WH, E.totalisticTable("b3s23"));
+    var px0 = Math.round((WW - w) / 2), py0 = Math.round((WH - h) / 2);
+    wd.placeCells(cells, px0, py0);
+    var card = document.createElement("article"); card.className = "ship";
+    card.innerHTML = "<canvas></canvas><h3></h3><dl>" +
+      ["Speed", "Repeats every", "Cells", "Size", "Found by"].map(function (t) { return "<dt>" + t + "</dt><dd></dd>"; }).join("") + "</dl>";
+    card.querySelector("h3").textContent = sp.name;
+    var dd = card.querySelectorAll("dd");
+    dd[0].textContent = sp.speed; dd[0].className = "speed";
+    dd[1].textContent = sp.period + " generations"; dd[2].textContent = sp.cells; dd[3].textContent = sp.size; dd[4].textContent = sp.found;
+    var cv = card.querySelector("canvas"); cv.setAttribute("aria-label", sp.name + " flying");
+    lineup.appendChild(card);
+    runs.push({ world: wd, canvas: cv, ctx: cv.getContext("2d"), seen: false, gen: 0, v: sp.v,
+      x0: px0 + w / 2 - LW / 2, y0: py0 + h / 2 - LH / 2 });
+  });
+  function mod(a, n) { return ((a % n) + n) % n; }
+  function paint(r) {
+    var dpr = window.devicePixelRatio || 1, cw = Math.round(r.canvas.clientWidth * dpr), ch = Math.round(cw * LH / LW);
+    if (r.canvas.width !== cw) { r.canvas.width = cw; r.canvas.height = ch; }
+    var p = cw / LW, gap = 1, c = r.ctx;
+    var vx = r.x0 + r.v[0] * r.gen, vy = r.y0 + r.v[1] * r.gen, ix = Math.floor(vx), iy = Math.floor(vy), fx = vx - ix, fy = vy - iy;
+    c.fillStyle = "#000"; c.fillRect(0, 0, cw, ch);
+    for (var y = 0; y <= LH; y++) for (var x = 0; x <= LW; x++) {
+      c.fillStyle = r.world.get(mod(ix + x, WW), mod(iy + y, WH)) ? "#ffffff" : "#141414";
+      var x0 = Math.round((x - fx) * p), y0 = Math.round((y - fy) * p);
+      c.fillRect(x0 + gap, y0 + gap, Math.round((x + 1 - fx) * p) - x0 - gap, Math.round((y + 1 - fy) * p) - y0 - gap);
+    }
+  }
+  runs.forEach(paint);
+  if (!still && "IntersectionObserver" in window) {
+    var lo = new IntersectionObserver(function (es) { es.forEach(function (e) { runs.forEach(function (r) { if (r.canvas === e.target) r.seen = e.isIntersecting; }); }); });
+    runs.forEach(function (r) { lo.observe(r.canvas); });
+    setInterval(function () { runs.forEach(function (r) { if (r.seen) { r.world.step(); r.gen++; paint(r); } }); }, 110);
+  }
+  addEventListener("resize", function () { runs.forEach(paint); });
 })();
 </script>
 </body>

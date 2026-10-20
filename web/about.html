@@ -137,13 +137,15 @@
   .sw.focus { outline: 2px solid #4da3ff; outline-offset: -2px; }
 
   .lineup { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
-  @media (max-width: 560px) { .lineup { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; } .ship dl { grid-template-columns: 3.4rem minmax(0, 1fr); font-size: 0.78rem; gap: 0.3rem 0.4rem; } .ship dt { font-size: 0.74rem; } .ship h3 { font-size: 0.95rem; } }
-  .ship { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .ship canvas { display: block; width: 100%; aspect-ratio: 1 / 1.41; border-radius: 4px; background: #000; }
-  .ship h3 { margin: 0 0.3rem; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; }
-  .ship dl { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 0.35rem 0.6rem; margin: 0 0.3rem 0.3rem; font-size: 0.85rem; line-height: 1.3; }
-  .ship dt { color: var(--dim); font-size: 0.8rem; }
-  .ship dd { margin: 0; min-width: 0; overflow-wrap: normal; word-break: normal; hyphens: none; }
+  @media (max-width: 560px) { .lineup { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; } .ship .sp b { font-size: 1.05rem; } .ship .more { font-size: 0.68rem; } .ship h3 { font-size: 0.95rem; } }
+  .ship { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.15rem; }
+  .ship canvas { display: block; width: 100%; aspect-ratio: 4 / 5; border-radius: 4px; background: #000; margin-bottom: 0.45rem; }
+  .ship h3 { margin: 0 0.3rem 0.1rem; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; }
+  .ship p { margin: 0 0.3rem; line-height: 1.3; }
+  .ship .sp b { font-size: 1.25rem; font-weight: 500; }
+  .ship .sp span { color: var(--dim); font-size: 0.8rem; }
+  .ship .by { font-size: 0.85rem; }
+  .ship .more { color: var(--dim); font-size: 0.72rem; margin-bottom: 0.25rem; }
   .nfts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
   .nfts a { display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 0.35rem; text-decoration: none; color: var(--dim); }
   .nfts a:hover { border-color: var(--ink); color: var(--ink); }
@@ -187,7 +189,7 @@
           <h3>John Conway <small>1937–2020</small></h3>
           <ul class="beats">
             <li>Asked how simple that world could be.</li>
-            <li>Cut it to two states: alive or empty.</li>
+            <li>Cut it to two states: alive or dead.</li>
             <li>Called it Life, in 1970.</li>
           </ul>
         </div>
@@ -198,7 +200,7 @@
   <section class="chapter wide" id="rules">
     <div class="words">
       <h2>Count the neighbours</h2>
-      <p>Every square is alive or empty. Each generation, every square counts how many of its eight neighbours are alive, and that number decides what happens next.</p>
+      <p>Every square is alive or dead. Each generation, every square counts how many of its eight neighbours are alive, and that number decides what happens next.</p>
     </div>
     <div class="rulecards" id="rulecards"></div>
     <p class="aside legend"><span class="sw focus"></span> The outlined square is the one being counted. People write the whole rule as B3/S23.</p>
@@ -233,7 +235,11 @@
   <section class="chapter wide" id="ships">
     <div class="words">
       <h2>Every spaceship is different</h2>
-      <p>A spaceship comes back to its own shape a few steps over and keeps going forever. Like pieces in a generative art collection, each one has its own traits: how fast it moves, how often it repeats, how big it is. Each card follows its ship, so the grid slides past at the ship's real speed. Watch which one moves fastest.</p>
+      <ul class="beats">
+        <li>A spaceship keeps its shape and flies forever.</li>
+        <li>Each one has its own traits, like a generative art piece.</li>
+        <li>The grid slides past at each ship's real speed.</li>
+      </ul>
     </div>
     <div class="lineup" id="lineup"></div>
   </section>
@@ -454,7 +460,7 @@
   // Ship lineup: every ship on the same scale, stepping at the same pace.
   var SHIPS = [{"name": "Glider", "rle": "x=3,y=3\nbo$2bo$3o!", "t": "flip", "speed": "c/4", "period": 4, "cells": 5, "size": "3 × 3", "found": "Richard Guy, 1970", "v": [-0.25, -0.25], "moves": "Diagonal"}, {"name": "Lightweight spaceship", "rle": "x=5,y=4\nbo2bo$o4b$o3bo$4o!", "t": "transpose", "speed": "c/2", "period": 4, "cells": 9, "size": "5 × 4", "found": "John Conway, 1970", "v": [0, -0.5], "moves": "Straight"}, {"name": "Doo-dah", "rle": "x = 16, y = 28, rule = B3/S23\nbo12bo$bo12bo$obo10bobo$bo12bo$bo12bo$2bo3b4o3bo$6b4o$2b4o4b4o2$4bo6bo$5b2o2b2o6$3b2o6b2o$2bob2o4b2obo$2bo2bo4bo2bo$3b3o4b3o$3b2o6b2o2$o14bo$o14bo$bo12bo$b2o10b2o$o14bo$b2o10b2o!", "t": "none", "speed": "2c/7", "period": 21, "cells": 74, "size": "16 × 28", "found": "Me, 2020", "v": [0, -0.2857142857142857], "moves": "Straight"}, {"name": "Anura", "rle": "x = 31, y = 54, rule = B3/S23\n9bo11bo$8b3o9b3o$10bo9bo$6bob2o11b2obo$6bo4b3o3b3o4bo$5bob3ob3o3b3ob3o\nbo2$4b3ob4obo3bob4ob3o$4b2o7bo3bo7b2o$4b3o2bob2o5b2obo2b3o2$9bo2bo5bo2\nbo$9bo11bo$7b2o2bobo3bobo2b2o$7bo3b3o3b3o3bo$5b2o4bo2bobo2bo4b2o$3bob2\nobob2o2bobo2b2obob2obo$2b2obo3bo3bo3bo3bo3bob2o$bobo3b2o13b2o3bobo$b2o\n8bo7bo8b2o$2bo7b3o5b3o7bo$10b2obo3bob2o$2o2b2o5b3o3b3o5b2o2b2o$obo3bo5\nb2o3b2o5bo3bobo$4bob2o15b2obo$8bo13bo$bo5b3o11b3o5bo$7b2o13b2o$3bo23bo\n$5b2o17b2o$5b6o9b6o$6bobo13bobo$2b3o4b2o4bo4b2o4b3o$2b2o4b3o3b3o3b3o4b\n2o$3b2obo6bo3bo6bob2o$12bobobobo$11bob2ob2obo$11bob5obo$9b2o9b2o$8b2o1\n1b2o$8bo13bo2$6bobo13bobo$9bo11bo$5bo3bo11bo3bo$5bo4bo9bo4bo$5bo4bo9bo\n4bo$6bo17bo$8b3o9b3o$8bo13bo2$8bo13bo$6bo17bo$8bo13bo!", "t": "none", "speed": "3c/7", "period": 7, "cells": 313, "size": "31 × 54", "found": "Dylan Chen, 2020", "v": [0, -0.42857142857142855], "moves": "Straight"}, {"name": "Sir Robin", "rle": "x = 31, y = 78, rule = B3/S23\n3b3o$3bo2bo$3bob2ob2o$2b2o7b2o$bo5bo4bo$bo5bob2o3bo$o5bo3bobobo$o4b2o\n3bobobo$bo3bo3bo$bobobobo2bobo$8bobob2o$6b2o5bo2b2o$13b5o$10bo2bo4bo$\n10bobob2o$9b2ob2o3b2o$12bo2b2o$12b2obobo$13bo2b2obo$10b2obo5bo$11b4ob\n3o$15bo2bobo$18bobo$19b2o$11b3o5bo2bo$22bo$16b2o4bo$11bo4bo3bo$11b3o2b\nobo$14bo2b3o$11bo2bo2bo2bo$19b2o2bo$12b3o3bob3obo$12b2o6bobobo$17bo$17b\no3bo$23bob2o$20b4o$19bo3bo3bo$20b3ob4o$22bob4o$18b5ob5o$18bo2bo5bo$18b\nob2o5b2o$18bo3bo4bob2o$22bo3bo$19b3o2$20b3o$19bo3bo$20bob2o$22b3o$17b\n3o4b2o$17b2o2bob2o$19b2o3bo$21bo$18b8o$17bo5bo2bo$21bo2bobo$18bob2o2b\n3o$24b3o$28b2o$22b2o4bo$23bo2bobo$20b2o3b2ob2o$21b2o3bobo$21b3o2bobo$\n22bob2o2bo$22bobobo$26bo3bo$23b2o3bo$23b4o$26b3o$26b3o$27b2o$24b3o$24b\no$25b2o!", "t": "none", "speed": "(2,1)c/6", "period": 6, "cells": 282, "size": "31 × 78", "found": "Goucher and Rokicki, 2018", "v": [-0.16666666666666666, -0.3333333333333333], "moves": "Like a knight"}];
   // Each card follows its ship, so the tile grid slides past at the ship's real speed.
-  var LW = 64, LH = 90, WW = 160, WH = 220, lineup = document.getElementById("lineup"), runs = [];
+  var WW = 160, WH = 220, lineup = document.getElementById("lineup"), runs = [];
   SHIPS.forEach(function (sp) {
     var cells = R.parse(sp.rle).cells.map(function (c) {
       return sp.t === "flip" ? [-c[0], -c[1]] : sp.t === "transpose" ? [c[1], c[0]] : c;
@@ -466,21 +472,25 @@
     var px0 = Math.round((WW - w) / 2), py0 = Math.round((WH - h) / 2);
     wd.placeCells(cells, px0, py0);
     var card = document.createElement("article"); card.className = "ship";
-    card.innerHTML = "<canvas></canvas><h3></h3><dl>" +
-      ["Speed", "Moves", "Period", "Cells", "Size", "Found"].map(function (t) { return "<dt>" + t + "</dt><dd></dd>"; }).join("") + "</dl>";
+    card.innerHTML = "<canvas></canvas><h3></h3><p class=sp><b></b> <span></span></p><p class=by></p><p class=more></p>";
     card.querySelector("h3").textContent = sp.name;
-    var dd = card.querySelectorAll("dd");
-    [sp.speed, sp.moves, sp.period, sp.cells, sp.size, sp.found].forEach(function (v, i) { dd[i].textContent = v; });
+    card.querySelector(".sp b").textContent = sp.speed;
+    card.querySelector(".sp span").textContent = sp.moves.toLowerCase();
+    card.querySelector(".by").textContent = sp.found;
+    card.querySelector(".more").textContent = "Period " + sp.period + ", " + sp.cells + " cells, " + sp.size;
     var cv = card.querySelector("canvas"); cv.setAttribute("aria-label", sp.name + " flying");
     lineup.appendChild(card);
-    runs.push({ world: wd, canvas: cv, ctx: cv.getContext("2d"), seen: false, gen: 0, v: sp.v,
+    // Every card has the same shape; each ship is scaled to fill it with a small margin.
+    var LW = Math.max(w + 6, Math.ceil((h + 6) / 1.25)), LH = Math.round(LW * 1.25);
+    runs.push({ world: wd, canvas: cv, ctx: cv.getContext("2d"), seen: false, gen: 0, v: sp.v, LW: LW, LH: LH,
       x0: px0 + w / 2 - LW / 2, y0: py0 + h / 2 - LH / 2 });
   });
   function mod(a, n) { return ((a % n) + n) % n; }
   function paint(r) {
+    var LW = r.LW, LH = r.LH;
     var dpr = window.devicePixelRatio || 1, cw = Math.round(r.canvas.clientWidth * dpr), ch = Math.round(cw * LH / LW);
     if (r.canvas.width !== cw) { r.canvas.width = cw; r.canvas.height = ch; }
-    var p = cw / LW, gap = 1, c = r.ctx;
+    var p = cw / LW, gap = Math.max(1, Math.round(p / 10)), c = r.ctx;
     var vx = r.x0 + r.v[0] * r.gen, vy = r.y0 + r.v[1] * r.gen, ix = Math.floor(vx), iy = Math.floor(vy), fx = vx - ix, fy = vy - iy;
     c.fillStyle = "#000"; c.fillRect(0, 0, cw, ch);
     for (var y = 0; y <= LH; y++) for (var x = 0; x <= LW; x++) {

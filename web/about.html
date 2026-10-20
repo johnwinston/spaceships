@@ -139,7 +139,7 @@
   .lineup { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
   @media (max-width: 560px) { .lineup { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; } .ship .sp b { font-size: 1.05rem; } .ship .more { font-size: 0.68rem; } .ship h3 { font-size: 0.95rem; } }
   .ship { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.15rem; }
-  .ship canvas { display: block; width: 100%; aspect-ratio: 4 / 5; border-radius: 4px; background: #000; margin-bottom: 0.45rem; }
+  .ship canvas { display: block; width: 100%; height: auto; border-radius: 4px; background: #000; margin-bottom: 0.45rem; }
   .ship h3 { margin: 0 0.3rem 0.1rem; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; }
   .ship p { margin: 0 0.3rem; line-height: 1.3; }
   .ship .sp b { font-size: 1.25rem; font-weight: 500; }
@@ -481,15 +481,19 @@
     var cv = card.querySelector("canvas"); cv.setAttribute("aria-label", sp.name + " flying");
     lineup.appendChild(card);
     // Every card has the same shape; each ship is scaled to fill it with a small margin.
-    var LW = Math.max(w + 6, Math.ceil((h + 6) / 1.25)), LH = Math.round(LW * 1.25);
+    var LW = Math.max(16, w + 6, Math.ceil((h + 6) / 1.25)); LW += (4 - LW % 4) % 4;
+    var LH = LW * 5 / 4;
     runs.push({ world: wd, canvas: cv, ctx: cv.getContext("2d"), seen: false, gen: 0, v: sp.v, LW: LW, LH: LH,
       x0: px0 + w / 2 - LW / 2, y0: py0 + h / 2 - LH / 2 });
   });
   function mod(a, n) { return ((a % n) + n) % n; }
   function paint(r) {
     var LW = r.LW, LH = r.LH;
-    var dpr = window.devicePixelRatio || 1, cw = Math.round(r.canvas.clientWidth * dpr), ch = Math.round(cw * LH / LW);
-    if (r.canvas.width !== cw) { r.canvas.width = cw; r.canvas.height = ch; }
+    // Set the height ourselves: some iOS browsers stretch a canvas instead of honouring aspect-ratio.
+    var css = r.canvas.clientWidth; if (!css) return;
+    r.canvas.style.height = (css * LH / LW) + "px";
+    var dpr = window.devicePixelRatio || 1, cw = Math.round(css * dpr), ch = Math.round(cw * LH / LW);
+    if (r.canvas.width !== cw || r.canvas.height !== ch) { r.canvas.width = cw; r.canvas.height = ch; }
     var p = cw / LW, gap = Math.max(1, Math.round(p / 10)), c = r.ctx;
     var vx = r.x0 + r.v[0] * r.gen, vy = r.y0 + r.v[1] * r.gen, ix = Math.floor(vx), iy = Math.floor(vy), fx = vx - ix, fy = vy - iy;
     c.fillStyle = "#000"; c.fillRect(0, 0, cw, ch);

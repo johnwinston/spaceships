@@ -1,0 +1,38 @@
+# Dependabot security updates for the claim Worker's and the chain scripts'
+# npm packages, and version updates for the Pages workflow's pinned actions.
+# npm version-update pull requests are off (open-pull-requests-limit: 0): only
+# an advisory with a fixed release opens one, grouped per directory. They
+# arrive once Dependabot alerts and security updates are on for the repository
+# (Settings → Advanced Security, or account-wide at
+# github.com/settings/security_analysis). requirements.txt is unpinned, so pip
+# installs the current releases and has nothing for Dependabot to move.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /worker
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 0
+    groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /chain
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 0
+    groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ["*"]

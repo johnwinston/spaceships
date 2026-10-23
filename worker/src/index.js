@@ -33,7 +33,7 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
     try {
-      const res = await route(request, env);
+      const res = await route(request, env, ctx);
       for (const [k, v] of Object.entries(cors)) res.headers.set(k, v);
       return res;
     } catch (err) {
@@ -47,7 +47,7 @@ export default {
   },
 };
 
-async function route(request, env) {
+async function route(request, env, ctx) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
   const method = request.method;
@@ -59,7 +59,7 @@ async function route(request, env) {
   if (method === "GET" && path.startsWith("/claims/")) {
     return getClaim(path.slice("/claims/".length), env);
   }
-  if (method === "POST" && path === "/claim") return claim(request, env);
+  if (method === "POST" && path === "/claim") return claim(request, env, ctx);
   if (method === "POST" && path === "/admin/unclaim") return unclaim(request, env);
   return json({ error: "not found" }, 404);
 }
@@ -91,7 +91,7 @@ async function getClaim(ship, env) {
   return json({ claim: publicView(record) });
 }
 
-async function claim(request, env) {
+async function claim(request, env, ctx) {
   const limited = await rateLimited(request, env);
   if (limited) return limited;
   const body = await readJson(request);
@@ -120,10 +120,19 @@ async function claim(request, env) {
   const key = KEY_PREFIX + ship;
   const existing = await env.CLAIMS.get(key, "json");
   const now = new Date().toISOString();
-  let record = existing
+  const record = existing
     ? { ...existing, name, updatedAt: now }
     : { ship, name, claimedAt: now };
 
+  // Settle the claim under waitUntil, so a buyer who refreshes or closes
+  // the page mid-send doesn't cancel the Worker after the transfer has
+  // landed but before KV has recorded it.
+  const settled = settle(env, key, ship, wallet, existing, record);
+  if (ctx && ctx.waitUntil) ctx.waitUntil(settled.catch(() => {}));
+  return settled;
+}
+
+async function settle(env, key, ship, wallet, existing, record) {
   if (wallet) {
     const sent = await sendNft(ship, wallet, record, env);
     if (sent.error) {

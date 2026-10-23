@@ -139,3 +139,20 @@ test("an RPC failure is a retryable 502 and records no wallet", async () => {
   assert.equal(r.status, 502);
   assert.equal(r.data.claim.wallet, null);
 });
+
+test("the send finishes under waitUntil, so a page refresh can't cut it short", async () => {
+  const chain = fakeChain();
+  const env = makeEnv(chain);
+  const pending = [];
+  const ctx = { waitUntil(p) { pending.push(p); }, passThroughOnException() {} };
+  const res = await worker.fetch(new Request(BASE + "/claim", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ship: "p4-01", code: CODE, wallet: BUYER }),
+  }), env, ctx);
+  assert.equal(res.status, 200);
+  assert.equal(pending.length, 1);
+  await Promise.all(pending);
+  const saved = await env.CLAIMS.get("claim:p4-01", "json");
+  assert.equal(saved.wallet, BUYER);
+});
